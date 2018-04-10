@@ -1,0 +1,61 @@
+//
+//  PrefixHeader.pch
+//  Weather
+//
+//  Created by zhangwenyan on 2018/4/10.
+//  Copyright © 2018年 www.zhangwenyan@travel.com. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "NSString+ZZExtra.h"
+#import "UIView+ZZExtra.h"
+#import "UIButton+ZZExtra.h"
+#import "UIFont+ZZExtra.h"
+#import "UILabel+ZZExtra.h"
+
+#define screenRate ([[UIScreen mainScreen] bounds].size.width  / 375.0)
+#define screenRate6P ([[UIScreen mainScreen] bounds].size.width  / 414.0)
+
+#define kWidth [[UIScreen mainScreen] bounds].size.width
+#define kHeight [[UIScreen mainScreen] bounds].size.height
+
+#define LineWidth [[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0;
+
+#define kFont_Bold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-Bold")
+#define kFont_Light (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Light" :  @"AppleSDGothicNeo-Light")
+#define kFont_Thin (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Thin" : @"AppleSDGothicNeo-Thin")
+#define kFont_Regular (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Regular" : @"AppleSDGothicNeo-Regular")
+#define kFont_Medium (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Medium" : @"AppleSDGothicNeo-Medium")
+#define kFont_SemiBold (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"PingFangSC-Semibold" : @"AppleSDGothicNeo-SemiBold")
+#define kFont_Avenir (([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) ? @"Avenir-Medium" : @"PingFangSC-Regular")
+
+//*************唯一Window*************//
+#define WINDOW [[UIApplication sharedApplication] keyWindow]
+//*************随机色*************//
+#define RandomColor [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1]
+//*************十六进制颜色*************//
+#define RGBCOLOR(color) [UIColor colorWithRed:(((color)>>16)&0xff)*1.0/255.0 green:(((color)>>8)&0xff)*1.0/255.0 blue:((color)&0xff)*1.0/255.0 alpha:1.0]
+//*************国际化调用*************//
+#define L10NString(key) [[NSBundle mainBundle]localizedStringForKey:key value:@"" table:@"L10N"]
+//*************Yaok*************//
+#define CustomBlack     RGBCOLOR(0x333333)    // 黑色
+#define CustomGray      RGBCOLOR(0x999999)    // 浅色
+#define CustomDark      RGBCOLOR(0x666666)    // 灰色
+#define CustomGreen     RGBCOLOR(0x6ECC39)    // 绿色
+#define CustomRed       RGBCOLOR(0xFF5B54)    // 红色
+#define CustomYellow    RGBCOLOR(0xad8f3f)    // 黄色
+#define ViewBackColor   RGBCOLOR(0xF6F6F6)    // 背景色
+
+#define AppApi   [YKLocalFile shareLocalFile].appApi
+#define ApiData  [YKLocalFile shareLocalFile].apiModel
+
+#define WEAK_SELF __weak typeof(self) weakSelf = self
+/// 预加载条件
+#define CanRefresh scrollView.contentOffset.y + scrollView.height*2 >= scrollView.contentSize.height && scrollView.contentSize.height > 0 && !self.isLoading
+// IPhoneX适配
+#define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+#define kTopHeight ([[UIApplication sharedApplication] statusBarFrame].size.height + 44.0)
+
+#endif /* PrefixHeader_pch */
