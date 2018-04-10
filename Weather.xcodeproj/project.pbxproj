@@ -11,7 +11,6 @@
 		3C3A33D338B0AF809F1C30AA /* libPods-WeatherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CBB6CA00F57813D459D79F /* libPods-WeatherTests.a */; };
 		4713EBCEA524CEF461409E8B /* libPods-Weather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CDA29EC38B44C0CB9578E0 /* libPods-Weather.a */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
-		76DEEC15207B4A6600411444 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC14207B4A6600411444 /* ViewController.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
 		76DEEC1A207B4A6800411444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC19207B4A6800411444 /* Assets.xcassets */; };
 		76DEEC1D207B4A6800411444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC1B207B4A6800411444 /* LaunchScreen.storyboard */; };
@@ -28,6 +27,11 @@
 		76DEEC9F207C5E3D00411444 /* loadingCeshi.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC9B207C5E3D00411444 /* loadingCeshi.gif */; };
 		76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC9D207C5E3D00411444 /* MBProgressHUD.m */; };
 		76DEECA4207C5E4600411444 /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECA3207C5E4600411444 /* RSA.m */; };
+		76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECA8207C64BD00411444 /* ZZHttpTool.m */; };
+		76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECAC207CB14B00411444 /* ZZUserDefaults.m */; };
+		76DEECB2207CB47A00411444 /* NSDictionary+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECB1207CB47A00411444 /* NSDictionary+Log.m */; };
+		76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECB4207CB62500411444 /* NSDate+ZZExtra.m */; };
+		76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +59,6 @@
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DEEC10207B4A6600411444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76DEEC11207B4A6600411444 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		76DEEC13207B4A6600411444 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		76DEEC14207B4A6600411444 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		76DEEC17207B4A6600411444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76DEEC19207B4A6800411444 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76DEEC1C207B4A6800411444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,17 @@
 		76DEECA2207C5E4600411444 /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
 		76DEECA3207C5E4600411444 /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
 		76DEECA5207C608C00411444 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		76DEECA7207C64BD00411444 /* ZZHttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZHttpTool.h; sourceTree = "<group>"; };
+		76DEECA8207C64BD00411444 /* ZZHttpTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZHttpTool.m; sourceTree = "<group>"; };
+		76DEECAA207C836800411444 /* API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		76DEECAB207CB14B00411444 /* ZZUserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZUserDefaults.h; sourceTree = "<group>"; };
+		76DEECAC207CB14B00411444 /* ZZUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZUserDefaults.m; sourceTree = "<group>"; };
+		76DEECB0207CB47A00411444 /* NSDictionary+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Log.h"; sourceTree = "<group>"; };
+		76DEECB1207CB47A00411444 /* NSDictionary+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Log.m"; sourceTree = "<group>"; };
+		76DEECB3207CB62500411444 /* NSDate+ZZExtra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+ZZExtra.h"; sourceTree = "<group>"; };
+		76DEECB4207CB62500411444 /* NSDate+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ZZExtra.m"; sourceTree = "<group>"; };
+		76DEECB6207CB90200411444 /* UIApplication+ZZExtra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+ZZExtra.h"; sourceTree = "<group>"; };
+		76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+ZZExtra.m"; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +199,7 @@
 		76DEEC80207B6E8600411444 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				76DEECA6207C64A600411444 /* OtherTools */,
 				76DEEC83207B6FA500411444 /* Extension */,
 				76DEEC93207C5E1900411444 /* ThirdParty */,
 			);
@@ -204,8 +218,7 @@
 			children = (
 				76DEEC10207B4A6600411444 /* AppDelegate.h */,
 				76DEEC11207B4A6600411444 /* AppDelegate.m */,
-				76DEEC13207B4A6600411444 /* ViewController.h */,
-				76DEEC14207B4A6600411444 /* ViewController.m */,
+				76DEECAA207C836800411444 /* API.h */,
 				76DEECA5207C608C00411444 /* PrefixHeader.pch */,
 				76DEEC16207B4A6600411444 /* Main.storyboard */,
 				76DEEC19207B4A6800411444 /* Assets.xcassets */,
@@ -229,6 +242,12 @@
 				76DEEC8B207C554A00411444 /* UIFont+ZZExtra.m */,
 				76DEEC8D207C574500411444 /* UIView+ZZExtra.h */,
 				76DEEC8E207C574500411444 /* UIView+ZZExtra.m */,
+				76DEECB3207CB62500411444 /* NSDate+ZZExtra.h */,
+				76DEECB4207CB62500411444 /* NSDate+ZZExtra.m */,
+				76DEECB6207CB90200411444 /* UIApplication+ZZExtra.h */,
+				76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */,
+				76DEECB0207CB47A00411444 /* NSDictionary+Log.h */,
+				76DEECB1207CB47A00411444 /* NSDictionary+Log.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -272,6 +291,18 @@
 			);
 			path = RSA;
 			sourceTree = "<group>";
+		};
+		76DEECA6207C64A600411444 /* OtherTools */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECA7207C64BD00411444 /* ZZHttpTool.h */,
+				76DEECA8207C64BD00411444 /* ZZHttpTool.m */,
+				76DEECAB207CB14B00411444 /* ZZUserDefaults.h */,
+				76DEECAC207CB14B00411444 /* ZZUserDefaults.m */,
+			);
+			name = OtherTools;
+			path = Weather/OtherTools;
+			sourceTree = SOURCE_ROOT;
 		};
 		D4131314080B66B98BCF943B /* Pods */ = {
 			isa = PBXGroup;
@@ -509,9 +540,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				76DEEC86207B6FC700411444 /* NSString+ZZExtra.m in Sources */,
+				76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */,
 				76DEEC97207C5E3100411444 /* JxbScaleButton.m in Sources */,
+				76DEECB2207CB47A00411444 /* NSDictionary+Log.m in Sources */,
+				76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */,
+				76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */,
 				76DEEC8C207C554A00411444 /* UIFont+ZZExtra.m in Sources */,
-				76DEEC15207B4A6600411444 /* ViewController.m in Sources */,
+				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,
 				76DEEC8F207C574500411444 /* UIView+ZZExtra.m in Sources */,
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,

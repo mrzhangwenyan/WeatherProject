@@ -45,4 +45,6 @@
 
 /// 根据最大宽度和字体返回字符串的尺寸大小
 - (CGSize) sizeWithMaxWidth:(CGFloat)maxWidth andFont:(UIFont *)font;
+- (CGSize) sizeWithMaxHeight:(CGFloat)maxHeight andFont:(UIFont *)font;
+- (CGSize) sizeWithFont: (UIFont *)font;
 @end

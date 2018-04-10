@@ -219,6 +219,27 @@
     //文本的实际大小   NSStringDrawingUsesLineFragmentOrigin 整个文本将以每行组成的矩形为单位计算整个文本的尺寸
     CGSize textSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
     return textSize;
-    
 }
+
+- (CGSize)sizeWithMaxHeight:(CGFloat)maxHeight andFont:(UIFont *)font {
+    CGSize maxSize = CGSizeMake(MAXFLOAT, maxHeight);
+    NSDictionary *attr = @{NSFontAttributeName:font};
+    CGSize textSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
+    return textSize;
+}
+
+- (CGSize)sizeWithFont:(UIFont *)font {
+    return [self sizeWithMaxWidth:MAXFLOAT andFont:font];
+}
+
+
+
+
+
+
+
+
+
+
+
 @end
