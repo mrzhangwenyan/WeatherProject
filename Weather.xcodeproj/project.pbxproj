@@ -32,6 +32,12 @@
 		76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECB4207CB62500411444 /* NSDate+ZZExtra.m */; };
 		76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */; };
 		76DEECBB207D92B300411444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76DEECBA207D92B300411444 /* Assets.xcassets */; };
+		76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECC1207D9B7600411444 /* ZZTabBarController.m */; };
+		76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECC4207D9B9800411444 /* ZZNavigationController.m */; };
+		76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECC7207D9EC100411444 /* WeatherViewController.m */; };
+		76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECCA207D9ECD00411444 /* MailViewController.m */; };
+		76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECCD207D9ED700411444 /* CookingViewController.m */; };
+		76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD0207D9EFD00411444 /* NumQueryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +107,18 @@
 		76DEECB6207CB90200411444 /* UIApplication+ZZExtra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+ZZExtra.h"; sourceTree = "<group>"; };
 		76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+ZZExtra.m"; sourceTree = "<group>"; };
 		76DEECBA207D92B300411444 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76DEECC0207D9B7600411444 /* ZZTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZTabBarController.h; sourceTree = "<group>"; };
+		76DEECC1207D9B7600411444 /* ZZTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZTabBarController.m; sourceTree = "<group>"; };
+		76DEECC3207D9B9800411444 /* ZZNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZNavigationController.h; sourceTree = "<group>"; };
+		76DEECC4207D9B9800411444 /* ZZNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZNavigationController.m; sourceTree = "<group>"; };
+		76DEECC6207D9EC100411444 /* WeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		76DEECC7207D9EC100411444 /* WeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		76DEECC9207D9ECD00411444 /* MailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailViewController.h; sourceTree = "<group>"; };
+		76DEECCA207D9ECD00411444 /* MailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailViewController.m; sourceTree = "<group>"; };
+		76DEECCC207D9ED700411444 /* CookingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CookingViewController.h; sourceTree = "<group>"; };
+		76DEECCD207D9ED700411444 /* CookingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookingViewController.m; sourceTree = "<group>"; };
+		76DEECCF207D9EFD00411444 /* NumQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumQueryViewController.h; sourceTree = "<group>"; };
+		76DEECD0207D9EFD00411444 /* NumQueryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumQueryViewController.m; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +228,10 @@
 			isa = PBXGroup;
 			children = (
 				76DEECB9207CC45C00411444 /* Main */,
+				76DEECBC207D9AE600411444 /* WeatherVC */,
+				76DEECBD207D9AFA00411444 /* MailVC */,
+				76DEECBE207D9B0700411444 /* CookingVC */,
+				76DEECBF207D9B1300411444 /* IphoneVC */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,8 +330,49 @@
 		76DEECB9207CC45C00411444 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				76DEECC0207D9B7600411444 /* ZZTabBarController.h */,
+				76DEECC1207D9B7600411444 /* ZZTabBarController.m */,
+				76DEECC3207D9B9800411444 /* ZZNavigationController.h */,
+				76DEECC4207D9B9800411444 /* ZZNavigationController.m */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		76DEECBC207D9AE600411444 /* WeatherVC */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECC6207D9EC100411444 /* WeatherViewController.h */,
+				76DEECC7207D9EC100411444 /* WeatherViewController.m */,
+			);
+			path = WeatherVC;
+			sourceTree = "<group>";
+		};
+		76DEECBD207D9AFA00411444 /* MailVC */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECC9207D9ECD00411444 /* MailViewController.h */,
+				76DEECCA207D9ECD00411444 /* MailViewController.m */,
+			);
+			name = MailVC;
+			path = Weather/Controller/MailVC;
+			sourceTree = SOURCE_ROOT;
+		};
+		76DEECBE207D9B0700411444 /* CookingVC */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECCC207D9ED700411444 /* CookingViewController.h */,
+				76DEECCD207D9ED700411444 /* CookingViewController.m */,
+			);
+			path = CookingVC;
+			sourceTree = "<group>";
+		};
+		76DEECBF207D9B1300411444 /* IphoneVC */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECCF207D9EFD00411444 /* NumQueryViewController.h */,
+				76DEECD0207D9EFD00411444 /* NumQueryViewController.m */,
+			);
+			path = IphoneVC;
 			sourceTree = "<group>";
 		};
 		D4131314080B66B98BCF943B /* Pods */ = {
@@ -547,6 +610,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */,
+				76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */,
 				76DEEC86207B6FC700411444 /* NSString+ZZExtra.m in Sources */,
 				76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */,
 				76DEEC97207C5E3100411444 /* JxbScaleButton.m in Sources */,
@@ -554,11 +619,15 @@
 				76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */,
 				76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */,
 				76DEEC8C207C554A00411444 /* UIFont+ZZExtra.m in Sources */,
+				76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */,
+				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,
 				76DEEC8F207C574500411444 /* UIView+ZZExtra.m in Sources */,
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,
+				76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */,
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
+				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
 				76DEEC20207B4A6800411444 /* main.m in Sources */,
 				76DEEC92207C5D6000411444 /* UILabel+ZZExtra.m in Sources */,
 				76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */,
@@ -737,6 +806,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/zhangwenyan/Desktop/WeatherProject/Weather/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "Weather/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -757,6 +827,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "/Users/zhangwenyan/Desktop/WeatherProject/Weather/Supporting Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "Weather/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
