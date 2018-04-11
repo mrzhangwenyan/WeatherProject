@@ -20,8 +20,10 @@
 #define screenRate ([[UIScreen mainScreen] bounds].size.width  / 375.0)
 #define screenRate6P ([[UIScreen mainScreen] bounds].size.width  / 414.0)
 
-#define kWidth [[UIScreen mainScreen] bounds].size.width
-#define kHeight [[UIScreen mainScreen] bounds].size.height
+#pragma mark - SCREENSIZE
+
+#define SCREENWIDTH  [[UIScreen mainScreen] bounds].size.width
+#define SCREENHEIGHT [[UIScreen mainScreen] bounds].size.height
 
 #define LineWidth [[UIScreen mainScreen] scale] > 0.0 ? 1.0 / [[UIScreen mainScreen] scale] : 1.0;
 
