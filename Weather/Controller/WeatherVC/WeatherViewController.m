@@ -8,18 +8,47 @@
 
 #import "WeatherViewController.h"
 #import "CityGroupTableViewController.h"
+#import "WeatherView.h"
+#import "WeatherCollectionCell.h"
 
-@interface WeatherViewController ()
-
+@interface WeatherViewController ()<UICollectionViewDataSource>
+@property (nonatomic, strong)WeatherView *weatherView;
+@property (nonatomic, strong)UICollectionView *collectionView;
 @end
 
 @implementation WeatherViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor brownColor];
+    self.title = @"天气";
+    self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"城市" style:UIBarButtonItemStyleDone target:self action:@selector(chooseCity)];
     self.navigationItem.rightBarButtonItem = barBtnItem;
+    [self.view addSubview:self.weatherView];
+    [self.view addSubview:self.collectionView];
+}
+- (UICollectionView *)collectionView {
+    if(!_collectionView) {
+        
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.minimumLineSpacing = 1;
+        flowLayout.minimumInteritemSpacing = 1;
+        flowLayout.itemSize = CGSizeMake(100, 250);
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_weatherView.frame), SCREENWIDTH, 250) collectionViewLayout:flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[WeatherCollectionCell class] forCellWithReuseIdentifier:@"identifier"];
+    }
+    return _collectionView;
+}
+///懒加载
+- (WeatherView *)weatherView {
+    if(_weatherView == nil) {
+        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-250)];
+    }
+    return _weatherView;
 }
 
 /// 选择城市
@@ -33,14 +62,55 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 6;
 }
-*/
-
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    return cell;
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,6 +42,8 @@
 		76DEECD7207DB11000411444 /* CityGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD6207DB11000411444 /* CityGroup.m */; };
 		76DEECDA207DB16C00411444 /* CityGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */; };
 		76DEECDE207DBB0500411444 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECDD207DBB0500411444 /* WeatherView.m */; };
+		76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE0207DD1EA00411444 /* UIImageView+ZZExtra.m */; };
+		76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,10 @@
 		76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityGroupTableViewController.m; sourceTree = "<group>"; };
 		76DEECDC207DBB0500411444 /* WeatherView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
 		76DEECDD207DBB0500411444 /* WeatherView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
+		76DEECDF207DD1EA00411444 /* UIImageView+ZZExtra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZZExtra.h"; sourceTree = "<group>"; };
+		76DEECE0207DD1EA00411444 /* UIImageView+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZZExtra.m"; sourceTree = "<group>"; };
+		76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherCollectionCell.h; sourceTree = "<group>"; };
+		76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherCollectionCell.m; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +284,8 @@
 				76DEEC8E207C574500411444 /* UIView+ZZExtra.m */,
 				76DEECB3207CB62500411444 /* NSDate+ZZExtra.h */,
 				76DEECB4207CB62500411444 /* NSDate+ZZExtra.m */,
+				76DEECDF207DD1EA00411444 /* UIImageView+ZZExtra.h */,
+				76DEECE0207DD1EA00411444 /* UIImageView+ZZExtra.m */,
 				76DEECB6207CB90200411444 /* UIApplication+ZZExtra.h */,
 				76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */,
 				76DEECB0207CB47A00411444 /* NSDictionary+Log.h */,
@@ -405,6 +413,8 @@
 			children = (
 				76DEECDC207DBB0500411444 /* WeatherView.h */,
 				76DEECDD207DBB0500411444 /* WeatherView.m */,
+				76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */,
+				76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -646,6 +656,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */,
+				76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */,
 				76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */,
 				76DEEC86207B6FC700411444 /* NSString+ZZExtra.m in Sources */,
 				76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */,
@@ -657,6 +668,7 @@
 				76DEECD7207DB11000411444 /* CityGroup.m in Sources */,
 				76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */,
 				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
+				76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,
 				76DEECDA207DB16C00411444 /* CityGroupTableViewController.m in Sources */,

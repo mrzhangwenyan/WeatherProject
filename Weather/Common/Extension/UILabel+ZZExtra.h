@@ -10,4 +10,5 @@
 
 @interface UILabel (ZZExtra)
 - (void)widthToFit;
++ (UILabel *)labelWithTitle:(NSString *)title fontSize:(CGFloat)fontSize textColor:(UIColor *)textColor;
 @end

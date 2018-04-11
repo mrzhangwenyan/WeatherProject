@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ZZTabBarController.h"
+#import "WeatherViewController.h"
+#import "ZZNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -18,8 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    ZZTabBarController *tabBarVC = [[ZZTabBarController alloc] init];
-    self.window.rootViewController = tabBarVC;
+//    ZZTabBarController *tabBarVC = [[ZZTabBarController alloc] init];
+    WeatherViewController *weatherVC = [[WeatherViewController alloc] init];
+    ZZNavigationController *nav = [[ZZNavigationController alloc] initWithRootViewController:weatherVC];
+    self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
 }

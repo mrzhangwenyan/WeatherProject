@@ -17,4 +17,13 @@
     [label sizeToFit];
     self.width = label.width;
 }
++ (UILabel *)labelWithTitle:(NSString *)title fontSize:(CGFloat)fontSize textColor:(UIColor *)textColor {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = title;
+    label.font = [UIFont systemFontOfSize:fontSize];
+    label.textColor = textColor;
+    label.textAlignment = NSTextAlignmentCenter;
+    [label sizeToFit];
+    return  label;
+}
 @end
