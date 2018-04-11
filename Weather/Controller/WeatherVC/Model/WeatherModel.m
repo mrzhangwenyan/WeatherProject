@@ -8,17 +8,15 @@
 
 #import "WeatherModel.h"
 
-@implementation ZZModel
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"result": [ZZModel class]};
-}
-@end
-
 @implementation WeatherModel
 
 @end
 
 @implementation FutureModel
+//+ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper
+//{
+//    return @{@"futureArr" : @"future"};
+//}
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"future": [FutureModel class]};
 }

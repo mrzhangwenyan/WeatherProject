@@ -11,5 +11,5 @@
 
 @interface ZZWeatherTools : NSObject
 +(instancetype)shared;
-- (void)requestWithCityName:(NSString *)cityName success: (void (^)(ZZModel *model)) success failure: (void(^)(NSError *error))failure;
+- (void)requestWithCityName:(NSString *)cityName success: (void (^)(NSArray<WeatherModel *> *model)) success failure: (void(^)(NSError *error))failure;
 @end

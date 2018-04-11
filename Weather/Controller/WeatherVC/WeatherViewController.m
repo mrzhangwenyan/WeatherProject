@@ -10,6 +10,7 @@
 #import "CityGroupTableViewController.h"
 #import "WeatherView.h"
 #import "WeatherCollectionCell.h"
+#import "ZZWeatherTools.h"
 
 @interface WeatherViewController ()<UICollectionViewDataSource>
 @property (nonatomic, strong)WeatherView *weatherView;
@@ -26,6 +27,14 @@
     self.navigationItem.rightBarButtonItem = barBtnItem;
     [self.view addSubview:self.weatherView];
     [self.view addSubview:self.collectionView];
+    [self fetchWeatherDataSource];
+}
+- (void)fetchWeatherDataSource {
+    [[ZZWeatherTools shared] requestWithCityName:@"上海" success:^(NSArray<WeatherModel *> *model) {
+        NSLog(@"%lu",model.firstObject.future.count);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
 }
 - (UICollectionView *)collectionView {
     if(!_collectionView) {

@@ -18,14 +18,17 @@
     });
     return instance;
 }
-- (void)requestWithCityName:(NSString *)cityName success: (void (^)(ZZModel *model)) success failure: (void(^)(NSError *error))failure {
+- (void)requestWithCityName:(NSString *)cityName success: (void (^)(NSArray<WeatherModel *> *model)) success failure: (void(^)(NSError *error))failure {
     NSDictionary *paramaters = @{
                                  @"city": cityName,
                                  @"key": @"2529916f4bc5c"
                                  };
     NSString *url = @"http://apicloud.mob.com/v1/weather/query";
     [ZZHttpTool GET:url parameters:paramaters success:^(NSDictionary * _Nonnull responseDic) {
-        
+        NSLog(@"%@",responseDic);
+        NSArray *arr = [NSArray yy_modelArrayWithClass:[WeatherModel class] json:responseDic[@"result"]];
+
+        success(arr);
     } failure:failure];
 }
 @end

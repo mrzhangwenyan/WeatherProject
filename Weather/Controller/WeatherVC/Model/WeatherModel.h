@@ -10,9 +10,9 @@
 @class FutureModel;
 @class WeatherModel;
 
-@interface ZZModel: NSObject
-@property(nonatomic, strong)NSArray<WeatherModel *> *zzModelArr;
-@end
+//@interface ZZModel: NSObject
+//@property(nonatomic, strong)NSArray<WeatherModel *> *zzModelArr;
+//@end
 
 @interface WeatherModel : NSObject
 /// 空气质量
@@ -31,6 +31,8 @@
 @property(nonatomic, copy)NSString *exerciseIndex;
 /// 湿度
 @property(nonatomic, copy)NSString *humidity;
+/// 空气质量指数
+@property(nonatomic, copy)NSString *pollutionIndex;
 /// 省份
 @property(nonatomic, copy)NSString *province;
 /// 日出时间
@@ -50,7 +52,7 @@
 /// 风向
 @property(nonatomic, copy)NSString *wind;
 /// future数组
-@property(nonatomic, strong)NSArray<FutureModel *> *futureModelArr;
+@property(nonatomic, strong)NSArray<FutureModel *> *future;
 @end
 
 @interface FutureModel: NSObject
