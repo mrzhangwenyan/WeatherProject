@@ -7,6 +7,7 @@
 //
 
 #import "WeatherViewController.h"
+#import "CityGroupTableViewController.h"
 
 @interface WeatherViewController ()
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor brownColor];
+    UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"城市" style:UIBarButtonItemStyleDone target:self action:@selector(chooseCity)];
+    self.navigationItem.rightBarButtonItem = barBtnItem;
+}
+
+/// 选择城市
+- (void)chooseCity{
+    CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
+    [self.navigationController pushViewController:cityGroupTableViewVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

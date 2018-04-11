@@ -38,6 +38,10 @@
 		76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECCA207D9ECD00411444 /* MailViewController.m */; };
 		76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECCD207D9ED700411444 /* CookingViewController.m */; };
 		76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD0207D9EFD00411444 /* NumQueryViewController.m */; };
+		76DEECD4207DB0F900411444 /* cityGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76DEECD3207DB0F900411444 /* cityGroups.plist */; };
+		76DEECD7207DB11000411444 /* CityGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD6207DB11000411444 /* CityGroup.m */; };
+		76DEECDA207DB16C00411444 /* CityGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */; };
+		76DEECDE207DBB0500411444 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECDD207DBB0500411444 /* WeatherView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +123,13 @@
 		76DEECCD207D9ED700411444 /* CookingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookingViewController.m; sourceTree = "<group>"; };
 		76DEECCF207D9EFD00411444 /* NumQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumQueryViewController.h; sourceTree = "<group>"; };
 		76DEECD0207D9EFD00411444 /* NumQueryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumQueryViewController.m; sourceTree = "<group>"; };
+		76DEECD3207DB0F900411444 /* cityGroups.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityGroups.plist; sourceTree = "<group>"; };
+		76DEECD5207DB11000411444 /* CityGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityGroup.h; sourceTree = "<group>"; };
+		76DEECD6207DB11000411444 /* CityGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityGroup.m; sourceTree = "<group>"; };
+		76DEECD8207DB16C00411444 /* CityGroupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityGroupTableViewController.h; sourceTree = "<group>"; };
+		76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityGroupTableViewController.m; sourceTree = "<group>"; };
+		76DEECDC207DBB0500411444 /* WeatherView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherView.h; sourceTree = "<group>"; };
+		76DEECDD207DBB0500411444 /* WeatherView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherView.m; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -341,6 +352,8 @@
 		76DEECBC207D9AE600411444 /* WeatherVC */ = {
 			isa = PBXGroup;
 			children = (
+				76DEECDB207DBA5100411444 /* View */,
+				76DEECD2207DB0ED00411444 /* City */,
 				76DEECC6207D9EC100411444 /* WeatherViewController.h */,
 				76DEECC7207D9EC100411444 /* WeatherViewController.m */,
 			);
@@ -373,6 +386,27 @@
 				76DEECD0207D9EFD00411444 /* NumQueryViewController.m */,
 			);
 			path = IphoneVC;
+			sourceTree = "<group>";
+		};
+		76DEECD2207DB0ED00411444 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECD3207DB0F900411444 /* cityGroups.plist */,
+				76DEECD5207DB11000411444 /* CityGroup.h */,
+				76DEECD6207DB11000411444 /* CityGroup.m */,
+				76DEECD8207DB16C00411444 /* CityGroupTableViewController.h */,
+				76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		76DEECDB207DBA5100411444 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECDC207DBB0500411444 /* WeatherView.h */,
+				76DEECDD207DBB0500411444 /* WeatherView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D4131314080B66B98BCF943B /* Pods */ = {
@@ -495,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DEECD4207DB0F900411444 /* cityGroups.plist in Resources */,
 				76DEEC1D207B4A6800411444 /* LaunchScreen.storyboard in Resources */,
 				76DEEC9F207C5E3D00411444 /* loadingCeshi.gif in Resources */,
 				76DEECBB207D92B300411444 /* Assets.xcassets in Resources */,
@@ -619,13 +654,16 @@
 				76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */,
 				76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */,
 				76DEEC8C207C554A00411444 /* UIFont+ZZExtra.m in Sources */,
+				76DEECD7207DB11000411444 /* CityGroup.m in Sources */,
 				76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */,
 				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,
+				76DEECDA207DB16C00411444 /* CityGroupTableViewController.m in Sources */,
 				76DEEC8F207C574500411444 /* UIView+ZZExtra.m in Sources */,
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,
 				76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */,
+				76DEECDE207DBB0500411444 /* WeatherView.m in Sources */,
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
 				76DEEC20207B4A6800411444 /* main.m in Sources */,
