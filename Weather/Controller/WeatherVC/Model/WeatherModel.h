@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class FutureModel;
+@class WeatherModel;
+
+@interface ZZModel: NSObject
+@property(nonatomic, strong)NSArray<WeatherModel *> *zzModelArr;
+@end
 
 @interface WeatherModel : NSObject
 /// 空气质量
@@ -43,10 +49,23 @@
 @property(nonatomic, copy)NSString *week;
 /// 风向
 @property(nonatomic, copy)NSString *wind;
+/// future数组
+@property(nonatomic, strong)NSArray<FutureModel *> *futureModelArr;
 @end
 
-@interface FutureMode: NSObject
-
+@interface FutureModel: NSObject
+/// 日期
+@property(nonatomic, copy)NSString *date;
+/// 白天天气
+@property(nonatomic, copy)NSString *dayTime;
+/// 晚上天气
+@property(nonatomic, copy)NSString *night;
+/// 温度
+@property(nonatomic, copy)NSString *temperature;
+/// 星期
+@property(nonatomic, copy)NSString *week;
+/// 风向
+@property(nonatomic, copy)NSString *wind;
 @end
 
 

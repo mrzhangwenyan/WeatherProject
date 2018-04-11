@@ -8,6 +8,18 @@
 
 #import "WeatherModel.h"
 
+@implementation ZZModel
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"result": [ZZModel class]};
+}
+@end
+
 @implementation WeatherModel
 
+@end
+
+@implementation FutureModel
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"future": [FutureModel class]};
+}
 @end
