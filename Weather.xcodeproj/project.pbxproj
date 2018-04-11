@@ -44,6 +44,7 @@
 		76DEECDE207DBB0500411444 /* WeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECDD207DBB0500411444 /* WeatherView.m */; };
 		76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE0207DD1EA00411444 /* UIImageView+ZZExtra.m */; };
 		76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */; };
+		76DEECE8207E059200411444 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE7207E059200411444 /* WeatherModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,8 @@
 		76DEECE0207DD1EA00411444 /* UIImageView+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZZExtra.m"; sourceTree = "<group>"; };
 		76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherCollectionCell.h; sourceTree = "<group>"; };
 		76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherCollectionCell.m; sourceTree = "<group>"; };
+		76DEECE6207E059200411444 /* WeatherModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherModel.h; sourceTree = "<group>"; };
+		76DEECE7207E059200411444 /* WeatherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherModel.m; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -360,6 +363,7 @@
 		76DEECBC207D9AE600411444 /* WeatherVC */ = {
 			isa = PBXGroup;
 			children = (
+				76DEECE5207E057000411444 /* Model */,
 				76DEECDB207DBA5100411444 /* View */,
 				76DEECD2207DB0ED00411444 /* City */,
 				76DEECC6207D9EC100411444 /* WeatherViewController.h */,
@@ -417,6 +421,15 @@
 				76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		76DEECE5207E057000411444 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				76DEECE6207E059200411444 /* WeatherModel.h */,
+				76DEECE7207E059200411444 /* WeatherModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D4131314080B66B98BCF943B /* Pods */ = {
@@ -681,6 +694,7 @@
 				76DEEC20207B4A6800411444 /* main.m in Sources */,
 				76DEEC92207C5D6000411444 /* UILabel+ZZExtra.m in Sources */,
 				76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */,
+				76DEECE8207E059200411444 /* WeatherModel.m in Sources */,
 				76DEEC89207C484D00411444 /* UIButton+ZZExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
