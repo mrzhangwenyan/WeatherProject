@@ -25,7 +25,6 @@
                                  };
     NSString *url = @"http://apicloud.mob.com/v1/weather/query";
     [ZZHttpTool GET:url parameters:paramaters success:^(NSDictionary * _Nonnull responseDic) {
-        NSLog(@"%@",responseDic);
         NSArray *arr = [NSArray yy_modelArrayWithClass:[WeatherModel class] json:responseDic[@"result"]];
 
         success(arr);

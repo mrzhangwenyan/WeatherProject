@@ -104,7 +104,7 @@
     
     [_airQualityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.lineView.mas_top).mas_offset(@(-15));
-        make.centerX.equalTo(self);
+        make.centerX.equalTo(self).mas_offset(@-15);
         make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
     [_airConditionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

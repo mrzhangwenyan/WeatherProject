@@ -10,6 +10,11 @@
 
 @implementation WeatherModel
 
++ (nullable NSDictionary<NSString*, id>*)modelContainerPropertyGenericClass
+{
+    return @{@"future": [FutureModel class]};
+}
+
 @end
 
 @implementation FutureModel
@@ -17,7 +22,4 @@
 //{
 //    return @{@"futureArr" : @"future"};
 //}
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"future": [FutureModel class]};
-}
 @end

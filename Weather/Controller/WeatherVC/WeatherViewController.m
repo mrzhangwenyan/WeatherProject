@@ -11,6 +11,7 @@
 #import "WeatherView.h"
 #import "WeatherCollectionCell.h"
 #import "ZZWeatherTools.h"
+#import "NSDictionary+Log.h"
 
 @interface WeatherViewController ()<UICollectionViewDataSource>
 @property (nonatomic, strong)WeatherView *weatherView;
@@ -31,7 +32,7 @@
 }
 - (void)fetchWeatherDataSource {
     [[ZZWeatherTools shared] requestWithCityName:@"上海" success:^(NSArray<WeatherModel *> *model) {
-        NSLog(@"%lu",model.firstObject.future.count);
+        NSLog(@"%@",model.firstObject.future[0].night);
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
