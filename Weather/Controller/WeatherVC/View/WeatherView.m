@@ -146,7 +146,7 @@
     _cityNameLabel.text = model.city;
     _weatherLabel.text = model.weather;
     _weatherImgView.image = [NSString imageWithWeatherStr:model.weather];
-    [_temperatureBtn setTitle:[NSString subStringFromString:model.temperature ByLoc:1 length:2] forState:UIControlStateNormal];
+    [_temperatureBtn setTitle:[NSString subStringFromString:model.temperature ByLoc:0 length:2] forState:UIControlStateNormal];
     NSString *publishStr = [NSString stringWithFormat:@"%@ %@",model.date,model.time];
     _dateLabel.text = publishStr;
     _windLabel.text = [model.wind substringFromIndex:model.wind.length -2];

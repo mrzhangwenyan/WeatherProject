@@ -12,6 +12,7 @@
 #import "WeatherCollectionCell.h"
 #import "ZZWeatherTools.h"
 #import "NSDictionary+Log.h"
+#import "ZZLocalFile.h"
 
 @interface WeatherViewController ()<UICollectionViewDataSource>
 @property (nonatomic, strong)WeatherView *weatherView;
@@ -29,11 +30,12 @@
     self.navigationItem.rightBarButtonItem = barBtnItem;
     [self.view addSubview:self.weatherView];
     [self.view addSubview:self.collectionView];
-    [self fetchWeatherDataSource];
+    [self fetchWeatherDataSourceWithCityName:@"上海"];
+    
 }
-- (void)fetchWeatherDataSource {
+- (void)fetchWeatherDataSourceWithCityName:(NSString *)city {
     __weak typeof(self) weakSelf = self;
-    [[ZZWeatherTools shared] requestWithCityName:@"上海" success:^(NSArray<WeatherModel *> *model) {
+    [[ZZWeatherTools shared] requestWithCityName:city success:^(NSArray<WeatherModel *> *model) {
         weakSelf.weatherView.model = model.firstObject;
         weakSelf.model = model.firstObject;
         [weakSelf.collectionView reloadData];
@@ -67,7 +69,12 @@
 
 /// 选择城市
 - (void)chooseCity{
+    __weak typeof(self) weakSelf = self;
     CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
+    [cityGroupTableViewVC setBlock:^(NSString *cityName) {
+        NSLog(@"%@",cityName);
+        [weakSelf fetchWeatherDataSourceWithCityName:cityName];
+    }];
     [self.navigationController pushViewController:cityGroupTableViewVC animated:YES];
 }
 

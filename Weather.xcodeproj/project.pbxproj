@@ -46,6 +46,7 @@
 		76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */; };
 		76DEECE8207E059200411444 /* WeatherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECE7207E059200411444 /* WeatherModel.m */; };
 		76DEECEC207E1B3900411444 /* ZZWeatherTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECEB207E1B3900411444 /* ZZWeatherTools.m */; };
+		76DEECEF207F0A3300411444 /* ZZLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECEE207F0A3300411444 /* ZZLocalFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		76DEECE7207E059200411444 /* WeatherModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherModel.m; sourceTree = "<group>"; };
 		76DEECEA207E1B3900411444 /* ZZWeatherTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZWeatherTools.h; sourceTree = "<group>"; };
 		76DEECEB207E1B3900411444 /* ZZWeatherTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZWeatherTools.m; sourceTree = "<group>"; };
+		76DEECED207F0A3300411444 /* ZZLocalFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocalFile.h; sourceTree = "<group>"; };
+		76DEECEE207F0A3300411444 /* ZZLocalFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocalFile.m; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				76DEECA8207C64BD00411444 /* ZZHttpTool.m */,
 				76DEECAB207CB14B00411444 /* ZZUserDefaults.h */,
 				76DEECAC207CB14B00411444 /* ZZUserDefaults.m */,
+				76DEECED207F0A3300411444 /* ZZLocalFile.h */,
+				76DEECEE207F0A3300411444 /* ZZLocalFile.m */,
 			);
 			name = OtherTools;
 			path = Weather/OtherTools;
@@ -688,6 +693,7 @@
 				76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */,
 				76DEECEC207E1B3900411444 /* ZZWeatherTools.m in Sources */,
 				76DEEC97207C5E3100411444 /* JxbScaleButton.m in Sources */,
+				76DEECEF207F0A3300411444 /* ZZLocalFile.m in Sources */,
 				76DEECB2207CB47A00411444 /* NSDictionary+Log.m in Sources */,
 				76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */,
 				76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */,
