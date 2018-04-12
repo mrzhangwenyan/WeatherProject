@@ -10,11 +10,13 @@
 #import <IQKeyboardManager.h>
 #import "SearchTableView.h"
 
-@interface CityGroupTableViewController ()<UISearchBarDelegate>
+@interface CityGroupTableViewController ()<UISearchBarDelegate,ZZCityNameDelegate>
 @property (nonatomic, strong)NSArray *cityGroupArray;
 @property (nonatomic, strong)UISearchBar *searchBar;
 @property (nonatomic, strong)UIView *shadeView;
 @property (nonatomic, strong)SearchTableView *searchTableView;
+/// 搜索数组
+@property (nonatomic, strong)NSMutableArray *searchResultArray;
 @end
 
 @implementation CityGroupTableViewController
@@ -26,12 +28,18 @@
     self.navigationItem.leftBarButtonItem = backItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.navigationItem.titleView = self.searchBar;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickScreen) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickScreen:) name:UIKeyboardWillHideNotification object:nil];
 }
 - (void)clickBackItem {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+- (NSMutableArray *)searchResultArray {
+    if (_searchResultArray) {
+        _searchResultArray = [NSMutableArray array];
+    }
+    return _searchResultArray;
+}
+/// 获取城市模型
 - (NSArray *)cityGroupArray {
     if (!_cityGroupArray) {
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"cityGroups.plist" ofType:nil];
@@ -49,7 +57,7 @@
     }
     return _cityGroupArray;
 }
-
+/// 搜索栏
 - (UISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(75, 11, SCREENWIDTH-100, 25)];
@@ -78,9 +86,14 @@
     [window addSubview:self.searchTableView];
     [self.searchTableView bringSubviewToFront:self.shadeView];
 }
-- (void)clickScreen {
-    [self.shadeView removeFromSuperview];
+
+- (void)clickScreen:(NSNotification *)notification {
+    NSString *name = [notification name];
+    if ([name isEqualToString:@"UIKeyboardWillHideNotification"]) {
+        [self.shadeView removeFromSuperview];
+    }
 }
+/// 搜索结果展示
 - (SearchTableView *)searchTableView {
     if (!_searchTableView) {
         _searchTableView = [[SearchTableView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT)];
@@ -90,12 +103,13 @@
         }else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
-        _searchTableView.tableView.backgroundColor = [UIColor redColor];
+        _searchTableView.delegate = self;
         _searchTableView.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         _searchTableView.hidden = YES;
     }
     return _searchTableView;
 }
+/// 遮罩View
 - (UIView *)shadeView {
     if (!_shadeView) {
         _shadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT)];
@@ -118,6 +132,7 @@
     [super viewWillDisappear:animated];
     [self.searchBar removeFromSuperview];
     [self.shadeView removeFromSuperview];
+    [self.searchTableView removeFromSuperview];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -158,7 +173,13 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark -ZZCityNameDelegate
+- (void)searchTableViewDidSelectedWithName:(NSString *)cityName {
+    if (_block) {
+        _block(cityName);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark -UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self addShadeViewToWindow];
@@ -166,7 +187,7 @@
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
-        NSLog(@"kong");
+        self.searchTableView.hidden = YES;
     }else {
         self.searchTableView.hidden = NO;
     }
@@ -174,6 +195,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"点击了");
 }
+
 @end
 
 

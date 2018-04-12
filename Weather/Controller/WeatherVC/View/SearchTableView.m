@@ -30,6 +30,7 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
+        _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -58,6 +59,7 @@
     if ([self.delegate respondsToSelector:@selector(searchTableViewDidSelectedWithName:)]) {
         [self.delegate searchTableViewDidSelectedWithName:self.cityNameArr[indexPath.row]];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
