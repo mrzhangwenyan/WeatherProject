@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"天气";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *barBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"城市" style:UIBarButtonItemStyleDone target:self action:@selector(chooseCity)];
     self.navigationItem.rightBarButtonItem = barBtnItem;

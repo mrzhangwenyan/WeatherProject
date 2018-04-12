@@ -7,11 +7,14 @@
 //
 
 #import "CityGroupTableViewController.h"
+#import <IQKeyboardManager.h>
+#import "SearchTableView.h"
 
 @interface CityGroupTableViewController ()<UISearchBarDelegate>
 @property (nonatomic, strong)NSArray *cityGroupArray;
 @property (nonatomic, strong)UISearchBar *searchBar;
 @property (nonatomic, strong)UIView *shadeView;
+@property (nonatomic, strong)SearchTableView *searchTableView;
 @end
 
 @implementation CityGroupTableViewController
@@ -23,8 +26,7 @@
     self.navigationItem.leftBarButtonItem = backItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.navigationItem.titleView = self.searchBar;
-    [self addShadeViewToWindow];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickScreen) name:UIKeyboardWillHideNotification object:nil];
 }
 - (void)clickBackItem {
     [self.navigationController popViewControllerAnimated:YES];
@@ -47,6 +49,7 @@
     }
     return _cityGroupArray;
 }
+
 - (UISearchBar *)searchBar {
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(75, 11, SCREENWIDTH-100, 25)];
@@ -58,23 +61,58 @@
         UITextField *searchTF = [_searchBar valueForKey:@"searchField"];
         searchTF.backgroundColor = [UIColor whiteColor];
         searchTF.font = [UIFont systemFontOfSize:16];
+        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
+        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
         searchTF.clearButtonMode = UITextFieldViewModeAlways;
         _searchBar.placeholder = @"搜索城市";
         _searchBar.delegate = self;
     }
     return _searchBar;
 }
+- (void)clearBtnClick {
+    NSLog(@"dianji");
+}
 - (void)addShadeViewToWindow {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:self.shadeView];
+    [window addSubview:self.searchTableView];
+    [self.searchTableView bringSubviewToFront:self.shadeView];
+}
+- (void)clickScreen {
+    [self.shadeView removeFromSuperview];
+}
+- (SearchTableView *)searchTableView {
+    if (!_searchTableView) {
+        _searchTableView = [[SearchTableView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT)];
+        if (@available(iOS 11.0,*)) {
+            _searchTableView.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _searchTableView.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
+        }else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        _searchTableView.tableView.backgroundColor = [UIColor redColor];
+        _searchTableView.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        _searchTableView.hidden = YES;
+    }
+    return _searchTableView;
 }
 - (UIView *)shadeView {
     if (!_shadeView) {
         _shadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT)];
-        _shadeView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+        _shadeView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
         
     }
     return _shadeView;
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = true;
+    manager.shouldResignOnTouchOutside = true;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -119,6 +157,22 @@
         _block(name);
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self addShadeViewToWindow];
+    [self.searchBar becomeFirstResponder];
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if ([searchText isEqualToString:@""]) {
+        NSLog(@"kong");
+    }else {
+        self.searchTableView.hidden = NO;
+    }
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"点击了");
 }
 @end
 
