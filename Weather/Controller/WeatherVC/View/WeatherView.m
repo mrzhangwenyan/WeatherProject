@@ -53,7 +53,7 @@
     [_temperatureBtn setTitleColor:CustomGray forState:UIControlStateNormal];
     _temperatureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _temperatureBtn.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:180];
-    _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0);
+//    _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
     _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomGray];
     
     _dateLabel = [UILabel labelWithTitle:@"2018-4-11 12:38:03发布" fontSize:16 textColor:CustomGray];
@@ -100,11 +100,11 @@
         make.size.mas_equalTo(CGSizeMake(220, 220));
     }];
     [_degreesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.temperatureBtn.mas_top).mas_offset(@40);
+        make.top.equalTo(self.temperatureBtn.mas_top).mas_offset(@25);
         make.right.equalTo(self.temperatureBtn.mas_right).mas_offset(@10);
     }];
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.temperatureBtn.mas_bottom).mas_offset(@-5);
+        make.top.equalTo(self.temperatureBtn.mas_bottom).mas_offset(@-25);
         make.centerX.equalTo(self);
     }];
     
@@ -120,7 +120,7 @@
     }];
     [_windImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.airQualityImgView);
-        make.right.equalTo(self.airQualityImgView.mas_left).mas_offset(@(-120));
+        make.right.equalTo(self.airQualityImgView.mas_left).mas_offset(@(-100));
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [_windLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,7 +129,7 @@
     }];
     [_humidityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.airQualityImgView);
-        make.left.equalTo(self.airQualityImgView.mas_right).mas_offset(@120);
+        make.left.equalTo(self.airQualityImgView.mas_right).mas_offset(@100);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [_humidityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,7 +147,7 @@
     _weatherLabel.text = model.weather;
     _weatherImgView.image = [NSString imageWithWeatherStr:model.weather];
     [_temperatureBtn setTitle:[NSString subStringFromString:model.temperature ByLoc:0 length:2] forState:UIControlStateNormal];
-    NSString *publishStr = [NSString stringWithFormat:@"%@ %@",model.date,model.time];
+    NSString *publishStr = [NSString stringWithFormat:@"%@ %@发布",model.date,model.time];
     _dateLabel.text = publishStr;
     _windLabel.text = [model.wind substringFromIndex:model.wind.length -2];
     _airConditionLabel.text = model.airCondition;

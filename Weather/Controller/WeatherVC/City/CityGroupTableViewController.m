@@ -8,18 +8,22 @@
 
 #import "CityGroupTableViewController.h"
 
-@interface CityGroupTableViewController ()
+@interface CityGroupTableViewController ()<UISearchBarDelegate>
 @property (nonatomic, strong)NSArray *cityGroupArray;
+@property (nonatomic, strong)UISearchBar *searchBar;
+@property (nonatomic, strong)UIView *shadeView;
 @end
 
 @implementation CityGroupTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"城市列表";
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBackItem)];
     self.navigationItem.leftBarButtonItem = backItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
+    self.navigationItem.titleView = self.searchBar;
+    [self addShadeViewToWindow];
     
 }
 - (void)clickBackItem {
@@ -43,7 +47,40 @@
     }
     return _cityGroupArray;
 }
-
+- (UISearchBar *)searchBar {
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(75, 11, SCREENWIDTH-100, 25)];
+        if (@available(iOS 11.0, *)) {
+            CGFloat a = 44;
+            [[_searchBar.heightAnchor constraintEqualToConstant:a] setActive:YES];
+        }
+        _searchBar.tintColor = CustomGray;
+        UITextField *searchTF = [_searchBar valueForKey:@"searchField"];
+        searchTF.backgroundColor = [UIColor whiteColor];
+        searchTF.font = [UIFont systemFontOfSize:16];
+        searchTF.clearButtonMode = UITextFieldViewModeAlways;
+        _searchBar.placeholder = @"搜索城市";
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
+}
+- (void)addShadeViewToWindow {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    [window addSubview:self.shadeView];
+}
+- (UIView *)shadeView {
+    if (!_shadeView) {
+        _shadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, SCREENHEIGHT)];
+        _shadeView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+        
+    }
+    return _shadeView;
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.searchBar removeFromSuperview];
+    [self.shadeView removeFromSuperview];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

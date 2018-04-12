@@ -69,6 +69,7 @@
 
 /// 选择城市
 - (void)chooseCity{
+
     __weak typeof(self) weakSelf = self;
     CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
     [cityGroupTableViewVC setBlock:^(NSString *cityName) {
