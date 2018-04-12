@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeatherModel.h"
 
 @interface WeatherCollectionCell : UICollectionViewCell
-
+@property(nonatomic, strong)FutureModel *model;
 @end

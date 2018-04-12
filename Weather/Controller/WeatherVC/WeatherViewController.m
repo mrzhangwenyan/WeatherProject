@@ -16,6 +16,7 @@
 @interface WeatherViewController ()<UICollectionViewDataSource>
 @property (nonatomic, strong)WeatherView *weatherView;
 @property (nonatomic, strong)UICollectionView *collectionView;
+@property (nonatomic, strong)WeatherModel *model;
 @end
 
 @implementation WeatherViewController
@@ -31,8 +32,11 @@
     [self fetchWeatherDataSource];
 }
 - (void)fetchWeatherDataSource {
+    __weak typeof(self) weakSelf = self;
     [[ZZWeatherTools shared] requestWithCityName:@"上海" success:^(NSArray<WeatherModel *> *model) {
-        NSLog(@"%@",model.firstObject.future[0].night);
+        weakSelf.weatherView.model = model.firstObject;
+        weakSelf.model = model.firstObject;
+        [weakSelf.collectionView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
@@ -74,10 +78,11 @@
 
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 6;
+    return self.model.future.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    WeatherCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    cell.model = self.model.future[indexPath.row];
     return cell;
 }
 @end

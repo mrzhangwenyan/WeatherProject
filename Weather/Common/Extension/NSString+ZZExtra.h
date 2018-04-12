@@ -47,4 +47,28 @@
 - (CGSize) sizeWithMaxWidth:(CGFloat)maxWidth andFont:(UIFont *)font;
 - (CGSize) sizeWithMaxHeight:(CGFloat)maxHeight andFont:(UIFont *)font;
 - (CGSize) sizeWithFont: (UIFont *)font;
+
+/// 根据天气返回图片
++ (UIImage *)imageWithWeatherStr: (NSString *)weather;
+/// 截取字符串
++ (NSString *)subStringFromString:(NSString *)string ByLoc:(NSInteger)loc length:(NSInteger)length;
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

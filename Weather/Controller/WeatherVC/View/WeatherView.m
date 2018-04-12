@@ -18,6 +18,7 @@
 @property(nonatomic, strong)UILabel *cityNameLabel;
 @property(nonatomic, strong)UILabel *weatherLabel;
 @property(nonatomic, strong)UIButton *temperatureBtn;
+@property(nonatomic, strong)UILabel *degreesLabel;
 @property(nonatomic, strong)UILabel *dateLabel;
 @property(nonatomic, strong)UILabel *windLabel;
 @property(nonatomic, strong)UILabel *airConditionLabel;
@@ -43,8 +44,8 @@
     _airQualityImgView = [UIImageView imageViewWithName:@"ok"];
     _humidityImgView = [UIImageView imageViewWithName:@"shidu"];
     
-    _cityNameLabel = [UILabel labelWithTitle:@"上海" fontSize:18 textColor:CustomDark];
-    _weatherLabel = [UILabel labelWithTitle:@"晴天" fontSize:15 textColor:CustomGray];
+    _cityNameLabel = [UILabel labelWithTitle:@"上海" fontSize:30 textColor:CustomDark];
+    _weatherLabel = [UILabel labelWithTitle:@"晴天" fontSize:20 textColor:CustomGray];
     
     _temperatureBtn = [[UIButton alloc] init];
     _temperatureBtn.userInteractionEnabled = NO;
@@ -53,11 +54,12 @@
     _temperatureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _temperatureBtn.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:180];
     _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -40, 0);
+    _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomGray];
     
     _dateLabel = [UILabel labelWithTitle:@"2018-4-11 12:38:03发布" fontSize:16 textColor:CustomGray];
-    _windLabel = [UILabel labelWithTitle:@"4级" fontSize:14 textColor:CustomGray];
-    _airConditionLabel = [UILabel labelWithTitle:@"良好" fontSize:14 textColor:CustomGray];
-    _humidityLabel = [UILabel labelWithTitle:@"25" fontSize:14 textColor:CustomGray];
+    _windLabel = [UILabel labelWithTitle:@"1级" fontSize:18 textColor:CustomGray];
+    _airConditionLabel = [UILabel labelWithTitle:@"良好" fontSize:18 textColor:CustomGray];
+    _humidityLabel = [UILabel labelWithTitle:@"25" fontSize:18 textColor:CustomGray];
     _lineView = [[UIView alloc] init];
     _lineView.backgroundColor = CustomGray;
     
@@ -70,6 +72,7 @@
     [self addSubview:_cityNameLabel];
     [self addSubview:_weatherLabel];
     [self addSubview:_temperatureBtn];
+    [self addSubview:_degreesLabel];
     [self addSubview:_dateLabel];
     [self addSubview:_windLabel];
     [self addSubview:_airConditionLabel];
@@ -81,7 +84,7 @@
     [_weatherImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@20);
         make.left.equalTo(@35);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
+        make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     [_cityNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@20);
@@ -96,6 +99,10 @@
         make.top.equalTo(self.weatherLabel.mas_bottom).mas_offset(@50);
         make.size.mas_equalTo(CGSizeMake(220, 220));
     }];
+    [_degreesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.temperatureBtn.mas_top).mas_offset(@40);
+        make.right.equalTo(self.temperatureBtn.mas_right).mas_offset(@10);
+    }];
     [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.temperatureBtn.mas_bottom).mas_offset(@-5);
         make.centerX.equalTo(self);
@@ -105,7 +112,7 @@
     [_airQualityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.lineView.mas_top).mas_offset(@(-15));
         make.centerX.equalTo(self).mas_offset(@-15);
-        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [_airConditionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.airQualityImgView);
@@ -114,7 +121,7 @@
     [_windImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.airQualityImgView);
         make.right.equalTo(self.airQualityImgView.mas_left).mas_offset(@(-120));
-        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [_windLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.windImgView);
@@ -123,7 +130,7 @@
     [_humidityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.airQualityImgView);
         make.left.equalTo(self.airQualityImgView.mas_right).mas_offset(@120);
-        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     [_humidityLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.humidityImgView);
@@ -133,6 +140,18 @@
         make.bottom.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(SCREENWIDTH, 1));
     }];
+}
+- (void)setModel:(WeatherModel *)model {
+    _model = model;
+    _cityNameLabel.text = model.city;
+    _weatherLabel.text = model.weather;
+    _weatherImgView.image = [NSString imageWithWeatherStr:model.weather];
+    [_temperatureBtn setTitle:[NSString subStringFromString:model.temperature ByLoc:1 length:2] forState:UIControlStateNormal];
+    NSString *publishStr = [NSString stringWithFormat:@"%@ %@",model.date,model.time];
+    _dateLabel.text = publishStr;
+    _windLabel.text = [model.wind substringFromIndex:model.wind.length -2];
+    _airConditionLabel.text = model.airCondition;
+    _humidityLabel.text = [model.humidity substringFromIndex:model.humidity.length - 3];
 }
 @end
 

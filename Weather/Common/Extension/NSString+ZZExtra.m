@@ -232,14 +232,55 @@
     return [self sizeWithMaxWidth:MAXFLOAT andFont:font];
 }
 
+/// 根据天气返回图片
++ (UIImage *)imageWithWeatherStr:(NSString *)weather {
+    if ([weather containsString:@"云"]) {
+        return [UIImage imageNamed:@"cloudy_b"];
+    }
+    else if ([weather containsString:@"阴"]) {
+        return [UIImage imageNamed:@"yin_s"];
+    }
+    else if ([weather containsString:@"雾"]) {
+        return [UIImage imageNamed:@"fog_b"];
+    }
+    else if ([weather containsString:@"晴"]) {
+        return [UIImage imageNamed:@"sun_b"];
+    }
+    else if ([weather containsString:@"阵雨"]) {
+        return [UIImage imageNamed:@"zhenyu_b"];
+    }
+    else if ([weather containsString:@"雷阵雨"]) {
+        return [UIImage imageNamed:@"leizhenyu_b"];
+    }
+    else if ([weather containsString:@"小雨"]) {
+        return [UIImage imageNamed:@"rain_b_s"];
+    }
+    else if ([weather containsString:@"中雨"]) {
+        return [UIImage imageNamed:@"rain_b_m"];
+    }
+    else if ([weather containsString:@"大雨"]) {
+        return [UIImage imageNamed:@"rain_b_h"];
+    }
+    else if ([weather containsString:@"暴雨"]) {
+        return [UIImage imageNamed:@"rain_b_hh"];
+    }
+    else if ([weather containsString:@"小雪"]) {
+        return [UIImage imageNamed:@"snow_s_s"];
+    }
+    else if ([weather containsString:@"中雪"]) {
+        return [UIImage imageNamed:@"snow_b_m"];
+    }
+    else if ([weather containsString:@"大雪"]) {
+        return [UIImage imageNamed:@"snow_b_h"];
+    }
+    return [UIImage imageNamed:@""];
+}
 
-
-
-
-
-
-
-
+/// 截取字符串
++ (NSString *)subStringFromString:(NSString *)string ByLoc:(NSInteger)loc length:(NSInteger)length {
+    NSString *str = [string substringWithRange:NSMakeRange(loc, length)];
+    return str;
+}
 
 
 @end
