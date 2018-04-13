@@ -281,6 +281,7 @@
     NSString *str = [string substringWithRange:NSMakeRange(loc, length)];
     return str;
 }
+
 //获取汉字转成拼音字符串  通讯录模糊搜索 支持拼音检索 首字母 全拼 汉字 搜索
 + (NSString *)transformToPinyin:(NSString *)aString
 {
@@ -309,7 +310,6 @@
     {
         if (s.length > 0)
         {
-            
             [initialStr appendString:  [s substringToIndex:1]];
         }
     }

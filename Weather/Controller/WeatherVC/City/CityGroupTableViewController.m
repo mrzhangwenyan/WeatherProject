@@ -231,7 +231,9 @@
             /// 回到主线程
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.searchTableView.cityNameArr = self.searchResultArray;
-                [self.searchTableView.tableView reloadData];
+                if (self.searchResultArray.count > 0) {                
+                    [self.searchTableView.tableView reloadData];
+                }
             });
         });
     }
