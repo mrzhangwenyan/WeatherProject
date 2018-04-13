@@ -15,8 +15,11 @@
 @property (nonatomic, strong)UISearchBar *searchBar;
 @property (nonatomic, strong)UIView *shadeView;
 @property (nonatomic, strong)SearchTableView *searchTableView;
+
 /// 搜索数组
 @property (nonatomic, strong)NSMutableArray *searchResultArray;
+/// 所有的城市数组
+@property (nonatomic, strong)NSMutableArray *cityArray;
 @end
 
 @implementation CityGroupTableViewController
@@ -29,15 +32,23 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.navigationItem.titleView = self.searchBar;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickScreen:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 - (void)clickBackItem {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSMutableArray *)searchResultArray {
-    if (_searchResultArray) {
+    if (!_searchResultArray) {
         _searchResultArray = [NSMutableArray array];
     }
     return _searchResultArray;
+}
+
+- (NSMutableArray *)cityArray {
+    if (!_cityArray) {
+        _cityArray = [NSMutableArray array];
+    }
+    return _cityArray;
 }
 /// 获取城市模型
 - (NSArray *)cityGroupArray {
@@ -47,6 +58,10 @@
         ///所有字典对象转成模型对象
         NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
         for (NSDictionary *dic in cityGroupArray) {
+            NSArray *cities = dic[@"cities"];
+            for (NSString *str in cities) {
+                [self.cityArray addObject:str];
+            }
             /// 声明一个空的对象
             CityGroup *cityGroup = [[CityGroup alloc] init];
             /// kvc绑定模型对象属性和字典key关系
@@ -69,20 +84,24 @@
         UITextField *searchTF = [_searchBar valueForKey:@"searchField"];
         searchTF.backgroundColor = [UIColor whiteColor];
         searchTF.font = [UIFont systemFontOfSize:16];
-        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
-        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
+//        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
         searchTF.clearButtonMode = UITextFieldViewModeAlways;
         _searchBar.placeholder = @"搜索城市";
         _searchBar.delegate = self;
     }
     return _searchBar;
 }
-- (void)clearBtnClick {
-    NSLog(@"dianji");
-}
+//- (void)clearBtnClick {
+//    NSLog(@"删除");
+//}
 - (void)addShadeViewToWindow {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:self.shadeView];
+}
+
+- (void)addSearchTableViewToWindow {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     [window addSubview:self.searchTableView];
     [self.searchTableView bringSubviewToFront:self.shadeView];
 }
@@ -173,6 +192,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark -ZZCityNameDelegate
 - (void)searchTableViewDidSelectedWithName:(NSString *)cityName {
     if (_block) {
@@ -180,6 +200,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark -UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     [self addShadeViewToWindow];
@@ -187,9 +208,32 @@
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
+        [self.searchTableView removeFromSuperview];
         self.searchTableView.hidden = YES;
-    }else {
+    }
+    else {
+        
+        [self addSearchTableViewToWindow];
         self.searchTableView.hidden = NO;
+        [self.searchResultArray removeAllObjects];
+        /// 加个多线程 否则数据量很大 有卡顿现象
+        dispatch_queue_t global = dispatch_get_global_queue(0, 0);
+        dispatch_async(global, ^{
+            NSLog(@"%lu",self.cityArray.count);
+            if (searchText !=nil && searchText.length > 0) {
+                for (NSString *str in self.cityArray) {
+                    NSString *pingyin = [NSString transformToPinyin:str];
+                    if ([pingyin rangeOfString:searchText options:NSCaseInsensitiveSearch].length > 0) {
+                        [self.searchResultArray addObject:str];
+                    }
+                }
+            }
+            /// 回到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.searchTableView.cityNameArr = self.searchResultArray;
+                [self.searchTableView.tableView reloadData];
+            });
+        });
     }
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

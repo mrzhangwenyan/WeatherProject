@@ -45,13 +45,11 @@
 
 #pragma mark -UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.cityNameArr.count;
-    return 6;
+    return self.cityNameArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
-//    cell.textLabel.text = self.cityNameArr[indexPath.row];
-    cell.textLabel.text = @"1";
+    cell.textLabel.text = self.cityNameArr[indexPath.row];
     return cell;
 }
 

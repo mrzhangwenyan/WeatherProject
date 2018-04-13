@@ -53,6 +53,9 @@
 /// 截取字符串
 + (NSString *)subStringFromString:(NSString *)string ByLoc:(NSInteger)loc length:(NSInteger)length;
 
+//获取汉字转成拼音字符串
++ (NSString *)transformToPinyin:(NSString *)aString;
+
 @end
 
 
