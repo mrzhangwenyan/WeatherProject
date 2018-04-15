@@ -11,4 +11,5 @@
 
 @interface WeatherView : UIView
 @property (nonatomic, strong)WeatherModel *model;
+@property (nonatomic, strong)UICollectionView *collectionView;
 @end

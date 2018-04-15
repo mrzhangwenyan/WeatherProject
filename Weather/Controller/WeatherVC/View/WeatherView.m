@@ -9,8 +9,9 @@
 #import "WeatherView.h"
 #import "UILabel+ZZExtra.h"
 #import "UIImageView+ZZExtra.h"
+#import "WeatherCollectionCell.h"
 
-@interface WeatherView()
+@interface WeatherView()<UICollectionViewDataSource>
 @property(nonatomic, strong)UIImageView *weatherImgView;
 @property(nonatomic, strong)UIImageView *windImgView;
 @property(nonatomic, strong)UIImageView *airQualityImgView;
@@ -78,6 +79,23 @@
     [self addSubview:_airConditionLabel];
     [self addSubview:_humidityLabel];
     [self addSubview:_lineView];
+    [self addSubview:self.collectionView];
+}
+- (UICollectionView *)collectionView {
+    if(!_collectionView) {
+        
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.minimumLineSpacing = 1;
+        flowLayout.minimumInteritemSpacing = 1;
+        flowLayout.itemSize = CGSizeMake(100, 250);
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        /// CGRectMake(0, CGRectGetMaxY(_weatherView.frame), SCREENWIDTH, 250)
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        [_collectionView registerClass:[WeatherCollectionCell class] forCellWithReuseIdentifier:@"identifier"];
+    }
+    return _collectionView;
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -140,6 +158,11 @@
         make.bottom.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(SCREENWIDTH, 1));
     }];
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.lineView.mas_bottom);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@250);
+    }];
 }
 - (void)setModel:(WeatherModel *)model {
     _model = model;
@@ -152,6 +175,16 @@
     _windLabel.text = [model.wind substringFromIndex:model.wind.length -2];
     _airConditionLabel.text = model.airCondition;
     _humidityLabel.text = [model.humidity substringFromIndex:model.humidity.length - 3];
+}
+
+#pragma mark UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.model.future.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    WeatherCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
+    cell.model = self.model.future[indexPath.row];
+    return cell;
 }
 @end
 
