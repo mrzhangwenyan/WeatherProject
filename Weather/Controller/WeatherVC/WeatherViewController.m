@@ -23,6 +23,7 @@
 @property (nonatomic, strong)UIView *rightView;
 @property (nonatomic, strong)SharedView *sharedView;
 @property (nonatomic, strong)WeatherModel *weatherModel;
+@property (nonatomic, strong)UIView *shadeView;
 
 @end
 
@@ -39,7 +40,6 @@
     self.tableView.tableHeaderView = self.weatherView;
     [self.tableView registerClass:[WeatherTableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.view addSubview:self.sharedView];
     [self fetchWeatherDataSourceWithCityName:@"上海"];
     
 }
@@ -71,7 +71,27 @@
         NSLog(@"%@",error.description);
     }];
 }
-
+- (UIView *)shadeView {
+    if(!_shadeView) {
+        _shadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+        _shadeView.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.1];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelSharedView)];
+        [_shadeView addGestureRecognizer:tap];
+    }
+    return _shadeView;
+}
+- (void)cancelSharedView {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.sharedView.top = SCREENHEIGHT;
+        [self.shadeView removeFromSuperview];
+    } completion:nil];
+}
+- (void)addShadeViewToWindow {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    [window addSubview:self.shadeView];
+    [window addSubview:self.sharedView];
+    [self.sharedView bringSubviewToFront:self.shadeView];
+}
 ///懒加载
 - (WeatherView *)weatherView {
     if(_weatherView == nil) {
@@ -90,7 +110,7 @@
         _sharedView.cancelBlock = ^{
             [UIView animateWithDuration:0.5 animations:^{
                 weakSelf.sharedView.top = SCREENHEIGHT;
-//                [weakSelf.view layoutIfNeeded];
+                [weakSelf.shadeView removeFromSuperview];
             } completion:nil];
         };
     }
@@ -110,16 +130,16 @@
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [self.sharedView removeFromSuperview];
 }
 
 /// 分享
 - (void)sharedAction {
+    [self addShadeViewToWindow];
     CGFloat height = (SCREENWIDTH / 4) + 40;
-    CGFloat Y = SCREENHEIGHT-height - 64;
+    CGFloat Y = SCREENHEIGHT-height;
     [UIView animateWithDuration:0.5 animations:^{
         self.sharedView.top = Y;
-    } completion:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -193,6 +213,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
 }
+
 @end
 
 

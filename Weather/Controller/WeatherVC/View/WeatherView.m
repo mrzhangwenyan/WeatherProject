@@ -34,7 +34,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setUserInteractionEnabled:NO];
+        [self setUserInteractionEnabled:YES];
         [self creatUI];
     }
     return self;
@@ -46,22 +46,22 @@
     _airQualityImgView = [UIImageView imageViewWithName:@"ok"];
     _humidityImgView = [UIImageView imageViewWithName:@"shidu"];
     
-    _cityNameLabel = [UILabel labelWithTitle:@"上海" fontSize:30 textColor:CustomDark];
-    _weatherLabel = [UILabel labelWithTitle:@"晴天" fontSize:20 textColor:CustomGray];
+    _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:CustomDark];
+    _weatherLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomGray];
     
     _temperatureBtn = [[UIButton alloc] init];
     _temperatureBtn.userInteractionEnabled = NO;
-    [_temperatureBtn setTitle:@"23" forState:UIControlStateNormal];
+    [_temperatureBtn setTitle:@"" forState:UIControlStateNormal];
     [_temperatureBtn setTitleColor:CustomGray forState:UIControlStateNormal];
     _temperatureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _temperatureBtn.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:180];
 //    _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
     _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomGray];
     
-    _dateLabel = [UILabel labelWithTitle:@"2018-4-11 12:38:03发布" fontSize:16 textColor:CustomGray];
-    _windLabel = [UILabel labelWithTitle:@"1级" fontSize:18 textColor:CustomGray];
-    _airConditionLabel = [UILabel labelWithTitle:@"良好" fontSize:18 textColor:CustomGray];
-    _humidityLabel = [UILabel labelWithTitle:@"25" fontSize:18 textColor:CustomGray];
+    _dateLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomGray];
+    _windLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
+    _airConditionLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
+    _humidityLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
     _lineView = [[UIView alloc] init];
     _lineView.backgroundColor = CustomGray;
     _lineBottomView = [[UIView alloc] init];
@@ -96,6 +96,7 @@
 
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[WeatherCollectionCell class] forCellWithReuseIdentifier:@"identifier"];
     }

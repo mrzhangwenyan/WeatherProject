@@ -23,8 +23,8 @@
 }
 
 - (void)createUI {
-    _promptLabel = [UILabel labelWithTitle:@"日落" fontSize:12 textColor:CustomGray];
-    _dataShowLabel = [UILabel labelWithTitle:@"05:24" fontSize:16 textColor:CustomGray];
+    _promptLabel = [UILabel labelWithTitle:@"" fontSize:12 textColor:CustomGray];
+    _dataShowLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomGray];
     
     [self addSubview:_promptLabel];
     [self addSubview:_dataShowLabel];
@@ -48,7 +48,6 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, rect);
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:0xE2/255.0f green:0xE2/255.0f blue:0xE2/255.0f alpha:1].CGColor);
-//    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeRect(context, CGRectMake(0, rect.size.height - 1, rect.size.width, 1));
 }
 - (void)setFrame:(CGRect)frame {
