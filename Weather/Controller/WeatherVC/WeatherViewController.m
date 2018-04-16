@@ -16,6 +16,7 @@
 #import "SharedView.h"
 #import "WeatherTableViewCell.h"
 #import "FutureModel+HandleData.h"
+#import "SharedBtnAction.h"
 
 @interface WeatherViewController ()
 
@@ -105,7 +106,7 @@
         
         CGFloat height = (SCREENWIDTH / 4) + 40;
         _sharedView = [[SharedView alloc] initWithFrame:CGRectMake(0, SCREENHEIGHT, SCREENWIDTH, height)];
-        _sharedView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
+        _sharedView.backgroundColor = [UIColor whiteColor];
         __weak typeof(self) weakSelf = self;
         _sharedView.cancelBlock = ^{
             [UIView animateWithDuration:0.5 animations:^{
@@ -113,6 +114,9 @@
                 [weakSelf.shadeView removeFromSuperview];
             } completion:nil];
         };
+        [_sharedView setCallBack:^(UIButton *button) {
+            [[SharedBtnAction sharedInstance] sharedBtnRespond:button];
+        }];
     }
     return _sharedView;
 }

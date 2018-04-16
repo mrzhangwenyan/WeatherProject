@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 typedef void(^SharedBtnBlock)(UIButton *button);
 typedef void(^CancelBlock)(void);
 @interface SharedView : UIView
