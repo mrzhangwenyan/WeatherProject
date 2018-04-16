@@ -14,12 +14,15 @@
 #import "NSDictionary+Log.h"
 #import "ZZLocalFile.h"
 #import "SharedView.h"
+#import "WeatherTableViewCell.h"
+#import "FutureModel+HandleData.h"
 
 @interface WeatherViewController ()
 
 @property (nonatomic, strong)WeatherView *weatherView;
 @property (nonatomic, strong)UIView *rightView;
 @property (nonatomic, strong)SharedView *sharedView;
+@property (nonatomic, strong)WeatherModel *weatherModel;
 
 @end
 
@@ -34,7 +37,8 @@
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     
     self.tableView.tableHeaderView = self.weatherView;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
+    [self.tableView registerClass:[WeatherTableViewCell class] forCellReuseIdentifier:@"identifier"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self.view addSubview:self.sharedView];
     [self fetchWeatherDataSourceWithCityName:@"上海"];
     
@@ -60,7 +64,9 @@
     __weak typeof(self) weakSelf = self;
     [[ZZWeatherTools shared] requestWithCityName:city success:^(NSArray<WeatherModel *> *model) {
         weakSelf.weatherView.model = model.firstObject;
+        weakSelf.weatherModel = model.firstObject;
         [weakSelf.weatherView.collectionView reloadData];
+        [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
@@ -69,7 +75,7 @@
 ///懒加载
 - (WeatherView *)weatherView {
     if(_weatherView == nil) {
-        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-86)];
+        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-70)];
     }
     return _weatherView;
 }
@@ -122,12 +128,70 @@
 }
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 11;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
-    cell.textLabel.text = @"text";
+    WeatherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
+    FutureModel *model = self.weatherModel.future.firstObject;
+    NSString *highStr = [model getHighWeatherTemperature:model.temperature];
+    NSString *lowStr = [model getLowWeatherTemperature:model.temperature];
+//    cell.layoutMargins = UIEdgeInsetsZero;
+//    cell.separatorInset = UIEdgeInsetsZero;
+    switch (indexPath.row) {
+        case 0:
+        cell.textLabel.text = [NSString stringWithFormat:@"今天：现在%@。最高温度%@。今晚%@。最低温度%@。",model.dayTime,highStr,model.night,lowStr];
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.textColor = CustomGray;
+        cell.promptLabel.hidden = YES;
+        cell.dataShowLabel.hidden = YES;
+        break;
+        case 1:
+        cell.promptLabel.text = @"日出";
+        cell.dataShowLabel.text = self.weatherModel.sunset;
+        break;
+        case 2:
+        cell.promptLabel.text = @"日落";
+        cell.dataShowLabel.text = self.weatherModel.sunrise;
+        break;
+        case 3:
+        cell.promptLabel.text = @"湿度";
+        cell.dataShowLabel.text = [_weatherModel.humidity substringFromIndex:_weatherModel.humidity.length - 3];
+        break;
+        case 4:
+        cell.promptLabel.text = @"风速";
+        cell.dataShowLabel.text = _weatherModel.wind;
+        break;
+        case 5:
+        cell.promptLabel.text = @"空气质量";
+        cell.dataShowLabel.text = _weatherModel.airCondition;
+        break;
+        case 6:
+        cell.promptLabel.text = @"穿衣类型";
+        cell.dataShowLabel.text = _weatherModel.dressingIndex;
+        break;
+        case 7:
+        cell.promptLabel.text = @"运动指数";
+        cell.dataShowLabel.text = _weatherModel.exerciseIndex;
+        break;
+        case 8:
+        cell.promptLabel.text = @"洗车指数";
+        cell.dataShowLabel.text = _weatherModel.washIndex;
+        break;
+        case 9:
+        cell.promptLabel.text = @"感冒指数";
+        cell.dataShowLabel.text = _weatherModel.coldIndex;
+        break;
+        case 10:
+        cell.promptLabel.text = @"空气污染";
+        cell.dataShowLabel.text = _weatherModel.pollutionIndex;
+        break;
+        default:
+        break;
+    }
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
 }
 @end
 

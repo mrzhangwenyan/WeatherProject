@@ -25,6 +25,7 @@
 @property(nonatomic, strong)UILabel *airConditionLabel;
 @property(nonatomic, strong)UILabel *humidityLabel;
 @property(nonatomic, strong)UIView  *lineView;
+@property(nonatomic, strong)UIView  *lineBottomView;
 @end
 
 @implementation WeatherView
@@ -63,6 +64,8 @@
     _humidityLabel = [UILabel labelWithTitle:@"25" fontSize:18 textColor:CustomGray];
     _lineView = [[UIView alloc] init];
     _lineView.backgroundColor = CustomGray;
+    _lineBottomView = [[UIView alloc] init];
+    _lineBottomView.backgroundColor = CustomGray;
     
     /// 添加到view上
     [self addSubview:_weatherImgView];
@@ -79,6 +82,7 @@
     [self addSubview:_airConditionLabel];
     [self addSubview:_humidityLabel];
     [self addSubview:_lineView];
+    [self addSubview:_lineBottomView];
     [self addSubview:self.collectionView];
 }
 - (UICollectionView *)collectionView {
@@ -156,6 +160,10 @@
     }];
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.airQualityImgView.mas_bottom).mas_offset(@10);
+        make.size.mas_equalTo(CGSizeMake(SCREENWIDTH, 1));
+    }];
+    [_lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(SCREENWIDTH, 1));
     }];
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

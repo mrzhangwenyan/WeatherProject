@@ -49,6 +49,8 @@
 		76DEECEF207F0A3300411444 /* ZZLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECEE207F0A3300411444 /* ZZLocalFile.m */; };
 		76DEECF2207F4BD800411444 /* SearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECF1207F4BD800411444 /* SearchTableView.m */; };
 		76DEECF8208085C300411444 /* SharedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECF7208085C300411444 /* SharedView.m */; };
+		76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECFA208436F500411444 /* WeatherTableViewCell.m */; };
+		76DEECFE20843CF900411444 /* FutureModel+HandleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEECFD20843CF900411444 /* FutureModel+HandleData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +153,10 @@
 		76DEECF1207F4BD800411444 /* SearchTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTableView.m; sourceTree = "<group>"; };
 		76DEECF6208085C300411444 /* SharedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedView.h; sourceTree = "<group>"; };
 		76DEECF7208085C300411444 /* SharedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedView.m; sourceTree = "<group>"; };
+		76DEECF9208436F500411444 /* WeatherTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherTableViewCell.h; sourceTree = "<group>"; };
+		76DEECFA208436F500411444 /* WeatherTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherTableViewCell.m; sourceTree = "<group>"; };
+		76DEECFC20843CF900411444 /* FutureModel+HandleData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FutureModel+HandleData.h"; sourceTree = "<group>"; };
+		76DEECFD20843CF900411444 /* FutureModel+HandleData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FutureModel+HandleData.m"; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -432,12 +438,14 @@
 			children = (
 				76DEECDC207DBB0500411444 /* WeatherView.h */,
 				76DEECDD207DBB0500411444 /* WeatherView.m */,
-				76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */,
-				76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */,
 				76DEECF0207F4BD800411444 /* SearchTableView.h */,
 				76DEECF1207F4BD800411444 /* SearchTableView.m */,
 				76DEECF6208085C300411444 /* SharedView.h */,
 				76DEECF7208085C300411444 /* SharedView.m */,
+				76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */,
+				76DEECE3207DD30F00411444 /* WeatherCollectionCell.m */,
+				76DEECF9208436F500411444 /* WeatherTableViewCell.h */,
+				76DEECFA208436F500411444 /* WeatherTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -456,6 +464,8 @@
 			children = (
 				76DEECEA207E1B3900411444 /* ZZWeatherTools.h */,
 				76DEECEB207E1B3900411444 /* ZZWeatherTools.m */,
+				76DEECFC20843CF900411444 /* FutureModel+HandleData.h */,
+				76DEECFD20843CF900411444 /* FutureModel+HandleData.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -722,9 +732,11 @@
 				76DEECDE207DBB0500411444 /* WeatherView.m in Sources */,
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
 				76DEECF8208085C300411444 /* SharedView.m in Sources */,
+				76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
 				76DEEC20207B4A6800411444 /* main.m in Sources */,
 				76DEEC92207C5D6000411444 /* UILabel+ZZExtra.m in Sources */,
+				76DEECFE20843CF900411444 /* FutureModel+HandleData.m in Sources */,
 				76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */,
 				76DEECE8207E059200411444 /* WeatherModel.m in Sources */,
 				76DEEC89207C484D00411444 /* UIButton+ZZExtra.m in Sources */,
