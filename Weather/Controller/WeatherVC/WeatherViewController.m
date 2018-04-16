@@ -18,8 +18,6 @@
 @interface WeatherViewController ()
 
 @property (nonatomic, strong)WeatherView *weatherView;
-//@property (nonatomic, strong)UICollectionView *collectionView;
-//@property (nonatomic, strong)WeatherModel *model;
 @property (nonatomic, strong)UIView *rightView;
 @property (nonatomic, strong)SharedView *sharedView;
 
@@ -37,17 +35,15 @@
     
     self.tableView.tableHeaderView = self.weatherView;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
-//    [self.view addSubview:self.weatherView];
-//    [self.view addSubview:self.collectionView];
 //    [self.view addSubview:self.sharedView];
-//    [self fetchWeatherDataSourceWithCityName:@"上海"];
+    [self fetchWeatherDataSourceWithCityName:@"上海"];
     
 }
 - (UIView *)rightView {
     if (!_rightView) {
         _rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         UIButton *cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 30, 30)];
-//        cityBtn.adjustsImageWhenHighlighted = NO;
+        /// cityBtn.adjustsImageWhenHighlighted = NO;
         [cityBtn setBackgroundImage:[UIImage imageNamed:@"locationIcon"] forState:UIControlStateNormal];
         [cityBtn addTarget:self action:@selector(chooseCity) forControlEvents:UIControlEventTouchUpInside];
         
@@ -64,33 +60,16 @@
     __weak typeof(self) weakSelf = self;
     [[ZZWeatherTools shared] requestWithCityName:city success:^(NSArray<WeatherModel *> *model) {
         weakSelf.weatherView.model = model.firstObject;
-//        weakSelf.model = model.firstObject;
         [weakSelf.weatherView.collectionView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
 }
-//- (UICollectionView *)collectionView {
-//    if(!_collectionView) {
-//
-//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//        flowLayout.minimumLineSpacing = 1;
-//        flowLayout.minimumInteritemSpacing = 1;
-//        flowLayout.itemSize = CGSizeMake(100, 250);
-//        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//
-//        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_weatherView.frame), SCREENWIDTH, 250) collectionViewLayout:flowLayout];
-//        _collectionView.backgroundColor = [UIColor whiteColor];
-//        _collectionView.dataSource = self;
-//        [_collectionView registerClass:[WeatherCollectionCell class] forCellWithReuseIdentifier:@"identifier"];
-//    }
-//    return _collectionView;
-//}
 
 ///懒加载
 - (WeatherView *)weatherView {
     if(_weatherView == nil) {
-        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
+        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT-86)];
     }
     return _weatherView;
 }
@@ -150,15 +129,6 @@
     cell.textLabel.text = @"text";
     return cell;
 }
-//#pragma mark UICollectionViewDataSource
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    return self.model.future.count;
-//}
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    WeatherCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
-//    cell.model = self.model.future[indexPath.row];
-//    return cell;
-//}
 @end
 
 

@@ -87,9 +87,9 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 1;
         flowLayout.minimumInteritemSpacing = 1;
-        flowLayout.itemSize = CGSizeMake(100, 250);
+        flowLayout.itemSize = CGSizeMake(100, 170);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        /// CGRectMake(0, CGRectGetMaxY(_weatherView.frame), SCREENWIDTH, 250)
+
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.dataSource = self;
@@ -128,7 +128,7 @@
     
     
     [_airQualityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.lineView.mas_top).mas_offset(@(-15));
+        make.top.equalTo(self.dateLabel.mas_bottom).mas_offset(@80);
         make.centerX.equalTo(self).mas_offset(@-15);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -155,13 +155,13 @@
         make.left.equalTo(self.humidityImgView.mas_right).mas_offset(@6);
     }];
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self);
+        make.top.equalTo(self.airQualityImgView.mas_bottom).mas_offset(@10);
         make.size.mas_equalTo(CGSizeMake(SCREENWIDTH, 1));
     }];
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.lineView.mas_bottom);
         make.left.right.equalTo(self);
-        make.height.equalTo(@250);
+        make.height.equalTo(@170);
     }];
 }
 - (void)setModel:(WeatherModel *)model {
