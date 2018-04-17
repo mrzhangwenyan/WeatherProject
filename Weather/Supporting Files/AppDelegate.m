@@ -42,6 +42,7 @@
 }
 
 - (void)registerShareSDK {
+    
     [ShareSDK registerActivePlatforms:@[@(SSDKPlatformTypeWechat),
                                         @(SSDKPlatformTypeQQ),
                                         @(SSDKPlatformTypeSinaWeibo)
@@ -65,7 +66,7 @@
                                                 [appInfo SSDKSetupWeChatByAppId:@"wx4868b35061f87885" appSecret:@"64020361b8ec4c99936c0e3999a9f249" backUnionID:NO];
                                                 break;
                                                 case SSDKPlatformTypeQQ:
-                                                [appInfo SSDKSetupQQByAppId:@"100371282" appKey:@"aed9b0303e3ed1e27bae87c33761161d" authType:SSDKAuthTypeBoth useTIM:YES backUnionID:NO];
+                                                [appInfo SSDKSetupQQByAppId:@"100371282" appKey:@"" authType:SSDKAuthTypeBoth useTIM:YES backUnionID:NO];
                                                 break;
                                                 case SSDKPlatformTypeSinaWeibo:
                                                 [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243" appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];

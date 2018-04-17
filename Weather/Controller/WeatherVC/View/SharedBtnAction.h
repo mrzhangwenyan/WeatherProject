@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-typedef void (^callBack)(NSString *);
+typedef void (^callBack)(NSString *title);
 @interface SharedBtnAction : NSObject
 - (void)sharedBtnRespond:(UIButton *)button;
 + (instancetype)sharedInstance;
 @property (nonatomic, copy)callBack block;
+@property (nonatomic, strong)UITableView *tableView;
 @end

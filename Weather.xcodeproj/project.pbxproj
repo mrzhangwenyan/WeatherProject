@@ -76,6 +76,7 @@
 		76DEED6D208490AA00411444 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76DEED5B208490A900411444 /* ShareSDK.bundle */; };
 		76DEED6E208490AA00411444 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DEED5C208490A900411444 /* ShareSDKConnector.framework */; };
 		76DEED712084ACA700411444 /* SharedBtnAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEED702084ACA700411444 /* SharedBtnAction.m */; };
+		76DEED7420859BEF00411444 /* UIImage+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEED7320859BEF00411444 /* UIImage+ZZExtra.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,8 @@
 		76DEED5C208490A900411444 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
 		76DEED6F2084ACA700411444 /* SharedBtnAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedBtnAction.h; sourceTree = "<group>"; };
 		76DEED702084ACA700411444 /* SharedBtnAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedBtnAction.m; sourceTree = "<group>"; };
+		76DEED7220859BEF00411444 /* UIImage+ZZExtra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZZExtra.h"; sourceTree = "<group>"; };
+		76DEED7320859BEF00411444 /* UIImage+ZZExtra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZZExtra.m"; sourceTree = "<group>"; };
 		78C7BBE3A4ECB0E9507159CB /* Pods-WeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2F9A658221435E0E2346A1 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -392,6 +395,8 @@
 				76DEECB7207CB90200411444 /* UIApplication+ZZExtra.m */,
 				76DEECB0207CB47A00411444 /* NSDictionary+Log.h */,
 				76DEECB1207CB47A00411444 /* NSDictionary+Log.m */,
+				76DEED7220859BEF00411444 /* UIImage+ZZExtra.h */,
+				76DEED7320859BEF00411444 /* UIImage+ZZExtra.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -905,6 +910,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DEED7420859BEF00411444 /* UIImage+ZZExtra.m in Sources */,
 				76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */,
 				76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */,
 				76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */,

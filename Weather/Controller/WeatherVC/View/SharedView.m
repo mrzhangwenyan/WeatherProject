@@ -26,13 +26,13 @@
     return self;
 }
 - (void)createUI {
-    _wechatFriendBtn = [UIButton buttonWithImageName:@"wechat" title:@"微信好友"];
+    _wechatFriendBtn = [UIButton buttonWithImageName:@"share_weixin" title:@"微信好友"];
     _wechatFriendBtn.tag = 101;
-    _wechatCircleBtn = [UIButton buttonWithImageName:@"friends" title:@"朋友圈"];
+    _wechatCircleBtn = [UIButton buttonWithImageName:@"share_friend" title:@"朋友圈"];
     _wechatCircleBtn.tag = 102;
-    _weiboBtn = [UIButton buttonWithImageName:@"weibo" title:@"新浪微博"];
+    _weiboBtn = [UIButton buttonWithImageName:@"share_weibo" title:@"新浪微博"];
     _weiboBtn.tag = 103;
-    _qqBtn = [UIButton buttonWithImageName:@"qq" title:@"QQ"];
+    _qqBtn = [UIButton buttonWithImageName:@"share_qq" title:@"QQ"];
     _qqBtn.tag = 104;
     
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
