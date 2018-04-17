@@ -10,6 +10,7 @@
 		288A48D71AF295F4EA7C4F14 /* libPods-WeatherUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */; };
 		3C3A33D338B0AF809F1C30AA /* libPods-WeatherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CBB6CA00F57813D459D79F /* libPods-WeatherTests.a */; };
 		4713EBCEA524CEF461409E8B /* libPods-Weather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CDA29EC38B44C0CB9578E0 /* libPods-Weather.a */; };
+		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
 		76DEEC1D207B4A6800411444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC1B207B4A6800411444 /* LaunchScreen.storyboard */; };
@@ -101,6 +102,8 @@
 		3529AE2115066DF0B8E7F6FC /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		6ECF56F261CA1900F3004557 /* Pods-WeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		74785C548E7AA00DFF5BB07B /* Pods-WeatherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
+		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DEEC10207B4A6600411444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76DEEC11207B4A6600411444 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -523,12 +526,14 @@
 		76DEECDB207DBA5100411444 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				763FE3C72085F5500064D6B5 /* ZZLocation.h */,
+				763FE3C82085F5500064D6B5 /* ZZLocation.m */,
+				76DEECF6208085C300411444 /* SharedView.h */,
+				76DEECF7208085C300411444 /* SharedView.m */,
 				76DEECDC207DBB0500411444 /* WeatherView.h */,
 				76DEECDD207DBB0500411444 /* WeatherView.m */,
 				76DEECF0207F4BD800411444 /* SearchTableView.h */,
 				76DEECF1207F4BD800411444 /* SearchTableView.m */,
-				76DEECF6208085C300411444 /* SharedView.h */,
-				76DEECF7208085C300411444 /* SharedView.m */,
 				76DEED6F2084ACA700411444 /* SharedBtnAction.h */,
 				76DEED702084ACA700411444 /* SharedBtnAction.m */,
 				76DEECE2207DD30F00411444 /* WeatherCollectionCell.h */,
@@ -927,6 +932,7 @@
 				76DEECD7207DB11000411444 /* CityGroup.m in Sources */,
 				76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */,
 				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
+				763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */,
 				76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,

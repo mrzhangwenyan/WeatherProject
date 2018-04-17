@@ -17,6 +17,8 @@
 #import "WeatherTableViewCell.h"
 #import "FutureModel+HandleData.h"
 #import "SharedBtnAction.h"
+#import "ZZLocation.h"
+
 
 @interface WeatherViewController ()
 
@@ -25,6 +27,7 @@
 @property (nonatomic, strong)SharedView *sharedView;
 @property (nonatomic, strong)WeatherModel *weatherModel;
 @property (nonatomic, strong)UIView *shadeView;
+@property (nonatomic, copy)NSString *cityName;
 
 @end
 
@@ -45,10 +48,13 @@
     __weak typeof (self) weakSelf = self;
     [self shareSuccess];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf fetchWeatherDataSourceWithCityName:@"上海"];
+        [weakSelf fetchWeatherDataSourceWithCityName:self.cityName];
     }];
-    [self fetchWeatherDataSourceWithCityName:@"上海"];
-    
+
+    [[ZZLocation sharedManager] getUserLocation:^(NSString *name) {
+        weakSelf.cityName = name;
+        [self fetchWeatherDataSourceWithCityName:name];
+    }];
 }
 - (UIView *)rightView {
     if (!_rightView) {
@@ -166,9 +172,16 @@
         [self presentViewController:alert animated:YES completion:nil];
     }];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

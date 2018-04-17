@@ -31,7 +31,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /// 暂时
     [self registerShareSDK];
-    [[ZZLocalFile sharedLocalFile] netRequestWithCityName:@"上海"];
+//    [[ZZLocalFile sharedLocalFile] netRequestWithCityName:@"上海"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    ZZTabBarController *tabBarVC = [[ZZTabBarController alloc] init];
     WeatherViewController *weatherVC = [[WeatherViewController alloc] init];
