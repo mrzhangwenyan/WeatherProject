@@ -1145,7 +1145,7 @@
 					"$(PROJECT_DIR)/Weather/Common/ThirdParty/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Weather/Common/ThirdParty/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "DaYouTechnology-Co.--Ltd..Weather";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingding.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1180,7 +1180,7 @@
 					"$(PROJECT_DIR)/Weather/Common/ThirdParty/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/Weather/Common/ThirdParty/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "DaYouTechnology-Co.--Ltd..Weather";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dingding.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

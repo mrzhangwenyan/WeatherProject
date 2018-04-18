@@ -39,25 +39,25 @@
 }
 /// 微信好友
 - (void)wechatFriend {
-    NSLog(@"微信好友");
+    
     UIImage *image = [self saveLongImage:self.tableView];
     [self sharePlatform:SSDKPlatformSubTypeWechatSession image:image];
 }
 /// 微信朋友圈
 - (void)wechatCircle {
-    NSLog(@"微信朋友圈");
+    
     UIImage *image = [self saveLongImage:self.tableView];
     [self sharePlatform:SSDKPlatformSubTypeWechatTimeline image:image];
 }
 /// 新浪微博
 - (void)weibo {
-    NSLog(@"新浪微博");
+    
     UIImage *image = [self saveLongImage:self.tableView];
     [self sharePlatform:SSDKPlatformTypeSinaWeibo image:image];
 }
 /// QQ
 - (void)qq {
-    NSLog(@"QQ");
+    
     UIImage *image = [self saveLongImage:self.tableView];
     [self sharePlatform:SSDKPlatformTypeQQ image:image];
 }

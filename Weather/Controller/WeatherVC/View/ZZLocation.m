@@ -78,7 +78,13 @@
                     /// 四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
                     city = placeMark.administrativeArea;
                 }
-                weakSelf.block(city);
+                if ([city containsString:@"市"]) {
+                    NSRange range = [city rangeOfString:@"市"];
+                    NSString *handleCity = [city substringToIndex:range.location];
+                    weakSelf.block(handleCity);
+                }else {
+                    weakSelf.block(city);
+                }
             }
             else if (error == nil && [placemarks count] == 0) {
                 NSLog(@"no result were returned");

@@ -67,10 +67,10 @@
                                                 [appInfo SSDKSetupWeChatByAppId:@"wx4868b35061f87885" appSecret:@"64020361b8ec4c99936c0e3999a9f249" backUnionID:NO];
                                                 break;
                                                 case SSDKPlatformTypeQQ:
-                                                [appInfo SSDKSetupQQByAppId:@"100371282" appKey:@"" authType:SSDKAuthTypeBoth useTIM:YES backUnionID:NO];
+                                                [appInfo SSDKSetupQQByAppId:@"1106772401" appKey:@"VnoGcA525qIMYYpd" authType:SSDKAuthTypeBoth useTIM:YES backUnionID:NO];
                                                 break;
                                                 case SSDKPlatformTypeSinaWeibo:
-                                                [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243" appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3" redirectUri:@"http://www.sharesdk.cn" authType:SSDKAuthTypeBoth];
+                                                [appInfo SSDKSetupSinaWeiboByAppKey:@"1126351654" appSecret:@"e55f4a70c8df001a0b248150616133fb" redirectUri:@"http://weibo.com" authType:SSDKAuthTypeBoth];
                                                 break;
                                                 default:
                                                 break;
