@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-typedef void (^callBack)(NSString *title);
+typedef void (^callBack)(NSString *title, BOOL isInstall);
 @interface SharedBtnAction : NSObject
 - (void)sharedBtnRespond:(UIButton *)button;
 + (instancetype)sharedInstance;

@@ -9,6 +9,7 @@
 #import "SharedBtnAction.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDKUI.h>
+#import <ShareSDKExtension/ShareSDK+Extension.h>
 
 @implementation SharedBtnAction
 + (instancetype)sharedInstance {
@@ -39,27 +40,39 @@
 }
 /// 微信好友
 - (void)wechatFriend {
-    
-    UIImage *image = [self saveLongImage:self.tableView];
-    [self sharePlatform:SSDKPlatformSubTypeWechatSession image:image];
+    if ([self isInstallApp:SSDKPlatformSubTypeWechatSession]) {
+        UIImage *image = [self saveLongImage:self.tableView];
+        [self sharePlatform:SSDKPlatformSubTypeWechatSession image:image];
+    }else {
+        self.block(@"未安装微信", NO);
+    }
 }
 /// 微信朋友圈
 - (void)wechatCircle {
-    
-    UIImage *image = [self saveLongImage:self.tableView];
-    [self sharePlatform:SSDKPlatformSubTypeWechatTimeline image:image];
+    if ([self isInstallApp:SSDKPlatformSubTypeWechatTimeline]) {
+        UIImage *image = [self saveLongImage:self.tableView];
+        [self sharePlatform:SSDKPlatformSubTypeWechatTimeline image:image];
+    }else {
+        self.block(@"未安装微信", NO);
+    }
 }
 /// 新浪微博
 - (void)weibo {
-    
-    UIImage *image = [self saveLongImage:self.tableView];
-    [self sharePlatform:SSDKPlatformTypeSinaWeibo image:image];
+    if ([self isInstallApp:SSDKPlatformTypeSinaWeibo]) {
+        UIImage *image = [self saveLongImage:self.tableView];
+        [self sharePlatform:SSDKPlatformTypeSinaWeibo image:image];
+    }else {
+        self.block(@"未安装新浪微博", NO);
+    }
 }
 /// QQ
 - (void)qq {
-    
-    UIImage *image = [self saveLongImage:self.tableView];
-    [self sharePlatform:SSDKPlatformTypeQQ image:image];
+    if ([self isInstallApp:SSDKPlatformTypeQQ]) {
+        UIImage *image = [self saveLongImage:self.tableView];
+        [self sharePlatform:SSDKPlatformTypeQQ image:image];
+    }else {
+        self.block(@"未安装QQ", NO);
+    }
 }
 - (void)sharePlatform:(SSDKPlatformType)platform image:(UIImage *)image {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -68,10 +81,10 @@
     [ShareSDK share:platform parameters:parameters onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
         switch (state) {
             case SSDKResponseStateSuccess:
-            weakSelf.block(@"分享成功");
+            weakSelf.block(@"分享成功",YES);
             break;
             case SSDKResponseStateFail:
-            weakSelf.block(@"分享失败");
+            weakSelf.block(@"分享失败",YES);
             break;
             default:
             break;
@@ -103,6 +116,12 @@
     }else{
         NSLog(@"保存图片成功");
     }
+}
+- (BOOL)isInstallApp:(SSDKPlatformType) platform {
+    if ([ShareSDK isClientInstalled:platform]) {
+        return YES;
+    }
+    return NO;
 }
 @end
 

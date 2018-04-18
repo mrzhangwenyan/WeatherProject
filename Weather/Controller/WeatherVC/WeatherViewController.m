@@ -158,13 +158,16 @@
     }];
 }
 - (void)shareSuccess {
-    [[SharedBtnAction sharedInstance] setBlock:^(NSString *title) {
-        NSLog(@"%@",title);
+    [[SharedBtnAction sharedInstance] setBlock:^(NSString *title,BOOL isInstall) {
         NSString *message = nil;
-        if ([title isEqualToString:@"分享成功"]) {
-            message = @"成功";
+        if (isInstall) {
+            if ([title isEqualToString:@"分享成功"]) {
+                message = @"成功";
+            }else {
+                message = @"失败";
+            }
         }else {
-            message = @"失败";
+            message = @"去AppStore下载";
         }
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
