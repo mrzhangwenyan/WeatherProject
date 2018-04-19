@@ -55,6 +55,9 @@
         weakSelf.cityName = name;
         [self fetchWeatherDataSourceWithCityName:name];
     }];
+    [[ZZWeatherTools shared] requestQueryWeatherType:^(NSArray *weatherTypeArr) {
+        NSLog(@"%@",weatherTypeArr);
+    } failure:nil];
 }
 - (UIView *)rightView {
     if (!_rightView) {

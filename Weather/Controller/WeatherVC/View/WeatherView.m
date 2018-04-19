@@ -41,10 +41,10 @@
 }
 - (void)creatUI {
     /// 默认
-    _weatherImgView = [UIImageView imageViewWithName:@"sun_b"];
-    _windImgView = [UIImageView imageViewWithName:@"windspeed"];
-    _airQualityImgView = [UIImageView imageViewWithName:@"ok"];
-    _humidityImgView = [UIImageView imageViewWithName:@"shidu"];
+    _weatherImgView = [UIImageView imageViewWithName:@""];
+    _windImgView = [UIImageView imageViewWithName:@"windSpeed"];
+    _airQualityImgView = [UIImageView imageViewWithName:@"airQuality"];
+    _humidityImgView = [UIImageView imageViewWithName:@"humidity"];
     
     _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:CustomDark];
     _weatherLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomGray];

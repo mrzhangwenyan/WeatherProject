@@ -11,5 +11,8 @@
 
 @interface ZZWeatherTools : NSObject
 +(instancetype)shared;
+/// 根据城市名查询天气
 - (void)requestWithCityName:(NSString *)cityName success: (void (^)(NSArray<WeatherModel *> *model)) success failure: (void(^)(NSError *error))failure;
+/// 天气类型查询
+- (void)requestQueryWeatherType:(void(^)(NSArray* weatherTypeArr))success failure:(void(^)(NSError *error))failure;
 @end

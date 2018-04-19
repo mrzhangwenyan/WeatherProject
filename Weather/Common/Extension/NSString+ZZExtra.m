@@ -234,29 +234,38 @@
 
 /// 根据天气返回图片
 + (UIImage *)imageWithWeatherStr:(NSString *)weather {
-    if ([weather containsString:@"云"]) {
-        return [UIImage imageNamed:@"cloudy_b"];
+    if ([weather containsString:@"多云"]) {
+        return [UIImage imageNamed:@"moreCloudy"];
+    }
+    else if ([weather containsString:@"少云"]) {
+        return [UIImage imageNamed:@"littleCloudy"];
     }
     else if ([weather containsString:@"阴"]) {
-        return [UIImage imageNamed:@"yin_s"];
+        return [UIImage imageNamed:@"shade"];
     }
-    else if ([weather containsString:@"雾"]) {
-        return [UIImage imageNamed:@"fog_b"];
+    else if ([weather containsString:@"霾"]) {
+        return [UIImage imageNamed:@"haze"];
     }
     else if ([weather containsString:@"晴"]) {
-        return [UIImage imageNamed:@"sun_b"];
+        return [UIImage imageNamed:@"sunshine"];
     }
     else if ([weather containsString:@"阵雨"]) {
-        return [UIImage imageNamed:@"zhenyu_b"];
+        return [UIImage imageNamed:@"thunderRain"];
     }
     else if ([weather containsString:@"雷阵雨"]) {
-        return [UIImage imageNamed:@"leizhenyu_b"];
+        return [UIImage imageNamed:@"thunderShower"];
     }
     else if ([weather containsString:@"小雨"]) {
-        return [UIImage imageNamed:@"rain_b_s"];
+        return [UIImage imageNamed:@"smallRain"];
     }
     else if ([weather containsString:@"中雨"]) {
-        return [UIImage imageNamed:@"rain_b_m"];
+        return [UIImage imageNamed:@"middleRain"];
+    }
+    else if ([weather containsString:@"零散阵雨"]) {
+        return [UIImage imageNamed:@"thunderRain"];
+    }
+    else if ([weather containsString:@"零散雷雨"]) {
+        return [UIImage imageNamed:@"thunderShower"];
     }
     else if ([weather containsString:@"大雨"]) {
         return [UIImage imageNamed:@"rain_b_h"];
@@ -264,8 +273,19 @@
     else if ([weather containsString:@"暴雨"]) {
         return [UIImage imageNamed:@"rain_b_hh"];
     }
+    else if ([weather containsString:@"雨"]) {
+        return [UIImage imageNamed:@"middleRain"];
+    }
+    
+    
+    else if ([weather containsString:@"雨夹雪"]) {
+        return [UIImage imageNamed:@"rainWithSnow"];
+    }
+    else if ([weather containsString:@"阵雪"]) {
+        return [UIImage imageNamed:@"thunderSnow"];
+    }
     else if ([weather containsString:@"小雪"]) {
-        return [UIImage imageNamed:@"snow_s_s"];
+        return [UIImage imageNamed:@"smallSnow"];
     }
     else if ([weather containsString:@"中雪"]) {
         return [UIImage imageNamed:@"snow_b_m"];

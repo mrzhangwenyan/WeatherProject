@@ -18,6 +18,7 @@
     });
     return instance;
 }
+/// 根据城市名查询天气
 - (void)requestWithCityName:(NSString *)cityName success: (void (^)(NSArray<WeatherModel *> *model)) success failure: (void(^)(NSError *error))failure {
     NSDictionary *paramaters = @{
                                  @"city": cityName,
@@ -30,4 +31,70 @@
         success(arr);
     } failure:failure];
 }
+/// 天气类型查询
+- (void)requestQueryWeatherType:(void (^)(NSArray *))success failure:(void (^)(NSError *))failure {
+    NSDictionary *parameters = @{@"key":@"2529916f4bc5c"};
+    NSString *url = @"http://apicloud.mob.com/v1/weather/type";
+    [ZZHttpTool GET:url parameters:parameters success:^(NSDictionary * _Nonnull responseDic) {
+        NSString *str = responseDic[@"result"];
+        NSArray *arr = [str componentsSeparatedByString:@","];
+        NSLog(@"%@",arr);
+    } failure:failure];
+}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
