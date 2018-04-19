@@ -13,6 +13,7 @@
 @property (nonatomic, strong)UILabel *versionLabel;
 @property (nonatomic, strong)UIButton *qqBtn;
 @end
+static NSString *addQQFriends = @"mqq://im/chat?chat_type=wpa&uin=782069614&version=1&src_type=web";
 
 @implementation AboutUSView
 
@@ -47,7 +48,7 @@
     [self addSubview: _qqBtn];
 }
 - (void)qqBtnAction {
-    NSLog(@"点击了");
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:addQQFriends] options:@{} completionHandler:nil];
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
