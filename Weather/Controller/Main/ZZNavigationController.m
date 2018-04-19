@@ -23,6 +23,9 @@
     bar.titleTextAttributes = @{NSForegroundColorAttributeName :UIColor.whiteColor,
                                 NSFontAttributeName: [UIFont systemFontOfSize:18]
                                 };
+    [UINavigationBar.appearance setBackIndicatorImage:[UIImage imageNamed:@"back"]];
+    [UINavigationBar.appearance setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
+    [UIBarButtonItem.appearance setBackButtonTitlePositionAdjustment:UIOffsetMake(-600, 0) forBarMetrics:UIBarMetricsDefault];
     
 }
 

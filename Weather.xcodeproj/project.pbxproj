@@ -10,6 +10,11 @@
 		288A48D71AF295F4EA7C4F14 /* libPods-WeatherUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9C8CA089F40AD759F3E3EE /* libPods-WeatherUITests.a */; };
 		3C3A33D338B0AF809F1C30AA /* libPods-WeatherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08CBB6CA00F57813D459D79F /* libPods-WeatherTests.a */; };
 		4713EBCEA524CEF461409E8B /* libPods-Weather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7CDA29EC38B44C0CB9578E0 /* libPods-Weather.a */; };
+		76276F9E20885AE900F41694 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276F9D20885AE900F41694 /* ProvinceModel.m */; };
+		76276FA1208862BE00F41694 /* NSArray+HandleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA0208862BE00F41694 /* NSArray+HandleData.m */; };
+		76276FA42088718500F41694 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA32088718500F41694 /* SettingTableViewController.m */; };
+		76276FA7208881B700F41694 /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA6208881B700F41694 /* AboutUSViewController.m */; };
+		76276FAA2088825100F41694 /* AboutUSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA92088825100F41694 /* AboutUSView.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
@@ -102,6 +107,16 @@
 		3529AE2115066DF0B8E7F6FC /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		6ECF56F261CA1900F3004557 /* Pods-WeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherTests/Pods-WeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		74785C548E7AA00DFF5BB07B /* Pods-WeatherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherUITests/Pods-WeatherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		76276F9C20885AE900F41694 /* ProvinceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
+		76276F9D20885AE900F41694 /* ProvinceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
+		76276F9F208862BE00F41694 /* NSArray+HandleData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+HandleData.h"; sourceTree = "<group>"; };
+		76276FA0208862BE00F41694 /* NSArray+HandleData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HandleData.m"; sourceTree = "<group>"; };
+		76276FA22088718500F41694 /* SettingTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		76276FA32088718500F41694 /* SettingTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		76276FA5208881B700F41694 /* AboutUSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUSViewController.h; sourceTree = "<group>"; };
+		76276FA6208881B700F41694 /* AboutUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUSViewController.m; sourceTree = "<group>"; };
+		76276FA82088825100F41694 /* AboutUSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUSView.h; sourceTree = "<group>"; };
+		76276FA92088825100F41694 /* AboutUSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUSView.m; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,6 +494,10 @@
 				76DEECD2207DB0ED00411444 /* City */,
 				76DEECC6207D9EC100411444 /* WeatherViewController.h */,
 				76DEECC7207D9EC100411444 /* WeatherViewController.m */,
+				76276FA22088718500F41694 /* SettingTableViewController.h */,
+				76276FA32088718500F41694 /* SettingTableViewController.m */,
+				76276FA5208881B700F41694 /* AboutUSViewController.h */,
+				76276FA6208881B700F41694 /* AboutUSViewController.m */,
 			);
 			path = WeatherVC;
 			sourceTree = "<group>";
@@ -532,6 +551,8 @@
 				76DEECF7208085C300411444 /* SharedView.m */,
 				76DEECDC207DBB0500411444 /* WeatherView.h */,
 				76DEECDD207DBB0500411444 /* WeatherView.m */,
+				76276FA82088825100F41694 /* AboutUSView.h */,
+				76276FA92088825100F41694 /* AboutUSView.m */,
 				76DEECF0207F4BD800411444 /* SearchTableView.h */,
 				76DEECF1207F4BD800411444 /* SearchTableView.m */,
 				76DEED6F2084ACA700411444 /* SharedBtnAction.h */,
@@ -549,6 +570,8 @@
 			children = (
 				76DEECE6207E059200411444 /* WeatherModel.h */,
 				76DEECE7207E059200411444 /* WeatherModel.m */,
+				76276F9C20885AE900F41694 /* ProvinceModel.h */,
+				76276F9D20885AE900F41694 /* ProvinceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -560,6 +583,8 @@
 				76DEECEB207E1B3900411444 /* ZZWeatherTools.m */,
 				76DEECFC20843CF900411444 /* FutureModel+HandleData.h */,
 				76DEECFD20843CF900411444 /* FutureModel+HandleData.m */,
+				76276F9F208862BE00F41694 /* NSArray+HandleData.h */,
+				76276FA0208862BE00F41694 /* NSArray+HandleData.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -919,6 +944,7 @@
 				76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */,
 				76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */,
 				76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */,
+				76276FA42088718500F41694 /* SettingTableViewController.m in Sources */,
 				76DEEC86207B6FC700411444 /* NSString+ZZExtra.m in Sources */,
 				76DEECA9207C64BD00411444 /* ZZHttpTool.m in Sources */,
 				76DEECEC207E1B3900411444 /* ZZWeatherTools.m in Sources */,
@@ -941,8 +967,10 @@
 				76DEED712084ACA700411444 /* SharedBtnAction.m in Sources */,
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,
 				76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */,
+				76276FA7208881B700F41694 /* AboutUSViewController.m in Sources */,
 				76DEECDE207DBB0500411444 /* WeatherView.m in Sources */,
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
+				76276FAA2088825100F41694 /* AboutUSView.m in Sources */,
 				76DEECF8208085C300411444 /* SharedView.m in Sources */,
 				76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
@@ -950,8 +978,10 @@
 				76DEEC92207C5D6000411444 /* UILabel+ZZExtra.m in Sources */,
 				76DEECFE20843CF900411444 /* FutureModel+HandleData.m in Sources */,
 				76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */,
+				76276FA1208862BE00F41694 /* NSArray+HandleData.m in Sources */,
 				76DEECE8207E059200411444 /* WeatherModel.m in Sources */,
 				76DEEC89207C484D00411444 /* UIButton+ZZExtra.m in Sources */,
+				76276F9E20885AE900F41694 /* ProvinceModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

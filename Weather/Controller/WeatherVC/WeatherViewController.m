@@ -16,16 +16,18 @@
 #import "SharedView.h"
 #import "WeatherTableViewCell.h"
 #import "FutureModel+HandleData.h"
+#import "NSArray+HandleData.h"
 #import "SharedBtnAction.h"
 #import "ZZLocation.h"
+#import "SettingTableViewController.h"
 
 
 @interface WeatherViewController ()
 
 @property (nonatomic, strong)WeatherView *weatherView;
 @property (nonatomic, strong)UIView *rightView;
-@property (nonatomic, strong)SharedView *sharedView;
 @property (nonatomic, strong)WeatherModel *weatherModel;
+@property (nonatomic, strong)SharedView *sharedView;
 @property (nonatomic, strong)UIView *shadeView;
 @property (nonatomic, copy)NSString *cityName;
 
@@ -40,6 +42,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightView];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
+    UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"locationIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(chooseCity)];
+    self.navigationItem.leftBarButtonItem = leftBtnItem;
     
     self.tableView.tableHeaderView = self.weatherView;
     [self.tableView registerClass:[WeatherTableViewCell class] forCellReuseIdentifier:@"identifier"];
@@ -55,17 +59,21 @@
         weakSelf.cityName = name;
         [self fetchWeatherDataSourceWithCityName:name];
     }];
-    [[ZZWeatherTools shared] requestQueryWeatherType:^(NSArray *weatherTypeArr) {
-        NSLog(@"%@",weatherTypeArr);
-    } failure:nil];
+    [[ZZWeatherTools shared] requestQueryCityList:^(NSArray<ProvinceModel *> *model) {
+        
+        NSArray *arr12 = [model getDistrictCollection:model];
+//        NSLog(@"%@",arr12);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.description);
+    }];
 }
 - (UIView *)rightView {
     if (!_rightView) {
         _rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         UIButton *cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(50, 0, 30, 30)];
         /// cityBtn.adjustsImageWhenHighlighted = NO;
-        [cityBtn setBackgroundImage:[UIImage imageNamed:@"locationIcon"] forState:UIControlStateNormal];
-        [cityBtn addTarget:self action:@selector(chooseCity) forControlEvents:UIControlEventTouchUpInside];
+        [cityBtn setBackgroundImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+        [cityBtn addTarget:self action:@selector(jumpToSettingVC) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *sharedBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         [sharedBtn setImage:[UIImage imageNamed:@"sharedIcon"] forState:UIControlStateNormal];
@@ -88,6 +96,14 @@
         NSLog(@"%@",error.description);
     }];
 }
+
+///懒加载
+- (WeatherView *)weatherView {
+    if(_weatherView == nil) {
+        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 667)];
+    }
+    return _weatherView;
+}
 - (UIView *)shadeView {
     if(!_shadeView) {
         _shadeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
@@ -96,14 +112,6 @@
         [_shadeView addGestureRecognizer:tap];
     }
     return _shadeView;
-}
-
-///懒加载
-- (WeatherView *)weatherView {
-    if(_weatherView == nil) {
-        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 667)];
-    }
-    return _weatherView;
 }
 
 - (SharedView *)sharedView {
@@ -126,17 +134,24 @@
     }
     return _sharedView;
 }
+- (void)addShadeViewToWindow {
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    [window addSubview:self.shadeView];
+    [window addSubview:self.sharedView];
+    [self.sharedView bringSubviewToFront:self.shadeView];
+}
+
 - (void)cancelSharedView {
     [UIView animateWithDuration:0.5 animations:^{
         self.sharedView.top = SCREENHEIGHT;
         [self.shadeView removeFromSuperview];
     } completion:nil];
 }
-- (void)addShadeViewToWindow {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    [window addSubview:self.shadeView];
-    [window addSubview:self.sharedView];
-    [self.sharedView bringSubviewToFront:self.shadeView];
+/// 设置页面
+- (void)jumpToSettingVC {
+    SettingTableViewController *setVc = [[SettingTableViewController alloc] init];
+    setVc.weatherTabelView = self.tableView;
+    [self.navigationController pushViewController:setVc animated:YES];
 }
 /// 选择城市
 - (void)chooseCity{

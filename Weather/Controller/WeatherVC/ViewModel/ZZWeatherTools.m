@@ -38,9 +38,19 @@
     [ZZHttpTool GET:url parameters:parameters success:^(NSDictionary * _Nonnull responseDic) {
         NSString *str = responseDic[@"result"];
         NSArray *arr = [str componentsSeparatedByString:@","];
-        NSLog(@"%@",arr);
+        success(arr);
     } failure:failure];
 }
+/// 城市列表
+- (void)requestQueryCityList:(void (^)(NSArray<ProvinceModel *> *))success failure:(void (^)(NSError *))failure {
+    NSDictionary *parameters = @{@"key":@"2529916f4bc5c"};
+    NSString *url = @"http://apicloud.mob.com/v1/weather/citys";
+    [ZZHttpTool GET:url parameters:parameters success:^(NSDictionary * _Nonnull responseDic) {
+        NSArray *arr = [NSArray yy_modelArrayWithClass:[ProvinceModel class] json:responseDic[@"result"]];
+        success(arr);
+    } failure:failure];
+}
+
 @end
 
 
