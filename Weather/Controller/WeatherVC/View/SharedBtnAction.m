@@ -41,17 +41,26 @@
 /// 微信好友
 - (void)wechatFriend {
     if ([self isInstallApp:SSDKPlatformSubTypeWechatSession]) {
-        UIImage *image = [self saveLongImage:self.tableView];
-        [self sharePlatform:SSDKPlatformSubTypeWechatSession image:image];
+        if (self.isShareAppStoreURL) {
+            [self sharePlatform:SSDKPlatformSubTypeWechatSession];
+        }else {
+            UIImage *image = [self saveLongImage:self.tableView];
+            [self sharePlatform:SSDKPlatformSubTypeWechatSession image:image];
+        }
     }else {
         self.block(@"未安装微信", NO);
     }
 }
 /// 微信朋友圈
 - (void)wechatCircle {
+    
     if ([self isInstallApp:SSDKPlatformSubTypeWechatTimeline]) {
-        UIImage *image = [self saveLongImage:self.tableView];
-        [self sharePlatform:SSDKPlatformSubTypeWechatTimeline image:image];
+        if (self.isShareAppStoreURL) {
+            [self sharePlatform:SSDKPlatformSubTypeWechatTimeline];
+        }else {
+            UIImage *image = [self saveLongImage:self.tableView];
+            [self sharePlatform:SSDKPlatformSubTypeWechatTimeline image:image];
+        }
     }else {
         self.block(@"未安装微信", NO);
     }
@@ -59,8 +68,12 @@
 /// 新浪微博
 - (void)weibo {
     if ([self isInstallApp:SSDKPlatformTypeSinaWeibo]) {
-        UIImage *image = [self saveLongImage:self.tableView];
-        [self sharePlatform:SSDKPlatformTypeSinaWeibo image:image];
+        if (self.isShareAppStoreURL) {
+            [self sharePlatform:SSDKPlatformTypeSinaWeibo];
+        }else {
+            UIImage *image = [self saveLongImage:self.tableView];
+            [self sharePlatform:SSDKPlatformTypeSinaWeibo image:image];
+        }
     }else {
         self.block(@"未安装新浪微博", NO);
     }
@@ -68,12 +81,35 @@
 /// QQ
 - (void)qq {
     if ([self isInstallApp:SSDKPlatformTypeQQ]) {
-        UIImage *image = [self saveLongImage:self.tableView];
-        [self sharePlatform:SSDKPlatformTypeQQ image:image];
+        if (self.isShareAppStoreURL) {
+            [self sharePlatform:SSDKPlatformTypeQQ];
+        }else {
+            UIImage *image = [self saveLongImage:self.tableView];
+            [self sharePlatform:SSDKPlatformTypeQQ image:image];
+        }
     }else {
         self.block(@"未安装QQ", NO);
     }
 }
+/// 分享链接
+- (void)sharePlatform:(SSDKPlatformType)platform {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters SSDKSetupShareParamsByText:@"叮叮天气链接" images:[UIImage imageNamed:@"weatherIcon"] url:[NSURL URLWithString:AppStoreUrl] title:@"weather" type:SSDKContentTypeWebPage];
+    __weak typeof (self)weakSelf = self;
+    [ShareSDK share:platform parameters:parameters onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+        switch (state) {
+            case SSDKResponseStateSuccess:
+                weakSelf.block(@"分享成功",YES);
+                break;
+            case SSDKResponseStateFail:
+                weakSelf.block(@"分享失败",YES);
+                break;
+            default:
+                break;
+        }
+    }];
+}
+/// 分享图片
 - (void)sharePlatform:(SSDKPlatformType)platform image:(UIImage *)image {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters SSDKSetupShareParamsByText:@"天气预报" images:image url:nil title:@"目前天气" type:SSDKContentTypeImage];

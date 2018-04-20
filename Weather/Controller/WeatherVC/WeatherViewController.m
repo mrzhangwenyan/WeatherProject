@@ -150,7 +150,6 @@
 /// 设置页面
 - (void)jumpToSettingVC {
     SettingTableViewController *setVc = [[SettingTableViewController alloc] init];
-    setVc.weatherTabelView = self.tableView;
     [self.navigationController pushViewController:setVc animated:YES];
 }
 /// 选择城市
@@ -167,6 +166,7 @@
 
 /// 分享
 - (void)sharedAction {
+    [SharedBtnAction sharedInstance].isShareAppStoreURL = NO;
     [SharedBtnAction sharedInstance].tableView = self.tableView;
     [self addShadeViewToWindow];
     CGFloat height = (SCREENWIDTH / 4) + 40;

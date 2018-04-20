@@ -17,7 +17,6 @@
 @property (nonatomic, strong)AboutUSViewController *aboutVC;
 @end
 
-
 @implementation SettingTableViewController
 
 - (void)viewDidLoad {
@@ -77,7 +76,8 @@
 }
 /// 分享
 - (void)sharedAction {
-    [SharedBtnAction sharedInstance].tableView = self.weatherTabelView;
+//    [SharedBtnAction sharedInstance].tableView = self.weatherTabelView;
+    [SharedBtnAction sharedInstance].isShareAppStoreURL = YES;
     [self addShadeViewToWindow];
     CGFloat height = (SCREENWIDTH / 4) + 40;
     CGFloat Y = SCREENHEIGHT-height;
@@ -151,7 +151,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     switch (indexPath.row) {
         case 0:
-            NSLog(@"AppStore评论");
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:AppStoreUrl] options:@{} completionHandler:nil];
             break;
         case 1:
             [self.navigationController pushViewController:self.aboutVC animated:YES];

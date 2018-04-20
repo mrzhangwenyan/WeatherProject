@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingTableViewController : UITableViewController
-@property (nonatomic, strong)UITableView* weatherTabelView;
 @end

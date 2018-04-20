@@ -11,4 +11,6 @@
 #define API_h
 
 #define AppWeatherApi @"http://apicloud.mob.com/v1/weather/query"
+#define AppStoreUrl   @"https://itunes.apple.com/cn/app/toca-house/id1179673916"
+
 #endif /* API_h */

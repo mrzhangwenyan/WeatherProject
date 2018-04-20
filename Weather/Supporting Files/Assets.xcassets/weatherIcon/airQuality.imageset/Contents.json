@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "airQuality.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "空气清新.png",
       "scale" : "2x"
     },
     {

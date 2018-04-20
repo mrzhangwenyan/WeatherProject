@@ -7,12 +7,15 @@
 //
 
 #import "AboutUSView.h"
+#import <ShareSDKExtension/ShareSDK+Extension.h>
+
 @interface AboutUSView()
 @property (nonatomic, strong)UIImageView *iconImgView;
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)UILabel *versionLabel;
 @property (nonatomic, strong)UIButton *qqBtn;
 @end
+
 static NSString *addQQFriends = @"mqq://im/chat?chat_type=wpa&uin=782069614&version=1&src_type=web";
 
 @implementation AboutUSView

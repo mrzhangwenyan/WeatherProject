@@ -14,4 +14,5 @@ typedef void (^callBack)(NSString *title, BOOL isInstall);
 + (instancetype)sharedInstance;
 @property (nonatomic, copy)callBack block;
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, assign)BOOL isShareAppStoreURL;
 @end
