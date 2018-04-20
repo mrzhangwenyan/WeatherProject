@@ -26,17 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(clickBackItem)];
-    self.navigationItem.leftBarButtonItem = backItem;
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.navigationItem.titleView = self.searchBar;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickScreen:) name:UIKeyboardWillHideNotification object:nil];
 
 }
-- (void)clickBackItem {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 - (NSMutableArray *)searchResultArray {
     if (!_searchResultArray) {
         _searchResultArray = [NSMutableArray array];

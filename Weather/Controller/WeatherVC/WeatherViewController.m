@@ -20,6 +20,7 @@
 #import "SharedBtnAction.h"
 #import "ZZLocation.h"
 #import "SettingTableViewController.h"
+#import "SearchCityTableViewController.h"
 
 
 @interface WeatherViewController ()
@@ -155,13 +156,16 @@
 /// 选择城市
 - (void)chooseCity{
 
-    __weak typeof(self) weakSelf = self;
-    CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
-    [cityGroupTableViewVC setBlock:^(NSString *cityName) {
-        NSLog(@"%@",cityName);
-        [weakSelf fetchWeatherDataSourceWithCityName:cityName];
-    }];
-    [self.navigationController pushViewController:cityGroupTableViewVC animated:YES];
+    SearchCityTableViewController *cityTableVC = [[SearchCityTableViewController alloc] init];
+    [self.navigationController pushViewController:cityTableVC animated:YES];
+    
+//    __weak typeof(self) weakSelf = self;
+//    CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
+//    [cityGroupTableViewVC setBlock:^(NSString *cityName) {
+//        NSLog(@"%@",cityName);
+//        [weakSelf fetchWeatherDataSourceWithCityName:cityName];
+//    }];
+//    [self.navigationController pushViewController:cityGroupTableViewVC animated:YES];
 }
 
 /// 分享

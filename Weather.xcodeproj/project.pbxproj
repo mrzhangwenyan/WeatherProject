@@ -15,6 +15,8 @@
 		76276FA42088718500F41694 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA32088718500F41694 /* SettingTableViewController.m */; };
 		76276FA7208881B700F41694 /* AboutUSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA6208881B700F41694 /* AboutUSViewController.m */; };
 		76276FAA2088825100F41694 /* AboutUSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA92088825100F41694 /* AboutUSView.m */; };
+		76276FAD2089B99900F41694 /* SearchCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FAC2089B99900F41694 /* SearchCityTableViewController.m */; };
+		76276FB02089DA9E00F41694 /* HotCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
@@ -117,6 +119,10 @@
 		76276FA6208881B700F41694 /* AboutUSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUSViewController.m; sourceTree = "<group>"; };
 		76276FA82088825100F41694 /* AboutUSView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutUSView.h; sourceTree = "<group>"; };
 		76276FA92088825100F41694 /* AboutUSView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutUSView.m; sourceTree = "<group>"; };
+		76276FAB2089B99900F41694 /* SearchCityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCityTableViewController.h; sourceTree = "<group>"; };
+		76276FAC2089B99900F41694 /* SearchCityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCityTableViewController.m; sourceTree = "<group>"; };
+		76276FAE2089DA9E00F41694 /* HotCityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCityTableViewController.h; sourceTree = "<group>"; };
+		76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCityTableViewController.m; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -538,6 +544,10 @@
 				76DEECD6207DB11000411444 /* CityGroup.m */,
 				76DEECD8207DB16C00411444 /* CityGroupTableViewController.h */,
 				76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */,
+				76276FAB2089B99900F41694 /* SearchCityTableViewController.h */,
+				76276FAC2089B99900F41694 /* SearchCityTableViewController.m */,
+				76276FAE2089DA9E00F41694 /* HotCityTableViewController.h */,
+				76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */,
 			);
 			path = City;
 			sourceTree = "<group>";
@@ -958,6 +968,7 @@
 				76DEECD7207DB11000411444 /* CityGroup.m in Sources */,
 				76DEECCE207D9ED700411444 /* CookingViewController.m in Sources */,
 				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
+				76276FB02089DA9E00F41694 /* HotCityTableViewController.m in Sources */,
 				763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */,
 				76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
@@ -974,6 +985,7 @@
 				76DEECF8208085C300411444 /* SharedView.m in Sources */,
 				76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
+				76276FAD2089B99900F41694 /* SearchCityTableViewController.m in Sources */,
 				76DEEC20207B4A6800411444 /* main.m in Sources */,
 				76DEEC92207C5D6000411444 /* UILabel+ZZExtra.m in Sources */,
 				76DEECFE20843CF900411444 /* FutureModel+HandleData.m in Sources */,
