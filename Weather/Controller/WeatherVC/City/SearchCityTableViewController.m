@@ -8,9 +8,9 @@
 
 #import "SearchCityTableViewController.h"
 #import "HotCityTableViewController.h"
+#import "WeatherModel.h"
 
 @interface SearchCityTableViewController ()
-@property (nonatomic, strong)NSMutableArray *dataSource;
 @property (nonatomic, assign)BOOL isSelectedItem;
 @property (nonatomic, strong)NSIndexPath *editIndexPath;
 @end
@@ -36,11 +36,9 @@
         [self.tableView setEditing:NO animated:YES];
     }
 }
-- (NSMutableArray *)dataSource {
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray arrayWithObjects:@"1",@"1",@"1",@"1",@"1", nil];
-    }
-    return _dataSource;
+- (void)setDataSource:(NSMutableArray *)dataSource {
+    _dataSource = dataSource;
+    [self.tableView reloadData];
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -83,16 +81,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"identifier"];
     }
     
-    NSString *imageName = nil;
+    UIImage *image = nil;
     if (indexPath.row == self.dataSource.count) {
-        imageName = @"addCity";
+        image = [UIImage imageNamed:@"addCity"];
     }else {
-        imageName = @"sunshine";
+        WeatherModel *model = self.dataSource[indexPath.row];
+        image = [NSString imageWithWeatherStr:model.weather];
     }
-
-    cell.layoutMargins = UIEdgeInsetsZero;
-    cell.separatorInset = UIEdgeInsetsZero;
-    UIImage *image = [UIImage imageNamed:imageName];
+    
     CGSize imageSize = CGSizeMake(29, 29);
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
     CGRect imageRect = CGRectMake(0.0, 0.0, imageSize.width, imageSize.height);
@@ -105,10 +101,13 @@
         cell.textLabel.text = @"添加城市";
         cell.detailTextLabel.text = @"";
     }else {
-        cell.textLabel.text = self.dataSource[indexPath.row];
-        cell.detailTextLabel.text = @"25℃";
+        WeatherModel *model = self.dataSource[indexPath.row];
+        cell.textLabel.text = model.city;
+        cell.detailTextLabel.text = model.temperature;
     }
     
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.separatorInset = UIEdgeInsetsZero;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,8 +115,15 @@
     if (indexPath.row == self.dataSource.count) {
         HotCityTableViewController *hotvc = [[HotCityTableViewController alloc] init];
         [self.navigationController pushViewController:hotvc animated:YES];
+    }else {
+        NSString *name = [(WeatherModel *)self.dataSource[indexPath.row] city];
+        if (_block) {
+            _block(name);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
 }

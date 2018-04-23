@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^callBlock)(NSString *cityName);
 @interface SearchCityTableViewController : UITableViewController
-
+@property (nonatomic, strong)NSMutableArray *dataSource;
+@property (nonatomic, copy)callBlock block;
 @end

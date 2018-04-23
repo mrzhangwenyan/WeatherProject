@@ -152,6 +152,11 @@
 - (void)chooseCity{
 
     SearchCityTableViewController *cityTableVC = [[SearchCityTableViewController alloc] init];
+    cityTableVC.dataSource = [[NSMutableArray alloc] initWithObjects:self.weatherModel, nil];
+    __weak typeof (self) weakSelf = self;
+    [cityTableVC setBlock:^(NSString *cityName) {
+        [weakSelf fetchWeatherDataSourceWithCityName:cityName];
+    }];
     [self.navigationController pushViewController:cityTableVC animated:YES];
     
 //    __weak typeof(self) weakSelf = self;

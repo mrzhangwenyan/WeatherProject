@@ -30,7 +30,7 @@
     if (!_mutableArr) {
         NSArray *arr = @[@"北京",@"上海",@"广州",@"沈阳",@"西安",@"成都",@"合肥",
                          @"昆明",@"武汉",@"杭州",@"青岛",@"天津",@"重庆",@"哈尔滨",
-                         @"石家庄",@"深圳",@"苏州",@"台湾",@"厦门",@"丽江",@"南京"
+                         @"石家庄",@"深圳",@"苏州",@"台北",@"厦门",@"丽江",@"南京"
                          ];
         _mutableArr = [[NSMutableArray alloc] initWithArray:arr];
     }
@@ -69,7 +69,10 @@
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%lu-----%lu",indexPath.section,indexPath.row);
+    NSString *name = self.mutableArr[indexPath.row];
+    if (_block) {
+        _block(name);
+    }
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -11,6 +11,7 @@
 #import "MoreCityView.h"
 #import "HotCityTableViewCell.h"
 #import "ProvinceTableViewController.h"
+#import "WeatherViewController.h"
 
 @interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIImageView *headerImgView;
@@ -97,6 +98,11 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HotCityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
+    [cell setBlock:^(NSString *cityName) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"districtName" object:nil userInfo:@{@"name":cityName}];
+        [self.navigationController setNavigationBarHidden:NO];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.separatorInset = UIEdgeInsetsZero;

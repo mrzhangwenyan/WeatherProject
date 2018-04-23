@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^CallBack)(NSString *cityName);
 @interface HotCityTableViewCell : UITableViewCell
-
+@property (nonatomic, copy)CallBack block;
 @end
