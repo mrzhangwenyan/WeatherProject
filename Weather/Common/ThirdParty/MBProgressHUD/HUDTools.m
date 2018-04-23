@@ -20,6 +20,8 @@ static HUDHandlerBlock  _handlerBlock;
     
     HUD.labelText = labelText;
     HUD.labelFont = [UIFont systemFontOfSize:16.0f];
+    ///如果设置此属性则当前的view置于后台
+//    HUD.dimBackground = YES;
     [HUD show:YES];
     
     return HUD;

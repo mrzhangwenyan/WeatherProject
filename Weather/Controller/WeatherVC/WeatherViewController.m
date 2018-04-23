@@ -23,6 +23,7 @@
 #import "SearchCityTableViewController.h"
 
 
+
 @interface WeatherViewController ()
 
 @property (nonatomic, strong)WeatherView *weatherView;
@@ -56,7 +57,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf fetchWeatherDataSourceWithCityName:self.cityName];
     }];
-
+    [HUDTools showHUDWithLabel:@"loading..." withView:self.view];
     [[ZZLocation sharedManager] getUserLocation:^(NSString *name) {
         weakSelf.cityName = name;
         [self fetchWeatherDataSourceWithCityName:name];
@@ -86,6 +87,7 @@
         weakSelf.weatherModel = model.firstObject;
         [weakSelf.weatherView.collectionView reloadData];
         [weakSelf.tableView reloadData];
+        [HUDTools removeHUD];
         [self.tableView.mj_header endRefreshing];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);

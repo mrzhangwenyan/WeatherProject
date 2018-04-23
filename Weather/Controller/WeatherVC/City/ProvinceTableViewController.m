@@ -28,11 +28,13 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self fetchProvinceData];
+    [HUDTools showHUDWithLabel:@"loading..." withView:self.view];
 }
 - (void)fetchProvinceData {
     [[ZZWeatherTools shared] requestQueryCityList:^(NSArray<ProvinceModel *> *model) {
         self.dataSource = [model getProvinceCollection:model];
         self.model = model;
+        [HUDTools removeHUD];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);

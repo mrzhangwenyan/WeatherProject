@@ -24,8 +24,14 @@
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTableViewCell:)];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     self.tableView.tableFooterView = [[UIView alloc] init];
+    if (self.dataSource.count == 1) {
+        [rightBtnItem setEnabled:NO];
+    }else {
+        [rightBtnItem setEnabled:YES];
+    }
 }
 - (void)editTableViewCell:(UIBarButtonItem *)item {
+    
     self.isSelectedItem = !self.isSelectedItem;
     [self.tableView setEditing:NO animated:YES];
     if (self.isSelectedItem) {
