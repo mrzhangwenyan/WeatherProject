@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HotCityTableViewController : UITableViewController
+@interface HotCityTableViewController : UIViewController
 
 @end

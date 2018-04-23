@@ -7,9 +7,15 @@
 //
 
 #import "HotCityTableViewController.h"
+#import "HotCityHeaderView.h"
+#import "MoreCityView.h"
 
-@interface HotCityTableViewController ()
-
+@interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong)UIImageView *headerImgView;
+@property (nonatomic, strong)UIButton *backBtn;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)HotCityHeaderView *hotHeaderView;
+@property (nonatomic, strong)MoreCityView *moreView;
 @end
 
 @implementation HotCityTableViewController
@@ -17,79 +23,130 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [[UIView alloc] init];
+    [self createHeaderImgView];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
-
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 230, SCREENWIDTH, SCREENHEIGHT-230) style:UITableViewStyleGrouped];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
+        
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+- (HotCityHeaderView *)hotHeaderView {
+    if (!_hotHeaderView) {
+        _hotHeaderView = [[HotCityHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+    }
+    return _hotHeaderView;
+}
+- (MoreCityView *)moreView {
+    if (!_moreView) {
+        _moreView = [[MoreCityView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
+    }
+    return _moreView;
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+- (void)createHeaderImgView {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREENWIDTH, 250)];
+    self.headerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 250)];
+    self.headerImgView.image = [UIImage imageNamed:@"background"];
+    [headerView addSubview:self.headerImgView];
+    self.backBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 40, 40, 40)];
+    self.backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:self.backBtn];
+    [self.view addSubview:headerView];
+}
+- (void)backAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat y = scrollView.contentOffset.y;
+//    if (y < 0) {
+//        CGFloat totalOffset = 200 + ABS(y);
+//        CGFloat f = totalOffset / 200;
+//        self.headerImgView.frame = CGRectMake(-(SCREENWIDTH*f - SCREENWIDTH)/2, y, SCREENWIDTH*f, totalOffset);
+//    }
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return 10;
 }
-
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
+    cell.textLabel.text = @"ues";
     return cell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 50;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 50;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.hotHeaderView;
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return self.moreView;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+//- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+//    if ([view isMemberOfClass:[UITableViewHeaderFooterView class]]) {
+//        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor whiteColor];;
+//    }
+//}
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

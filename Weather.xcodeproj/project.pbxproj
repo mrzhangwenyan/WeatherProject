@@ -17,6 +17,8 @@
 		76276FAA2088825100F41694 /* AboutUSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FA92088825100F41694 /* AboutUSView.m */; };
 		76276FAD2089B99900F41694 /* SearchCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FAC2089B99900F41694 /* SearchCityTableViewController.m */; };
 		76276FB02089DA9E00F41694 /* HotCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */; };
+		76276FB6208D850700F41694 /* MoreCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FB5208D850700F41694 /* MoreCityView.m */; };
+		76276FB8208D8AB700F41694 /* HotCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FB2208D842F00F41694 /* HotCityHeaderView.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
@@ -84,7 +86,6 @@
 		76DEED6D208490AA00411444 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76DEED5B208490A900411444 /* ShareSDK.bundle */; };
 		76DEED6E208490AA00411444 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DEED5C208490A900411444 /* ShareSDKConnector.framework */; };
 		76DEED712084ACA700411444 /* SharedBtnAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEED702084ACA700411444 /* SharedBtnAction.m */; };
-		76DEED7420859BEF00411444 /* UIImage+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEED7320859BEF00411444 /* UIImage+ZZExtra.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,10 @@
 		76276FAC2089B99900F41694 /* SearchCityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCityTableViewController.m; sourceTree = "<group>"; };
 		76276FAE2089DA9E00F41694 /* HotCityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCityTableViewController.h; sourceTree = "<group>"; };
 		76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCityTableViewController.m; sourceTree = "<group>"; };
+		76276FB1208D842F00F41694 /* HotCityHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCityHeaderView.h; sourceTree = "<group>"; };
+		76276FB2208D842F00F41694 /* HotCityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCityHeaderView.m; sourceTree = "<group>"; };
+		76276FB4208D850700F41694 /* MoreCityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreCityView.h; sourceTree = "<group>"; };
+		76276FB5208D850700F41694 /* MoreCityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreCityView.m; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -542,6 +547,10 @@
 				76DEECD3207DB0F900411444 /* cityGroups.plist */,
 				76DEECD5207DB11000411444 /* CityGroup.h */,
 				76DEECD6207DB11000411444 /* CityGroup.m */,
+				76276FB1208D842F00F41694 /* HotCityHeaderView.h */,
+				76276FB2208D842F00F41694 /* HotCityHeaderView.m */,
+				76276FB4208D850700F41694 /* MoreCityView.h */,
+				76276FB5208D850700F41694 /* MoreCityView.m */,
 				76DEECD8207DB16C00411444 /* CityGroupTableViewController.h */,
 				76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */,
 				76276FAB2089B99900F41694 /* SearchCityTableViewController.h */,
@@ -950,8 +959,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76DEED7420859BEF00411444 /* UIImage+ZZExtra.m in Sources */,
+				76276FB8208D8AB700F41694 /* HotCityHeaderView.m in Sources */,
 				76DEECC2207D9B7600411444 /* ZZTabBarController.m in Sources */,
+				76276FB6208D850700F41694 /* MoreCityView.m in Sources */,
 				76DEECE1207DD1EA00411444 /* UIImageView+ZZExtra.m in Sources */,
 				76DEECCB207D9ECD00411444 /* MailViewController.m in Sources */,
 				76276FA42088718500F41694 /* SettingTableViewController.m in Sources */,

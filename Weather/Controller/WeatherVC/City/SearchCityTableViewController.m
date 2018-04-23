@@ -141,7 +141,7 @@
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"      " handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [self.dataSource removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-        [tableView setEditing:NO animated:YES];
+//        [tableView setEditing:NO animated:YES];
     }];
     return @[deleteAction];
 }
@@ -153,7 +153,11 @@
     }
 }
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath{
-    return sourceIndexPath;
+    
+    if (proposedDestinationIndexPath.row == 0 || proposedDestinationIndexPath.row == self.dataSource.count) {
+        return sourceIndexPath;
+    }
+    return proposedDestinationIndexPath;
 }
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     /// 交换数据
