@@ -9,6 +9,8 @@
 #import "HotCityTableViewController.h"
 #import "HotCityHeaderView.h"
 #import "MoreCityView.h"
+#import "HotCityTableViewCell.h"
+#import "ProvinceTableViewController.h"
 
 @interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIImageView *headerImgView;
@@ -16,6 +18,7 @@
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)HotCityHeaderView *hotHeaderView;
 @property (nonatomic, strong)MoreCityView *moreView;
+@property (nonatomic, strong)ProvinceTableViewController *pronvinceVC;
 @end
 
 @implementation HotCityTableViewController
@@ -33,11 +36,17 @@
     [super didReceiveMemoryWarning];
     
 }
+- (ProvinceTableViewController *)pronvinceVC {
+    if (!_pronvinceVC) {
+        _pronvinceVC = [[ProvinceTableViewController alloc] init];
+    }
+    return _pronvinceVC;
+}
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 230, SCREENWIDTH, SCREENHEIGHT-230) style:UITableViewStyleGrouped];
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
-        
+        [_tableView registerClass:[HotCityTableViewCell class] forCellReuseIdentifier:@"identifier"];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -52,6 +61,10 @@
 - (MoreCityView *)moreView {
     if (!_moreView) {
         _moreView = [[MoreCityView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 50)];
+        __weak typeof(self) weakSelf = self;
+        [_moreView setBlock:^{
+            [weakSelf.navigationController pushViewController:weakSelf.pronvinceVC animated:YES];
+        }];
     }
     return _moreView;
 }
@@ -79,22 +92,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - Table view data source
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat y = scrollView.contentOffset.y;
-//    if (y < 0) {
-//        CGFloat totalOffset = 200 + ABS(y);
-//        CGFloat f = totalOffset / 200;
-//        self.headerImgView.frame = CGRectMake(-(SCREENWIDTH*f - SCREENWIDTH)/2, y, SCREENWIDTH*f, totalOffset);
-//    }
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
-    cell.textLabel.text = @"ues";
+    HotCityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.layoutMargins = UIEdgeInsetsZero;
+    cell.separatorInset = UIEdgeInsetsZero;
+    
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 321;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 50;

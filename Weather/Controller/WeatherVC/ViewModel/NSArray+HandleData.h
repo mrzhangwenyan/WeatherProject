@@ -12,8 +12,8 @@
 @interface NSArray (HandleData)
 /// 获取省的名称集合
 - (NSArray *)getProvinceCollection:(NSArray<ProvinceModel *> *)modelArr;
-/// 获取城市的集合
-- (NSArray *)getCityCollection:(NSArray<ProvinceModel *> *)modelArr;
-/// 获取区县的集合
-- (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr;
+/// 根据省会获取城市的集合
+- (NSArray *)getCityCollection:(NSArray<ProvinceModel *> *)modelArr province: (NSString *)provinceName;
+/// 根据城市获取区县的集合
+- (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr city: (NSString *)cityName;
 @end

@@ -27,6 +27,9 @@
     button.centerX = self.centerX;
     button.centerY = self.centerY;
     [button addTarget:self action:@selector(btnClickAction) forControlEvents:UIControlEventTouchUpInside];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-1, SCREENWIDTH, 1)];
+    lineView.backgroundColor = [CustomGray colorWithAlphaComponent:0.2];
+    [self addSubview:lineView];
     [self addSubview:button];
 }
 - (void)btnClickAction {

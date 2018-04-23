@@ -31,6 +31,7 @@
 @property (nonatomic, strong)SharedView *sharedView;
 @property (nonatomic, strong)UIView *shadeView;
 @property (nonatomic, copy)NSString *cityName;
+@property (nonatomic, assign)BOOL isRemoveNotification;
 
 @end
 
@@ -59,13 +60,6 @@
     [[ZZLocation sharedManager] getUserLocation:^(NSString *name) {
         weakSelf.cityName = name;
         [self fetchWeatherDataSourceWithCityName:name];
-    }];
-    [[ZZWeatherTools shared] requestQueryCityList:^(NSArray<ProvinceModel *> *model) {
-        
-        NSArray *arr12 = [model getDistrictCollection:model];
-//        NSLog(@"%@",arr12);
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
     }];
 }
 - (UIView *)rightView {
@@ -152,6 +146,7 @@
 - (void)jumpToSettingVC {
     SettingTableViewController *setVc = [[SettingTableViewController alloc] init];
     [self.navigationController pushViewController:setVc animated:YES];
+    self.isRemoveNotification = YES;
 }
 /// 选择城市
 - (void)chooseCity{
@@ -197,14 +192,23 @@
         [self presentViewController:alert animated:YES completion:nil];
     }];
 }
+- (void)districtWeather:(NSNotification *)info {
+    NSDictionary *dict = [info userInfo];
+    NSString *name = dict[@"name"];
+    [self fetchWeatherDataSourceWithCityName:name];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.isRemoveNotification = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(districtWeather:) name:@"districtName" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    if (self.isRemoveNotification) {
+        [[NSNotificationCenter defaultCenter]removeObserver:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

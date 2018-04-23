@@ -38,7 +38,7 @@
 }
 - (NSMutableArray *)dataSource {
     if (!_dataSource) {
-        _dataSource = [NSMutableArray arrayWithObjects:@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1",@"1", nil];
+        _dataSource = [NSMutableArray arrayWithObjects:@"1",@"1",@"1",@"1",@"1", nil];
     }
     return _dataSource;
 }

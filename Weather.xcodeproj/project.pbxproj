@@ -19,6 +19,11 @@
 		76276FB02089DA9E00F41694 /* HotCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */; };
 		76276FB6208D850700F41694 /* MoreCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FB5208D850700F41694 /* MoreCityView.m */; };
 		76276FB8208D8AB700F41694 /* HotCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FB2208D842F00F41694 /* HotCityHeaderView.m */; };
+		76276FBB208D8B7A00F41694 /* HotCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FBA208D8B7A00F41694 /* HotCityTableViewCell.m */; };
+		76276FBE208D8E7200F41694 /* HotCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FBD208D8E7200F41694 /* HotCollectionViewCell.m */; };
+		76276FC1208DA70E00F41694 /* ProvinceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC0208DA70E00F41694 /* ProvinceTableViewController.m */; };
+		76276FC4208DAD6800F41694 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC3208DAD6800F41694 /* CityTableViewController.m */; };
+		76276FC7208DB1E100F41694 /* DistrictTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC6208DB1E100F41694 /* DistrictTableViewController.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
@@ -128,6 +133,16 @@
 		76276FB2208D842F00F41694 /* HotCityHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCityHeaderView.m; sourceTree = "<group>"; };
 		76276FB4208D850700F41694 /* MoreCityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreCityView.h; sourceTree = "<group>"; };
 		76276FB5208D850700F41694 /* MoreCityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreCityView.m; sourceTree = "<group>"; };
+		76276FB9208D8B7A00F41694 /* HotCityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCityTableViewCell.h; sourceTree = "<group>"; };
+		76276FBA208D8B7A00F41694 /* HotCityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCityTableViewCell.m; sourceTree = "<group>"; };
+		76276FBC208D8E7200F41694 /* HotCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotCollectionViewCell.h; sourceTree = "<group>"; };
+		76276FBD208D8E7200F41694 /* HotCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotCollectionViewCell.m; sourceTree = "<group>"; };
+		76276FBF208DA70E00F41694 /* ProvinceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProvinceTableViewController.h; sourceTree = "<group>"; };
+		76276FC0208DA70E00F41694 /* ProvinceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProvinceTableViewController.m; sourceTree = "<group>"; };
+		76276FC2208DAD6800F41694 /* CityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
+		76276FC3208DAD6800F41694 /* CityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
+		76276FC5208DB1E100F41694 /* DistrictTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistrictTableViewController.h; sourceTree = "<group>"; };
+		76276FC6208DB1E100F41694 /* DistrictTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistrictTableViewController.m; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -547,16 +562,26 @@
 				76DEECD3207DB0F900411444 /* cityGroups.plist */,
 				76DEECD5207DB11000411444 /* CityGroup.h */,
 				76DEECD6207DB11000411444 /* CityGroup.m */,
-				76276FB1208D842F00F41694 /* HotCityHeaderView.h */,
-				76276FB2208D842F00F41694 /* HotCityHeaderView.m */,
 				76276FB4208D850700F41694 /* MoreCityView.h */,
 				76276FB5208D850700F41694 /* MoreCityView.m */,
+				76276FB1208D842F00F41694 /* HotCityHeaderView.h */,
+				76276FB2208D842F00F41694 /* HotCityHeaderView.m */,
+				76276FB9208D8B7A00F41694 /* HotCityTableViewCell.h */,
+				76276FBA208D8B7A00F41694 /* HotCityTableViewCell.m */,
+				76276FBC208D8E7200F41694 /* HotCollectionViewCell.h */,
+				76276FBD208D8E7200F41694 /* HotCollectionViewCell.m */,
 				76DEECD8207DB16C00411444 /* CityGroupTableViewController.h */,
 				76DEECD9207DB16C00411444 /* CityGroupTableViewController.m */,
 				76276FAB2089B99900F41694 /* SearchCityTableViewController.h */,
 				76276FAC2089B99900F41694 /* SearchCityTableViewController.m */,
 				76276FAE2089DA9E00F41694 /* HotCityTableViewController.h */,
 				76276FAF2089DA9E00F41694 /* HotCityTableViewController.m */,
+				76276FBF208DA70E00F41694 /* ProvinceTableViewController.h */,
+				76276FC0208DA70E00F41694 /* ProvinceTableViewController.m */,
+				76276FC2208DAD6800F41694 /* CityTableViewController.h */,
+				76276FC3208DAD6800F41694 /* CityTableViewController.m */,
+				76276FC5208DB1E100F41694 /* DistrictTableViewController.h */,
+				76276FC6208DB1E100F41694 /* DistrictTableViewController.m */,
 			);
 			path = City;
 			sourceTree = "<group>";
@@ -972,6 +997,8 @@
 				76DEECEF207F0A3300411444 /* ZZLocalFile.m in Sources */,
 				76DEECB2207CB47A00411444 /* NSDictionary+Log.m in Sources */,
 				76DEECF2207F4BD800411444 /* SearchTableView.m in Sources */,
+				76276FC7208DB1E100F41694 /* DistrictTableViewController.m in Sources */,
+				76276FC4208DAD6800F41694 /* CityTableViewController.m in Sources */,
 				76DEECB5207CB62500411444 /* NSDate+ZZExtra.m in Sources */,
 				76DEECAD207CB14B00411444 /* ZZUserDefaults.m in Sources */,
 				76DEEC8C207C554A00411444 /* UIFont+ZZExtra.m in Sources */,
@@ -980,11 +1007,13 @@
 				76DEECD1207D9EFD00411444 /* NumQueryViewController.m in Sources */,
 				76276FB02089DA9E00F41694 /* HotCityTableViewController.m in Sources */,
 				763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */,
+				76276FC1208DA70E00F41694 /* ProvinceTableViewController.m in Sources */,
 				76DEECE4207DD30F00411444 /* WeatherCollectionCell.m in Sources */,
 				76DEECB8207CB90200411444 /* UIApplication+ZZExtra.m in Sources */,
 				76DEECA0207C5E3D00411444 /* MBProgressHUD.m in Sources */,
 				76DEECDA207DB16C00411444 /* CityGroupTableViewController.m in Sources */,
 				76DEEC8F207C574500411444 /* UIView+ZZExtra.m in Sources */,
+				76276FBE208D8E7200F41694 /* HotCollectionViewCell.m in Sources */,
 				76DEED712084ACA700411444 /* SharedBtnAction.m in Sources */,
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,
 				76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */,
@@ -993,6 +1022,7 @@
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
 				76276FAA2088825100F41694 /* AboutUSView.m in Sources */,
 				76DEECF8208085C300411444 /* SharedView.m in Sources */,
+				76276FBB208D8B7A00F41694 /* HotCityTableViewCell.m in Sources */,
 				76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
 				76276FAD2089B99900F41694 /* SearchCityTableViewController.m in Sources */,
