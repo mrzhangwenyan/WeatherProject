@@ -9,6 +9,7 @@
 #import "SearchCityTableViewController.h"
 #import "HotCityTableViewController.h"
 #import "WeatherModel.h"
+#import "HUDTools.h"
 
 @interface SearchCityTableViewController ()
 @property (nonatomic, assign)BOOL isSelectedItem;
@@ -119,8 +120,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == self.dataSource.count) {
-        HotCityTableViewController *hotvc = [[HotCityTableViewController alloc] init];
-        [self.navigationController pushViewController:hotvc animated:YES];
+        if (self.dataSource.count == 6) {
+            [HUDTools showText:@"最多只能添加6个城市" withView:self.view withDelay:2.0];
+            return;
+        }else {
+            HotCityTableViewController *hotvc = [[HotCityTableViewController alloc] init];
+            [self.navigationController pushViewController:hotvc animated:YES];
+        }
     }else {
         NSString *name = [(WeatherModel *)self.dataSource[indexPath.row] city];
         if (_block) {

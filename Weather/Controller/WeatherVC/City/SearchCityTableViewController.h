@@ -11,4 +11,5 @@ typedef void (^callBlock)(NSString *cityName);
 @interface SearchCityTableViewController : UITableViewController
 @property (nonatomic, strong)NSMutableArray *dataSource;
 @property (nonatomic, copy)callBlock block;
+@property (nonatomic, copy)NSString *currentCity;
 @end

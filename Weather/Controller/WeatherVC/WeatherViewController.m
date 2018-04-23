@@ -97,6 +97,7 @@
                 }
             }];
         }else {
+            /// 注意是英文的情况处理
             [weakSelf.mutableModel addObject:model.firstObject];
         }
         if (!isExit) {
@@ -181,6 +182,7 @@
     [cityTableVC setBlock:^(NSString *cityName) {
         [weakSelf fetchWeatherDataSourceWithCityName:cityName];
     }];
+    cityTableVC.currentCity = self.weatherModel.city;
     [self.navigationController pushViewController:cityTableVC animated:YES];
     
 //    __weak typeof(self) weakSelf = self;
