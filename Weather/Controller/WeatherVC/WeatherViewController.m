@@ -21,6 +21,7 @@
 #import "ZZLocation.h"
 #import "SettingTableViewController.h"
 #import "SearchCityTableViewController.h"
+#import "ZZUserDefaults.h"
 
 
 
@@ -33,6 +34,7 @@
 @property (nonatomic, strong)UIView *shadeView;
 @property (nonatomic, copy)NSString *cityName;
 @property (nonatomic, assign)BOOL isRemoveNotification;
+@property (nonatomic, strong)NSMutableArray<WeatherModel*> *mutableModel;
 
 @end
 
@@ -85,6 +87,21 @@
     [[ZZWeatherTools shared] requestWithCityName:city success:^(NSArray<WeatherModel *> *model) {
         weakSelf.weatherView.model = model.firstObject;
         weakSelf.weatherModel = model.firstObject;
+        __block BOOL isExit = YES;
+        if (weakSelf.mutableModel.count >= 1) {
+            isExit = NO;
+            [weakSelf.mutableModel enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj.city isEqualToString:model.firstObject.city]) {
+                    *stop = YES;
+                    isExit = YES;
+                }
+            }];
+        }else {
+            [weakSelf.mutableModel addObject:model.firstObject];
+        }
+        if (!isExit) {
+            [weakSelf.mutableModel addObject:model.firstObject];
+        }
         [weakSelf.weatherView.collectionView reloadData];
         [weakSelf.tableView reloadData];
         [HUDTools removeHUD];
@@ -93,7 +110,12 @@
         NSLog(@"%@",error.description);
     }];
 }
-
+- (NSMutableArray<WeatherModel *> *)mutableModel {
+    if (!_mutableModel) {
+        _mutableModel = [NSMutableArray array];
+    }
+    return _mutableModel;
+}
 ///懒加载
 - (WeatherView *)weatherView {
     if(_weatherView == nil) {
@@ -154,7 +176,7 @@
 - (void)chooseCity{
 
     SearchCityTableViewController *cityTableVC = [[SearchCityTableViewController alloc] init];
-    cityTableVC.dataSource = [[NSMutableArray alloc] initWithObjects:self.weatherModel, nil];
+    cityTableVC.dataSource = self.mutableModel;
     __weak typeof (self) weakSelf = self;
     [cityTableVC setBlock:^(NSString *cityName) {
         [weakSelf fetchWeatherDataSourceWithCityName:cityName];
@@ -208,6 +230,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.isRemoveNotification = NO;
+    NSLog(@"%@",self.mutableModel.lastObject.city);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(districtWeather:) name:@"districtName" object:nil];
 }
 
