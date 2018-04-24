@@ -35,6 +35,7 @@
 @property (nonatomic, copy)NSString *cityName;
 @property (nonatomic, assign)BOOL isRemoveNotification;
 @property (nonatomic, strong)NSMutableArray<WeatherModel*> *mutableModel;
+@property (nonatomic, copy)NSString *filePath;
 
 @end
 
@@ -56,6 +57,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     __weak typeof (self) weakSelf = self;
     [self shareSuccess];
+    /// 获取文件路径
+    NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    /// 添加存储的文件名
+    self.filePath = [file stringByAppendingPathComponent:@"archiverFile"];
     
     /// 优化中...
 //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -113,6 +118,8 @@
             
             if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
                 [weakSelf.mutableModel addObject:model.firstObject];
+                
+                [NSKeyedArchiver archiveRootObject:self.mutableModel toFile:self.filePath];
             }
         }
         [weakSelf.weatherView.collectionView reloadData];
@@ -193,7 +200,6 @@
     __weak typeof (self) weakSelf = self;
     [cityTableVC setBlock:^(NSString *cityName) {
         [weakSelf fetchWeatherDataSourceWithCityName:cityName];
-//        NSLog(@"%@",cityName);
     }];
     cityTableVC.currentCity = self.weatherModel.city;
     [self.navigationController pushViewController:cityTableVC animated:YES];

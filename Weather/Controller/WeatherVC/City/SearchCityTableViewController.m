@@ -21,6 +21,7 @@
 @property (nonatomic, assign)NSInteger deleIndex;
 @property (nonatomic, assign)BOOL isFirst;
 @property (nonatomic, assign)BOOL isLast;
+@property (nonatomic, assign)BOOL isRemoveCell;
 @end
 
 @implementation SearchCityTableViewController
@@ -38,6 +39,7 @@
         [self.rightBtnItem setEnabled:YES];
     }
     self.isSelectedRow = NO;
+    self.isRemoveCell = NO;
 }
 - (void)editTableViewCell:(UIBarButtonItem *)item {
     
@@ -51,7 +53,7 @@
         [self.tableView setEditing:NO animated:YES];
     }
 }
-- (void)setDataSource:(NSMutableArray *)dataSource {
+- (void)setDataSource:(NSMutableArray<WeatherModel *> *)dataSource {
     _dataSource = dataSource;
     [self.tableView reloadData];
 }
@@ -85,11 +87,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"%lu",self.deleIndex);
+
     __weak typeof (self) weakSelf = self;
     [self.dataSource enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.city isEqualToString:self.currentCity]) {
-            NSLog(@"%lu",idx);
+//            NSLog(@"%lu",idx);
             weakSelf.currentIndex = idx;
         }
     }];
@@ -99,8 +101,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     /// 没有点击cell直接返回
-    if (!self.isSelectedRow) {
-//        _block(self.cityName);
+    if (!self.isSelectedRow && self.isRemoveCell) {
+        _block(self.cityName);
     }
 }
 
@@ -108,37 +110,44 @@
     /// 1.如果城市删除到了最后一个的情况 同时没有点击cell 直接返回
     if (self.dataSource.count == 1) {
         self.cityName = self.dataSource.lastObject.city;
-        NSLog(@"%@",self.cityName);
+//        NSLog(@"%@",self.cityName);
     }
     /// 2.若当前城市是最后一个并且从最一个开始删（包含当前城市） 展示数组最后一个城市 同时没有点击cell 直接返回
     else if (self.isLast && (self.dataSource.count == self.deleIndex)) {
         self.cityName = self.dataSource.lastObject.city;
-        NSLog(@"%@",self.cityName);
+//        NSLog(@"%@",self.cityName);
     }
     /// 3.若是当前城市是第一个并且从第一个开始删（包含当前城市） 展示数组中第一个城市 同时没有点击cell 直接返回
     else if (self.isFirst && (self.deleIndex == 1)) {
-        self.cityName = self.dataSource.firstObject.city;
-        NSLog(@"%@",self.cityName);
+        self.cityName = self.dataSource[1].city;
+//        NSLog(@"%@",self.cityName);
     }
     else {
         __weak typeof (self) weakSelf = self;
+        __block BOOL isExit = NO;
         [self.dataSource enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            /// 4.若是当前城市是在中间位置，没有删掉当前城市，则依然是改城市，同时没有点击cell 直接返回
+            /// 判断当前城市是否还在数组中
             if ([obj.city isEqualToString:weakSelf.currentCity]) {
-                weakSelf.cityName = weakSelf.currentCity;
-                NSLog(@"%@",self.cityName);
-            }
-            /// 5.若是当前城市在中间位置，同时被删除了 则是当前的下一个城市展示  同时没有点击cell 直接返回
-            else {
-                if (weakSelf.deleIndex <= weakSelf.dataSource.count) {
-                    weakSelf.cityName = weakSelf.dataSource[weakSelf.deleIndex].city;
-                    NSLog(@"%@",self.cityName);
-                }else {
-                    weakSelf.cityName = weakSelf.dataSource.lastObject.city;
-                    NSLog(@"%@",self.cityName);
-                }
+                isExit = YES;
+                *stop = YES;
             }
         }];
+        /// 4.若是当前城市是在中间位置，没有删掉当前城市，则依然是改城市，同时没有点击cell 直接返回
+        if (isExit) {
+            self.cityName = self.currentCity;
+//            NSLog(@"%@",self.cityName);
+        }
+        /// 5.若是当前城市在中间位置，同时被删除了 则是当前的下一个城市展示  同时没有点击cell 直接返回
+        else {
+            if (self.deleIndex < self.dataSource.count) {
+                self.cityName = self.dataSource[self.deleIndex].city;
+//                NSLog(@"%@",self.cityName);
+            }
+            else {
+                self.cityName = self.dataSource.lastObject.city;
+//                NSLog(@"%@",self.cityName);
+            }
+        }
     }
 }
 #pragma mark - Table view data source
@@ -198,6 +207,7 @@
         if (_block) {
             _block(name);
         }
+        self.isSelectedRow = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -229,12 +239,15 @@
     self.editIndexPath = indexPath;
     self.deleIndex = 0;
     [self.view setNeedsLayout];
+    __weak typeof (self) weakSelf = self;
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"      " handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        self.deleIndex = indexPath.row;
-        [self.dataSource removeObjectAtIndex:indexPath.row];
+        weakSelf.deleIndex = indexPath.row;
+        [weakSelf.dataSource removeObjectAtIndex:indexPath.row];
+        [weakSelf showCityWeather];
+        weakSelf.isRemoveCell = YES;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-//        [tableView setEditing:NO animated:YES];
     }];
+    
     return @[deleteAction];
 }
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
