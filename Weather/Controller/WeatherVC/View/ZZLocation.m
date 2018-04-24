@@ -12,6 +12,7 @@
 @property(nonatomic, strong)CLLocationManager *manager;
 @property(nonatomic, copy)NSString *cityName;
 @property(nonatomic, copy)CallBack block;
+@property(nonatomic, strong)CLGeocoder *geocoder;
 @end
 @implementation ZZLocation
 
@@ -23,7 +24,12 @@
     });
     return instance;
 }
-
+- (CLGeocoder *)geocoder {
+    if (!_geocoder) {
+        _geocoder = [[CLGeocoder alloc] init];
+    }
+    return _geocoder;
+}
 - (instancetype)init
 {
     self = [super init];
@@ -67,9 +73,8 @@
     __weak typeof (self)weakSelf = self;
     if (location.horizontalAccuracy > 0) {
         /// 获取当前所在的城市名
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         /// 根据经纬度反向地理编译出地址信息
-        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             if (placemarks.count > 0) {
                 CLPlacemark *placeMark = [placemarks firstObject];
                 /// 获取城市

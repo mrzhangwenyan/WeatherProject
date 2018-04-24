@@ -301,11 +301,15 @@
     if (indexPath.row == 0) {
         UITableViewCell *cell = (UITableViewCell *)commonCell;
         FutureModel *model = self.weatherModel.future.firstObject;
-        NSString *highStr = [model getHighWeatherTemperature:model.temperature];
-        NSString *lowStr = [model getLowWeatherTemperature:model.temperature];
-        cell.textLabel.text = [NSString stringWithFormat:@"今天：现在%@。最高温度%@。今晚%@。最低温度%@。",model.dayTime,highStr,model.night,lowStr];
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.textColor = CustomGray;
+        if ([model.temperature containsString:@"/"]) {
+            NSString *highStr = [model getHighWeatherTemperature:model.temperature];
+            NSString *lowStr = [model getLowWeatherTemperature:model.temperature];
+            cell.textLabel.text = [NSString stringWithFormat:@"今天：现在%@。最高温度%@。今晚%@。最低温度%@。",model.dayTime,highStr,model.night,lowStr];
+        }else {
+            cell.textLabel.text = [NSString stringWithFormat:@"今天：现在%@。最高温度%@。今晚%@",model.dayTime,model.temperature,model.night];
+        }
         
     }else {
         WeatherTableViewCell *cell = (WeatherTableViewCell *)commonCell;
