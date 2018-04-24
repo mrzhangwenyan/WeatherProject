@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class WeatherModel;
+
 typedef void (^callBlock)(NSString *cityName);
 @interface SearchCityTableViewController : UITableViewController
-@property (nonatomic, strong)NSMutableArray *dataSource;
+@property (nonatomic, strong)NSMutableArray<WeatherModel *> *dataSource;
 @property (nonatomic, copy)callBlock block;
 @property (nonatomic, copy)NSString *currentCity;
 @end

@@ -44,7 +44,7 @@
     [super viewDidLoad];
     self.title = @"天气";
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundView = [UIImageView imageViewWithName:@"back_one"];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightView];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"locationIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(chooseCity)];
@@ -56,14 +56,17 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     __weak typeof (self) weakSelf = self;
     [self shareSuccess];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf fetchWeatherDataSourceWithCityName:self.cityName];
-    }];
+    
+    /// 优化中...
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [weakSelf fetchWeatherDataSourceWithCityName:self.cityName];
+//    }];
     [HUDTools showHUDWithLabel:@"loading..." withView:self.view];
     [[ZZLocation sharedManager] getUserLocation:^(NSString *name) {
         weakSelf.cityName = name;
         [self fetchWeatherDataSourceWithCityName:name];
     }];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
 }
 - (UIView *)rightView {
     if (!_rightView) {
@@ -85,6 +88,10 @@
 - (void)fetchWeatherDataSourceWithCityName:(NSString *)city {
     __weak typeof(self) weakSelf = self;
     [[ZZWeatherTools shared] requestWithCityName:city success:^(NSArray<WeatherModel *> *model) {
+        NSString *cityStr = model.firstObject.city;
+        if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
+            weakSelf.cityName = cityStr;
+        }
         weakSelf.weatherView.model = model.firstObject;
         weakSelf.weatherModel = model.firstObject;
         __block BOOL isExit = YES;
@@ -98,15 +105,20 @@
             }];
         }else {
             /// 注意是英文的情况处理
-            [weakSelf.mutableModel addObject:model.firstObject];
+            if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
+                [weakSelf.mutableModel addObject:model.firstObject];
+            }
         }
         if (!isExit) {
-            [weakSelf.mutableModel addObject:model.firstObject];
+            
+            if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
+                [weakSelf.mutableModel addObject:model.firstObject];
+            }
         }
         [weakSelf.weatherView.collectionView reloadData];
         [weakSelf.tableView reloadData];
         [HUDTools removeHUD];
-        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_header endRefreshing];
     } failure:^(NSError *error) {
         NSLog(@"%@",error.description);
     }];
@@ -181,6 +193,7 @@
     __weak typeof (self) weakSelf = self;
     [cityTableVC setBlock:^(NSString *cityName) {
         [weakSelf fetchWeatherDataSourceWithCityName:cityName];
+//        NSLog(@"%@",cityName);
     }];
     cityTableVC.currentCity = self.weatherModel.city;
     [self.navigationController pushViewController:cityTableVC animated:YES];
@@ -231,13 +244,22 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tableView.delegate = self;
+    [self scrollViewDidScroll:self.tableView];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.isRemoveNotification = NO;
     NSLog(@"%@",self.mutableModel.lastObject.city);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(districtWeather:) name:@"districtName" object:nil];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.tableView.delegate = nil;
+    [self.navigationController.navigationBar lt_reset];
     if (self.isRemoveNotification) {
         [[NSNotificationCenter defaultCenter]removeObserver:self];
     }
@@ -246,6 +268,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    UIColor *color = CustomBlack;
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > NAVBAR_CHANGE_POINT) {
+        CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - offsetY) / 64));
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:alpha]];
+    }else {
+        [self.navigationController.navigationBar lt_setBackgroundColor:[color colorWithAlphaComponent:0]];
+    }
 }
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -331,6 +363,7 @@
             break;
         }
     }
+    commonCell.backgroundColor = [UIColor clearColor];
     commonCell.layoutMargins = UIEdgeInsetsZero;
     commonCell.separatorInset = UIEdgeInsetsZero;
     commonCell.selectionStyle = UITableViewCellSelectionStyleNone;

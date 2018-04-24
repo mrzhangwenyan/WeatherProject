@@ -16,13 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UINavigationBar *bar = self.navigationBar;
-    [bar setTranslucent:NO];
-    bar.barTintColor = [UIColor lightGrayColor];
-    bar.tintColor = [UIColor whiteColor];
-    bar.titleTextAttributes = @{NSForegroundColorAttributeName :UIColor.whiteColor,
-                                NSFontAttributeName: [UIFont systemFontOfSize:18]
-                                };
+    [self.navigationBar setTranslucent:YES];
+    [[UINavigationBar appearance] setBarTintColor:CustomBlack];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:21], NSFontAttributeName, nil]];
+//    UINavigationBar *bar = self.navigationBar;
+//    [bar setTranslucent:YES];
+//    bar.barTintColor = [UIColor lightGrayColor];
+//    bar.tintColor = [UIColor whiteColor];
+//    bar.titleTextAttributes = @{NSForegroundColorAttributeName :UIColor.whiteColor,
+//                                NSFontAttributeName: [UIFont systemFontOfSize:18]
+//                                };
     [UINavigationBar.appearance setBackIndicatorImage:[UIImage imageNamed:@"back"]];
     [UINavigationBar.appearance setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"back"]];
     [UIBarButtonItem.appearance setBackButtonTitlePositionAdjustment:UIOffsetMake(-600, 0) forBarMetrics:UIBarMetricsDefault];
@@ -31,7 +36,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 @end

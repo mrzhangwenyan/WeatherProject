@@ -23,11 +23,12 @@
 #import "MJRefresh.h"
 #import "API.h"
 #import "HUDTools.h"
+#import "UINavigationBar+Awesome.h"
 
 
 #define screenRate ([[UIScreen mainScreen] bounds].size.width  / 375.0)
 #define screenRate6P ([[UIScreen mainScreen] bounds].size.width  / 414.0)
-
+#define NAVBAR_CHANGE_POINT 40
 #pragma mark - SCREENSIZE
 
 #define SCREENWIDTH  [[UIScreen mainScreen] bounds].size.width

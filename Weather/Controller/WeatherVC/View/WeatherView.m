@@ -95,7 +95,7 @@
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[WeatherCollectionCell class] forCellWithReuseIdentifier:@"identifier"];

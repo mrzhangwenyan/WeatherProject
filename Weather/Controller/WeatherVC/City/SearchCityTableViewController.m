@@ -14,6 +14,13 @@
 @interface SearchCityTableViewController ()
 @property (nonatomic, assign)BOOL isSelectedItem;
 @property (nonatomic, strong)NSIndexPath *editIndexPath;
+@property (nonatomic, assign)BOOL isSelectedRow;
+@property (nonatomic, copy)NSString *cityName;
+@property (nonatomic, strong)UIBarButtonItem *rightBtnItem;
+@property (nonatomic, assign)NSInteger currentIndex;
+@property (nonatomic, assign)NSInteger deleIndex;
+@property (nonatomic, assign)BOOL isFirst;
+@property (nonatomic, assign)BOOL isLast;
 @end
 
 @implementation SearchCityTableViewController
@@ -22,14 +29,15 @@
     [super viewDidLoad];
     self.title = @"城市管理";
     self.isSelectedItem = false;
-    UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTableViewCell:)];
-    self.navigationItem.rightBarButtonItem = rightBtnItem;
+    self.rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTableViewCell:)];
+    self.navigationItem.rightBarButtonItem = self.rightBtnItem;
     self.tableView.tableFooterView = [[UIView alloc] init];
     if (self.dataSource.count == 1) {
-        [rightBtnItem setEnabled:NO];
+        [self.rightBtnItem setEnabled:NO];
     }else {
-        [rightBtnItem setEnabled:YES];
+        [self.rightBtnItem setEnabled:YES];
     }
+    self.isSelectedRow = NO;
 }
 - (void)editTableViewCell:(UIBarButtonItem *)item {
     
@@ -53,10 +61,6 @@
         [self configSwipeButtons];
     }
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)configSwipeButtons {
     if (@available(iOS 11.0, *)) {
         for (UIView *subview in self.tableView.subviews) {
@@ -73,6 +77,68 @@
                 [deleteBtn setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
             }
         }
+    }
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%lu",self.deleIndex);
+    __weak typeof (self) weakSelf = self;
+    [self.dataSource enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.city isEqualToString:self.currentCity]) {
+            NSLog(@"%lu",idx);
+            weakSelf.currentIndex = idx;
+        }
+    }];
+    self.isFirst = (self.currentIndex == 1) ? YES : NO;
+    self.isLast = (self.currentIndex == self.dataSource.count - 1) ? YES : NO;
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    /// 没有点击cell直接返回
+    if (!self.isSelectedRow) {
+//        _block(self.cityName);
+    }
+}
+
+- (void)showCityWeather {
+    /// 1.如果城市删除到了最后一个的情况 同时没有点击cell 直接返回
+    if (self.dataSource.count == 1) {
+        self.cityName = self.dataSource.lastObject.city;
+        NSLog(@"%@",self.cityName);
+    }
+    /// 2.若当前城市是最后一个并且从最一个开始删（包含当前城市） 展示数组最后一个城市 同时没有点击cell 直接返回
+    else if (self.isLast && (self.dataSource.count == self.deleIndex)) {
+        self.cityName = self.dataSource.lastObject.city;
+        NSLog(@"%@",self.cityName);
+    }
+    /// 3.若是当前城市是第一个并且从第一个开始删（包含当前城市） 展示数组中第一个城市 同时没有点击cell 直接返回
+    else if (self.isFirst && (self.deleIndex == 1)) {
+        self.cityName = self.dataSource.firstObject.city;
+        NSLog(@"%@",self.cityName);
+    }
+    else {
+        __weak typeof (self) weakSelf = self;
+        [self.dataSource enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            /// 4.若是当前城市是在中间位置，没有删掉当前城市，则依然是改城市，同时没有点击cell 直接返回
+            if ([obj.city isEqualToString:weakSelf.currentCity]) {
+                weakSelf.cityName = weakSelf.currentCity;
+                NSLog(@"%@",self.cityName);
+            }
+            /// 5.若是当前城市在中间位置，同时被删除了 则是当前的下一个城市展示  同时没有点击cell 直接返回
+            else {
+                if (weakSelf.deleIndex <= weakSelf.dataSource.count) {
+                    weakSelf.cityName = weakSelf.dataSource[weakSelf.deleIndex].city;
+                    NSLog(@"%@",self.cityName);
+                }else {
+                    weakSelf.cityName = weakSelf.dataSource.lastObject.city;
+                    NSLog(@"%@",self.cityName);
+                }
+            }
+        }];
     }
 }
 #pragma mark - Table view data source
@@ -140,6 +206,12 @@
     return 60;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.dataSource.count == 1) {
+        [self.rightBtnItem setEnabled:NO];
+        [self.tableView setEditing:NO animated:YES];
+        self.rightBtnItem.title = @"编辑";
+    }
     if (indexPath.row == 0 || indexPath.row == self.dataSource.count) {
         return NO;
     }else {
@@ -150,19 +222,23 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.editIndexPath = nil;
-}
+/// 删除当前城市的上面或者下面
+/// 删除当前城市
+/// 当前城市是否是最后一个
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
     self.editIndexPath = indexPath;
+    self.deleIndex = 0;
     [self.view setNeedsLayout];
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"      " handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        
+        self.deleIndex = indexPath.row;
         [self.dataSource removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
 //        [tableView setEditing:NO animated:YES];
     }];
     return @[deleteAction];
+}
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.editIndexPath = nil;
 }
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0 || indexPath.row == self.dataSource.count) {

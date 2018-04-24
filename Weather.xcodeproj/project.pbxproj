@@ -24,6 +24,7 @@
 		76276FC1208DA70E00F41694 /* ProvinceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC0208DA70E00F41694 /* ProvinceTableViewController.m */; };
 		76276FC4208DAD6800F41694 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC3208DAD6800F41694 /* CityTableViewController.m */; };
 		76276FC7208DB1E100F41694 /* DistrictTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FC6208DB1E100F41694 /* DistrictTableViewController.m */; };
+		76276FCB208F0A9600F41694 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FCA208F0A9600F41694 /* UINavigationBar+Awesome.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
@@ -143,6 +144,8 @@
 		76276FC3208DAD6800F41694 /* CityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		76276FC5208DB1E100F41694 /* DistrictTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DistrictTableViewController.h; sourceTree = "<group>"; };
 		76276FC6208DB1E100F41694 /* DistrictTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DistrictTableViewController.m; sourceTree = "<group>"; };
+		76276FC9208F0A9600F41694 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		76276FCA208F0A9600F41694 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +333,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		76276FC8208F0A8700F41694 /* LTNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				76276FC9208F0A9600F41694 /* UINavigationBar+Awesome.h */,
+				76276FCA208F0A9600F41694 /* UINavigationBar+Awesome.m */,
+			);
+			path = LTNavigationBar;
+			sourceTree = "<group>";
+		};
 		76DEEC04207B4A6600411444 = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +460,7 @@
 		76DEEC93207C5E1900411444 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				76276FC8208F0A8700F41694 /* LTNavigationBar */,
 				76DEED3B208490A900411444 /* SDK */,
 				76DEECA1207C5E4600411444 /* RSA */,
 				76DEEC98207C5E3D00411444 /* MBProgressHUD */,
@@ -1018,6 +1031,7 @@
 				76DEECA4207C5E4600411444 /* RSA.m in Sources */,
 				76DEECC8207D9EC100411444 /* WeatherViewController.m in Sources */,
 				76276FA7208881B700F41694 /* AboutUSViewController.m in Sources */,
+				76276FCB208F0A9600F41694 /* UINavigationBar+Awesome.m in Sources */,
 				76DEECDE207DBB0500411444 /* WeatherView.m in Sources */,
 				76DEEC9E207C5E3D00411444 /* HUDTools.m in Sources */,
 				76276FAA2088825100F41694 /* AboutUSView.m in Sources */,
