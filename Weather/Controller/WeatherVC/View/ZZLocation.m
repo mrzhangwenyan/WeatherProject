@@ -49,7 +49,7 @@
 - (void)startLocation {
     /// 返回用户是否启用定位服务
     if (![CLLocationManager locationServicesEnabled]) {
-        NSLog(@"定位服务当前可能尚未打开，请设置打开！");
+        ZZLog(@"定位服务当前可能尚未打开，请设置打开！");
         return;
     }
     /// kCLAuthorizationStatusDenied /* 用户禁止使用定位或者定位服务处于关闭状态 */
@@ -92,10 +92,10 @@
                 }
             }
             else if (error == nil && [placemarks count] == 0) {
-                NSLog(@"no result were returned");
+                ZZLog(@"no result were returned");
             }
             else if (error != nil) {
-                NSLog(@"an error occurred %@",error);
+                ZZLog(@"an error occurred %@",error);
             }
         }];
         /// 系统会一直更新数据，直到选择停止更新，因为我们只需要获得一次经纬度即可，所以获取之后就停止更新

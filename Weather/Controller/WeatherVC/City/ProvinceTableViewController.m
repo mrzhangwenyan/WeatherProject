@@ -37,7 +37,7 @@
         [HUDTools removeHUD];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+        ZZLog(@"%@",error.description);
     }];
 }
 - (CityTableViewController *)cityVC {

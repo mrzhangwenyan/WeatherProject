@@ -25,6 +25,11 @@
 #import "HUDTools.h"
 #import "UINavigationBar+Awesome.h"
 
+#ifdef DEBUG
+#define ZZLog(fmt, ...) NSLog((@"[函数名：%s]\n" "[行号：%d]\n" fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define ZZLog(...)
+#endif
 
 #define screenRate ([[UIScreen mainScreen] bounds].size.width  / 375.0)
 #define screenRate6P ([[UIScreen mainScreen] bounds].size.width  / 414.0)

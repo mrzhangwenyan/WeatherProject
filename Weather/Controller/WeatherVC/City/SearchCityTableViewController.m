@@ -40,6 +40,7 @@
     NSMutableArray<WeatherModel *> *arrModel = [[LocalArchiverManager shareManager] archiverQueryName:@"mutableModel"];
     if (arrModel.count > 1) {
         self.dataSource = arrModel;
+        ZZLog(@"%lu",arrModel.count);
     }
     if (self.dataSource.count == 1) {
         [self.rightBtnItem setEnabled:NO];
@@ -114,17 +115,17 @@
     /// 1.如果城市删除到了最后一个的情况 同时没有点击cell 直接返回
     if (self.dataSource.count == 1) {
         self.cityName = self.dataSource.lastObject.city;
-//        NSLog(@"%@",self.cityName);
+//        ZZLog(@"%@",self.cityName);
     }
     /// 2.若当前城市是最后一个并且从最一个开始删（包含当前城市） 展示数组最后一个城市 同时没有点击cell 直接返回
     else if (self.isLast && (self.dataSource.count == self.deleIndex)) {
         self.cityName = self.dataSource.lastObject.city;
-//        NSLog(@"%@",self.cityName);
+//        ZZLog(@"%@",self.cityName);
     }
     /// 3.若是当前城市是第一个并且从第一个开始删（包含当前城市） 展示数组中第一个城市 同时没有点击cell 直接返回
     else if (self.isFirst && (self.deleIndex == 1)) {
         self.cityName = self.dataSource[1].city;
-//        NSLog(@"%@",self.cityName);
+//        ZZLog(@"%@",self.cityName);
     }
     else {
         __weak typeof (self) weakSelf = self;
@@ -139,17 +140,17 @@
         /// 4.若是当前城市是在中间位置，没有删掉当前城市，则依然是改城市，同时没有点击cell 直接返回
         if (isExit) {
             self.cityName = self.currentCity;
-//            NSLog(@"%@",self.cityName);
+//            ZZLog(@"%@",self.cityName);
         }
         /// 5.若是当前城市在中间位置，同时被删除了 则是当前的下一个城市展示  同时没有点击cell 直接返回
         else {
             if (self.deleIndex < self.dataSource.count) {
                 self.cityName = self.dataSource[self.deleIndex].city;
-//                NSLog(@"%@",self.cityName);
+//                ZZLog(@"%@",self.cityName);
             }
             else {
                 self.cityName = self.dataSource.lastObject.city;
-//                NSLog(@"%@",self.cityName);
+//                ZZLog(@"%@",self.cityName);
             }
         }
     }
@@ -275,7 +276,7 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     /// 交换数据
     [self.dataSource exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
-    NSLog(@"%lu------%lu",sourceIndexPath.row,destinationIndexPath.row);
+    ZZLog(@"%lu------%lu",sourceIndexPath.row,destinationIndexPath.row);
 }
 @end
 

@@ -148,9 +148,9 @@
 // 指定回调方法
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void*) contextInfo{
     if(error != NULL){
-        NSLog(@"保存图片失败");
+        ZZLog(@"保存图片失败");
     }else{
-        NSLog(@"保存图片成功");
+        ZZLog(@"保存图片成功");
     }
 }
 - (BOOL)isInstallApp:(SSDKPlatformType) platform {

@@ -121,7 +121,7 @@
         [HUDTools removeHUD];
 //        [self.tableView.mj_header endRefreshing];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+        ZZLog(@"%@",error.description);
     }];
 }
 - (NSMutableArray<WeatherModel *> *)mutableModel {
@@ -201,7 +201,7 @@
 //    __weak typeof(self) weakSelf = self;
 //    CityGroupTableViewController *cityGroupTableViewVC = [[CityGroupTableViewController alloc] init];
 //    [cityGroupTableViewVC setBlock:^(NSString *cityName) {
-//        NSLog(@"%@",cityName);
+//        ZZLog(@"%@",cityName);
 //        [weakSelf fetchWeatherDataSourceWithCityName:cityName];
 //    }];
 //    [self.navigationController pushViewController:cityGroupTableViewVC animated:YES];

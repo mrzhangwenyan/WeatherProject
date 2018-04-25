@@ -49,7 +49,7 @@
     if ([self.fileManager removeItemAtPath:ArchiverFile error:&error]) {
         
     }else {
-        NSLog(@"清除本地序列化文件失败...%@",error);
+        ZZLog(@"清除本地序列化文件失败...%@",error);
     }
 }
 - (void)saveDataArchiver:(id)obj fileName:(NSString *)name {
@@ -62,7 +62,7 @@
     NSString *path = [ArchiverFile stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.text",name]];
     BOOL isSuccess = [data writeToFile:path atomically:YES];
     if (!isSuccess) {
-        NSLog(@"本地序列化失败...%@",name);
+        ZZLog(@"本地序列化失败...%@",name);
     }
 }
 - (id)archiverQueryName:(NSString *)name {
@@ -72,7 +72,7 @@
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     id content = [unarchiver decodeObjectForKey:name];
     [unarchiver finishDecoding];
-    NSLog(@"content...%@",content);
+    ZZLog(@"content...%@",content);
     return content;
     
 }

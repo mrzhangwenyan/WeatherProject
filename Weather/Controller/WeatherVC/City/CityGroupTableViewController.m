@@ -89,7 +89,7 @@
     return _searchBar;
 }
 //- (void)clearBtnClick {
-//    NSLog(@"删除");
+//    ZZLog(@"删除");
 //}
 - (void)addShadeViewToWindow {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
@@ -215,7 +215,7 @@
         /// 加个多线程 否则数据量很大 有卡顿现象
         dispatch_queue_t global = dispatch_get_global_queue(0, 0);
         dispatch_async(global, ^{
-            NSLog(@"%lu",self.cityArray.count);
+            ZZLog(@"%lu",self.cityArray.count);
             if (searchText !=nil && searchText.length > 0) {
                 for (NSString *str in self.cityArray) {
                     NSString *pingyin = [NSString transformToPinyin:str];
@@ -235,7 +235,7 @@
     }
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"点击了");
+    ZZLog(@"点击了");
 }
 
 @end

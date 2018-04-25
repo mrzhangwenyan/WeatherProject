@@ -32,9 +32,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
 //    if ([self isFirstLaunch]) {
-//        NSLog(@"第一次启动");
+//        ZZLog(@"第一次启动");
 //    }else {
-//        NSLog(@"不是第一次启动");
+//        ZZLog(@"不是第一次启动");
 //    }
     /// 暂时
     [self registerShareSDK];
