@@ -13,13 +13,14 @@
 #import "ProvinceTableViewController.h"
 #import "WeatherViewController.h"
 
-@interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (nonatomic, strong)UIImageView *headerImgView;
 @property (nonatomic, strong)UIButton *backBtn;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)HotCityHeaderView *hotHeaderView;
 @property (nonatomic, strong)MoreCityView *moreView;
 @property (nonatomic, strong)ProvinceTableViewController *pronvinceVC;
+@property (nonatomic, strong)UISearchBar *searchBar;
 @end
 
 @implementation HotCityTableViewController
@@ -31,11 +32,49 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self createHeaderImgView];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.searchBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+/// 搜索栏
+- (UISearchBar *)searchBar {
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(35, 120, SCREENWIDTH-70, 40)];
+        if (@available(iOS 11.0, *)) {
+            CGFloat a = 44;
+            [[_searchBar.heightAnchor constraintEqualToConstant:a] setActive:YES];
+        }
+        _searchBar.tintColor = CustomGray;
+        _searchBar.backgroundColor = [UIColor clearColor];
+        _searchBar.backgroundImage = [UIImage imageWithColor:[UIColor clearColor] size:CGSizeMake(1, 1)];
+        UITextField *searchTF = [_searchBar valueForKey:@"searchField"];
+        searchTF.backgroundColor = [UIColor whiteColor];
+        searchTF.font = [UIFont systemFontOfSize:16];
+        //        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
+        //        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        //searchTF.clearButtonMode = UITextFieldViewModeAlways;
+        _searchBar.placeholder = @"搜索城市";
+        searchTF.layer.cornerRadius = 17;
+        searchTF.layer.masksToBounds = YES;
+        [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
+        
+        [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:18],NSFontAttributeName, nil] forState:UIControlStateNormal];
+
+//        for (UIView *subview in _searchBar.subviews) {
+//            for (UIView *tempView in subview.subviews) {
+//                if ([tempView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+//                    UIButton *button = (UIButton *)tempView;
+//                    [button setTitle:@"取消" forState:UIControlStateNormal];
+//                    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//                }
+//            }
+//        }
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
 }
 - (ProvinceTableViewController *)pronvinceVC {
     if (!_pronvinceVC) {
@@ -71,10 +110,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.view endEditing:YES];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)createHeaderImgView {
@@ -129,6 +170,27 @@
 //        ((UITableViewHeaderFooterView *)view).backgroundView.backgroundColor = [UIColor whiteColor];;
 //    }
 //}
+
+#pragma mark UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searchBar.text = @"";
+    self.searchBar.showsCancelButton = NO;
+    [self.searchBar resignFirstResponder];
+    /// 处理结束搜索的事情
+}
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    self.searchBar.showsCancelButton = YES;
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    if ([self.searchBar.text isEqualToString:@""]) {
+        self.searchBar.showsCancelButton = NO;
+    }else {
+        self.searchBar.showsCancelButton = YES;
+    }
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    /// 处理搜索事情
+}
 @end
 
 

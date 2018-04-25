@@ -17,6 +17,7 @@
 #import "UIFont+ZZExtra.h"
 #import "UILabel+ZZExtra.h"
 #import "UIImageView+ZZExtra.h"
+#import "UIImage+ZZExtra.h"
 #import "ZZUserDefaults.h"
 #import "Masonry.h"
 #import "YYModel.h"

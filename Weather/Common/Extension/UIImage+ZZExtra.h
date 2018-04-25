@@ -10,4 +10,5 @@
 
 @interface UIImage (ZZExtra)
 + (UIImage *)screenCaptureShareWithView:(UIView *)view;
++ (UIImage *)imageWithColor: (UIColor *)color size:(CGSize)size;
 @end
