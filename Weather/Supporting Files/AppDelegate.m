@@ -20,6 +20,7 @@
 #import "WXApi.h"
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
+#import "ZZUserDefaults.h"
 
 @interface AppDelegate ()
 
@@ -29,6 +30,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+//    if ([self isFirstLaunch]) {
+//        NSLog(@"第一次启动");
+//    }else {
+//        NSLog(@"不是第一次启动");
+//    }
     /// 暂时
     [self registerShareSDK];
 //    [[ZZLocalFile sharedLocalFile] netRequestWithCityName:@"上海"];
@@ -77,8 +84,16 @@
                                             }
                                         }];
 }
-- (void)otherLoad {
-
+- (BOOL)isFirstLaunch {
+    NSString *key = (NSString *)kCFBundleVersionKey;
+    NSString *version = [NSBundle mainBundle].infoDictionary[key];
+    NSString *saveVersion = [ZZUserDefaults objectForKey:key];
+    if ([version isEqualToString:saveVersion]) {
+        return NO;
+    }else {
+        [ZZUserDefaults setObject:version forKey:key];
+        return YES;
+    }
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

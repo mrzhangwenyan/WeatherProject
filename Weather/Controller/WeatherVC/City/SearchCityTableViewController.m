@@ -10,6 +10,7 @@
 #import "HotCityTableViewController.h"
 #import "WeatherModel.h"
 #import "HUDTools.h"
+#import "LocalArchiverManager.h"
 
 @interface SearchCityTableViewController ()
 @property (nonatomic, assign)BOOL isSelectedItem;
@@ -33,13 +34,18 @@
     self.rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTableViewCell:)];
     self.navigationItem.rightBarButtonItem = self.rightBtnItem;
     self.tableView.tableFooterView = [[UIView alloc] init];
+    self.isSelectedRow = NO;
+    self.isRemoveCell = NO;
+    /// 从本地中取出数据
+    NSMutableArray<WeatherModel *> *arrModel = [[LocalArchiverManager shareManager] archiverQueryName:@"mutableModel"];
+    if (arrModel.count > 1) {
+        self.dataSource = arrModel;
+    }
     if (self.dataSource.count == 1) {
         [self.rightBtnItem setEnabled:NO];
     }else {
         [self.rightBtnItem setEnabled:YES];
     }
-    self.isSelectedRow = NO;
-    self.isRemoveCell = NO;
 }
 - (void)editTableViewCell:(UIBarButtonItem *)item {
     
@@ -87,11 +93,9 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     __weak typeof (self) weakSelf = self;
     [self.dataSource enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.city isEqualToString:self.currentCity]) {
-//            NSLog(@"%lu",idx);
             weakSelf.currentIndex = idx;
         }
     }];
@@ -245,6 +249,7 @@
         [weakSelf.dataSource removeObjectAtIndex:indexPath.row];
         [weakSelf showCityWeather];
         weakSelf.isRemoveCell = YES;
+        [[LocalArchiverManager shareManager] saveDataArchiver:weakSelf.dataSource fileName:@"mutableModel"];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
     }];
     

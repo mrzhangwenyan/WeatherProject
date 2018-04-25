@@ -14,7 +14,7 @@
 //@property(nonatomic, strong)NSArray<WeatherModel *> *zzModelArr;
 //@end
 
-@interface WeatherModel : NSObject
+@interface WeatherModel : NSObject<NSCoding>
 /// 空气质量
 @property(nonatomic, copy)NSString *airCondition;
 /// 城市
@@ -55,7 +55,7 @@
 @property(nonatomic, strong)NSArray<FutureModel *> *future;
 @end
 
-@interface FutureModel: NSObject
+@interface FutureModel: NSObject<NSCoding>
 /// 日期
 @property(nonatomic, copy)NSString *date;
 /// 白天天气

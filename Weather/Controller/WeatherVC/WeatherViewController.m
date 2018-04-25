@@ -22,8 +22,7 @@
 #import "SettingTableViewController.h"
 #import "SearchCityTableViewController.h"
 #import "ZZUserDefaults.h"
-
-
+#import "LocalArchiverManager.h"
 
 @interface WeatherViewController ()
 
@@ -35,7 +34,6 @@
 @property (nonatomic, copy)NSString *cityName;
 @property (nonatomic, assign)BOOL isRemoveNotification;
 @property (nonatomic, strong)NSMutableArray<WeatherModel*> *mutableModel;
-@property (nonatomic, copy)NSString *filePath;
 
 @end
 
@@ -57,10 +55,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     __weak typeof (self) weakSelf = self;
     [self shareSuccess];
-    /// 获取文件路径
-    NSString *file = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    /// 添加存储的文件名
-    self.filePath = [file stringByAppendingPathComponent:@"archiverFile"];
     
     /// 优化中...
 //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -116,10 +110,10 @@
         }
         if (!isExit) {
             
+            [[LocalArchiverManager shareManager] clearArchiverData];
             if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
                 [weakSelf.mutableModel addObject:model.firstObject];
-                
-                [NSKeyedArchiver archiveRootObject:self.mutableModel toFile:self.filePath];
+                [[LocalArchiverManager shareManager] saveDataArchiver:weakSelf.mutableModel fileName:@"mutableModel"];
             }
         }
         [weakSelf.weatherView.collectionView reloadData];
@@ -255,7 +249,6 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.isRemoveNotification = NO;
-    NSLog(@"%@",self.mutableModel.lastObject.city);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(districtWeather:) name:@"districtName" object:nil];
 }
 
