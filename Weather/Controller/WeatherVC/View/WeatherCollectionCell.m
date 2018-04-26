@@ -25,8 +25,8 @@
 }
 - (void)creatUI{
     _weatherImgView = [UIImageView imageViewWithName:@"cloud"];
-    _weekLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomGray];
-    _temScopeLabel = [UILabel labelWithTitle:@"" fontSize:15 textColor:CustomGray];
+    _weekLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomBlack];
+    _temScopeLabel = [UILabel labelWithTitle:@"" fontSize:15 textColor:CustomBlack];
     
     [self addSubview:_weatherImgView];
     [self addSubview:_weekLabel];

@@ -43,7 +43,7 @@
     [super viewDidLoad];
     self.title = @"天气";
     
-    self.tableView.backgroundView = [UIImageView imageViewWithName:@"back_one"];
+    self.tableView.backgroundView = [UIImageView imageViewWithName:@"back_two"];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightView];
     self.navigationItem.rightBarButtonItem = rightBtnItem;
     UIBarButtonItem *leftBtnItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"locationIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(chooseCity)];
@@ -295,7 +295,7 @@
         UITableViewCell *cell = (UITableViewCell *)commonCell;
         FutureModel *model = self.weatherModel.future.firstObject;
         cell.textLabel.numberOfLines = 0;
-        cell.textLabel.textColor = CustomGray;
+        cell.textLabel.textColor = CustomBlack;
         if ([model.temperature containsString:@"/"]) {
             NSString *highStr = [model getHighWeatherTemperature:model.temperature];
             NSString *lowStr = [model getLowWeatherTemperature:model.temperature];

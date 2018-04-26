@@ -46,26 +46,26 @@
     _airQualityImgView = [UIImageView imageViewWithName:@"airQuality"];
     _humidityImgView = [UIImageView imageViewWithName:@"humidity"];
     
-    _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:CustomDark];
-    _weatherLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomGray];
+    _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:CustomBlack];
+    _weatherLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomBlack];
     
     _temperatureBtn = [[UIButton alloc] init];
     _temperatureBtn.userInteractionEnabled = NO;
     [_temperatureBtn setTitle:@"" forState:UIControlStateNormal];
-    [_temperatureBtn setTitleColor:CustomGray forState:UIControlStateNormal];
+    [_temperatureBtn setTitleColor:[CustomBlack colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
     _temperatureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     _temperatureBtn.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:180];
 //    _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
-    _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomGray];
+    _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomBlack];
     
-    _dateLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomGray];
-    _windLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
-    _airConditionLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
-    _humidityLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomGray];
+    _dateLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomBlack];
+    _windLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
+    _airConditionLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
+    _humidityLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
     _lineView = [[UIView alloc] init];
-    _lineView.backgroundColor = CustomGray;
+    _lineView.backgroundColor = CustomBlack;
     _lineBottomView = [[UIView alloc] init];
-    _lineBottomView.backgroundColor = CustomGray;
+    _lineBottomView.backgroundColor = CustomBlack;
     
     /// 添加到view上
     [self addSubview:_weatherImgView];

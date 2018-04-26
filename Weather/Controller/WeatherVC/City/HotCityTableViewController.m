@@ -15,6 +15,7 @@
 
 @interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (nonatomic, strong)UIImageView *headerImgView;
+@property (nonatomic, strong)UIView *headerView;
 @property (nonatomic, strong)UIButton *backBtn;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)HotCityHeaderView *hotHeaderView;
@@ -55,23 +56,13 @@
         searchTF.font = [UIFont systemFontOfSize:16];
         //        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
         //        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        //searchTF.clearButtonMode = UITextFieldViewModeAlways;
+        searchTF.clearButtonMode = UITextFieldViewModeAlways;
         _searchBar.placeholder = @"搜索城市";
         searchTF.layer.cornerRadius = 17;
         searchTF.layer.masksToBounds = YES;
         [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
-        
+        /// 设置取消的颜色和字体
         [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:18],NSFontAttributeName, nil] forState:UIControlStateNormal];
-
-//        for (UIView *subview in _searchBar.subviews) {
-//            for (UIView *tempView in subview.subviews) {
-//                if ([tempView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
-//                    UIButton *button = (UIButton *)tempView;
-//                    [button setTitle:@"取消" forState:UIControlStateNormal];
-//                    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//                }
-//            }
-//        }
         _searchBar.delegate = self;
     }
     return _searchBar;
@@ -119,16 +110,30 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)createHeaderImgView {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREENWIDTH, 250)];
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, -20, SCREENWIDTH, 250)];
     self.headerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 250)];
     self.headerImgView.image = [UIImage imageNamed:@"background"];
-    [headerView addSubview:self.headerImgView];
+    self.headerImgView.userInteractionEnabled = YES;
+    [_headerView addSubview:self.headerImgView];
     self.backBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 40, 40, 40)];
     self.backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.backBtn setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [self.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:self.backBtn];
-    [self.view addSubview:headerView];
+    [_headerView addSubview:self.backBtn];
+    [self.view addSubview:_headerView];
+}
+- (void)headerImgViewMoveUp {
+    [UIView animateWithDuration: 0.5 animations:^{
+        self.headerView.height = 150;
+        self.headerImgView.height = 150;
+        
+        self.tableView.height = SCREENHEIGHT-130;
+        self.tableView.top = 130;
+        self.searchBar.top = 60;
+    }];
+}
+- (void)headerImgViewMoveDown {
+    
 }
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
@@ -172,20 +177,22 @@
 //}
 
 #pragma mark UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    ZZLog(@"cancelBtn");
     self.searchBar.text = @"";
-    self.searchBar.showsCancelButton = NO;
+    [self.searchBar setShowsCancelButton:YES animated:NO];
     [self.searchBar resignFirstResponder];
     /// 处理结束搜索的事情
 }
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    self.searchBar.showsCancelButton = YES;
+    [self.searchBar setShowsCancelButton:YES animated:YES];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     if ([self.searchBar.text isEqualToString:@""]) {
-        self.searchBar.showsCancelButton = NO;
+        [self.searchBar setShowsCancelButton:YES animated:NO];
     }else {
-        self.searchBar.showsCancelButton = YES;
+        [self.searchBar setShowsCancelButton:YES animated:YES];
     }
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {

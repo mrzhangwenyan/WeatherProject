@@ -23,8 +23,8 @@
 }
 
 - (void)createUI {
-    _promptLabel = [UILabel labelWithTitle:@"" fontSize:12 textColor:CustomGray];
-    _dataShowLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomGray];
+    _promptLabel = [UILabel labelWithTitle:@"" fontSize:12 textColor:CustomBlack];
+    _dataShowLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomBlack];
     
     [self.contentView addSubview:_promptLabel];
     [self.contentView addSubview:_dataShowLabel];
