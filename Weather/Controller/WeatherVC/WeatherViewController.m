@@ -23,6 +23,7 @@
 #import "SearchCityTableViewController.h"
 #import "ZZUserDefaults.h"
 #import "LocalArchiverManager.h"
+#import "ZZFMDBManager.h"
 
 @interface WeatherViewController ()
 
@@ -66,6 +67,10 @@
         [self fetchWeatherDataSourceWithCityName:name];
     }];
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+//    NSArray *a = @[@"张",@"文",@"晏",@"张三",@"文章",@"子晏",@"张三丰"];
+//    [[ZZFMDBManager sharedManager] insertData:a];
+    
+    
 }
 - (UIView *)rightView {
     if (!_rightView) {

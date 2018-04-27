@@ -10,6 +10,7 @@ target 'Weather' do
   pod 'SDWebImage'
   pod 'MJRefresh'
   pod 'YYModel'
+  pod 'FMDB'
   pod 'IQKeyboardManager'
   pod 'LBXScan'
   pod 'Masonry'

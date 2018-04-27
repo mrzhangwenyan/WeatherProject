@@ -72,7 +72,7 @@
                                         } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
                                             switch (platformType) {
                                                 case SSDKPlatformTypeWechat:
-                                                [appInfo SSDKSetupWeChatByAppId:@"" appSecret:@"" backUnionID:NO];
+                                                [appInfo SSDKSetupWeChatByAppId:@"wxcc88d959c64f08db" appSecret:@"" backUnionID:NO];
                                                 break;
                                                 case SSDKPlatformTypeQQ:
                                                 [appInfo SSDKSetupQQByAppId:@"1106772401" appKey:@"VnoGcA525qIMYYpd" authType:SSDKAuthTypeBoth useTIM:YES backUnionID:NO];

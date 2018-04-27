@@ -15,6 +15,7 @@
 #import "SearchTableView.h"
 #import <IQKeyboardManager.h>
 #import "ZZLocalFile.h"
+#import "ZZFMDBManager.h"
 
 @interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ZZCityNameDelegate>
 @property (nonatomic, strong)UIImageView *headerImgView;
@@ -27,7 +28,7 @@
 @property (nonatomic, strong)UISearchBar *searchBar;
 @property (nonatomic, strong)SearchTableView *searchTableView;
 @property (nonatomic, strong)NSArray *districtArr;
-@property (nonatomic, strong)NSMutableArray *searchResultArray;
+@property (nonatomic, strong)NSArray *searchResultArray;
 @end
 
 @implementation HotCityTableViewController
@@ -41,7 +42,6 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.searchTableView];
-    self.districtArr = [ZZLocalFile sharedLocalFile].districtCollection;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -124,9 +124,9 @@
     }
     return _moreView;
 }
-- (NSMutableArray *)searchResultArray {
+- (NSArray *)searchResultArray {
     if (!_searchResultArray) {
-        _searchResultArray = [NSMutableArray array];
+        _searchResultArray = [NSArray array];
     }
     return _searchResultArray;
 }
@@ -234,7 +234,8 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     ZZLog(@"cancelBtn");
-    [self.searchResultArray removeAllObjects];
+//    [self.searchResultArray removeAllObjects];
+    self.searchResultArray = nil;
     [self.searchTableView.tableView reloadData];
     [self headerImgViewMoveDown];
     self.searchTableView.hidden = YES;
@@ -246,23 +247,25 @@
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     /// 处理搜索事情
-    NSLog(@"%@",searchText);
-    [self.searchResultArray removeAllObjects];
+//    [self.searchResultArray removeAllObjects];
+    self.searchResultArray = nil;
     if ([searchText isEqualToString:@""]) {
         self.searchTableView.titleLabel.text = @"添加您想关注的城市";
         self.searchTableView.titleLabel.hidden = NO;
+        self.searchTableView.cityNameArr = @[];
         [self.searchTableView.tableView reloadData];
     }else {
         /// 加个多线程 否则数据量很大 有卡顿现象
         dispatch_queue_t global = dispatch_get_global_queue(0, 0);
         dispatch_async(global, ^{
             if (searchText !=nil && searchText.length > 0) {
-                for (NSString *str in self.districtArr) {
-                    NSString *pingyin = [NSString transformToPinyin:str];
-                    if ([pingyin rangeOfString:searchText options:NSCaseInsensitiveSearch].length > 0) {
-                        [self.searchResultArray addObject:str];
-                    }
-                }
+                self.searchResultArray = [[ZZFMDBManager sharedManager] queryData:searchText];
+//                for (NSString *str in self.districtArr) {
+//                    NSString *pingyin = [NSString transformToPinyin:str];
+//                    if ([pingyin rangeOfString:searchText options:NSCaseInsensitiveSearch].length > 0) {
+//                        [self.searchResultArray addObject:str];
+//                    }
+//                }
             }
             /// 回到主线程
             dispatch_async(dispatch_get_main_queue(), ^{

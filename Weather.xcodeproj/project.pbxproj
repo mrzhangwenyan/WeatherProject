@@ -28,6 +28,7 @@
 		76276FCB208F0A9600F41694 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 76276FCA208F0A9600F41694 /* UINavigationBar+Awesome.m */; };
 		763FE3C92085F5500064D6B5 /* ZZLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 763FE3C82085F5500064D6B5 /* ZZLocation.m */; };
 		76B3051A2090499100ADFA5A /* UIImage+ZZExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEED7320859BEF00411444 /* UIImage+ZZExtra.m */; };
+		76CB79192093172200D9DB7C /* ZZFMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CB79182093172200D9DB7C /* ZZFMDBManager.m */; };
 		76DEEC12207B4A6600411444 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DEEC11207B4A6600411444 /* AppDelegate.m */; };
 		76DEEC18207B4A6600411444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC16207B4A6600411444 /* Main.storyboard */; };
 		76DEEC1D207B4A6800411444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEEC1B207B4A6800411444 /* LaunchScreen.storyboard */; };
@@ -152,6 +153,8 @@
 		76276FCA208F0A9600F41694 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		763FE3C72085F5500064D6B5 /* ZZLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZLocation.h; sourceTree = "<group>"; };
 		763FE3C82085F5500064D6B5 /* ZZLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZLocation.m; sourceTree = "<group>"; };
+		76CB79172093172200D9DB7C /* ZZFMDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZZFMDBManager.h; sourceTree = "<group>"; };
+		76CB79182093172200D9DB7C /* ZZFMDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZZFMDBManager.m; sourceTree = "<group>"; };
 		76DEEC0D207B4A6600411444 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DEEC10207B4A6600411444 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76DEEC11207B4A6600411444 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -512,6 +515,8 @@
 				76DEECEE207F0A3300411444 /* ZZLocalFile.m */,
 				76DEECAB207CB14B00411444 /* ZZUserDefaults.h */,
 				76DEECAC207CB14B00411444 /* ZZUserDefaults.m */,
+				76CB79172093172200D9DB7C /* ZZFMDBManager.h */,
+				76CB79182093172200D9DB7C /* ZZFMDBManager.m */,
 				7602E526208F75260096CBCD /* LocalArchiverManager.h */,
 				7602E527208F75260096CBCD /* LocalArchiverManager.m */,
 			);
@@ -1045,6 +1050,7 @@
 				76276FAA2088825100F41694 /* AboutUSView.m in Sources */,
 				76DEECF8208085C300411444 /* SharedView.m in Sources */,
 				76276FBB208D8B7A00F41694 /* HotCityTableViewCell.m in Sources */,
+				76CB79192093172200D9DB7C /* ZZFMDBManager.m in Sources */,
 				76DEECFB208436F500411444 /* WeatherTableViewCell.m in Sources */,
 				76DEECC5207D9B9800411444 /* ZZNavigationController.m in Sources */,
 				76276FAD2089B99900F41694 /* SearchCityTableViewController.m in Sources */,

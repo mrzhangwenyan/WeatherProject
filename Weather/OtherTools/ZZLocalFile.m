@@ -9,6 +9,7 @@
 #import "ZZLocalFile.h"
 #import "ZZWeatherTools.h"
 #import "NSArray+HandleData.h"
+#import "ZZFMDBManager.h"
 
 @implementation ZZLocalFile
 
@@ -28,9 +29,8 @@
 - (void)netRequest {
     [[ZZWeatherTools shared] requestQueryCityList:^(NSArray<ProvinceModel *> *model) {
         self.provinceCollection = [model getProvinceCollection:model];
-        self.districtCollection = [model getDistrictCollection:model];
         self.provinceModel = model;
-
+        [[ZZFMDBManager sharedManager] insertData:[model getDistrictCollection:model]];
     } failure:nil];
 }
 @end
