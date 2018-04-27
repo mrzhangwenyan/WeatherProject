@@ -109,11 +109,26 @@
             }
         }
         if (!isExit) {
-            
-            [[LocalArchiverManager shareManager] clearArchiverData];
+   
             if ((![cityStr isEqual:[NSNull null]]) && ([cityStr isChinese])) {
-                [weakSelf.mutableModel addObject:model.firstObject];
-                [[LocalArchiverManager shareManager] saveDataArchiver:weakSelf.mutableModel fileName:@"mutableModel"];
+                NSMutableArray<WeatherModel *> *arrModel = [[LocalArchiverManager shareManager] archiverQueryName:@"mutableModel"];
+                
+                if (arrModel.count <= 0) {
+                    [weakSelf.mutableModel addObject:model.firstObject];
+                    [[LocalArchiverManager shareManager]saveDataArchiver:weakSelf.mutableModel fileName:@"mutableModel"];
+                }else {                
+                    __block BOOL isContain;
+                    [arrModel enumerateObjectsUsingBlock:^(WeatherModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if ([obj.city isEqualToString:model.firstObject.city]) {
+                            *stop = YES;
+                            isContain = YES;
+                        }
+                    }];
+                    if (!isContain) {
+                        [arrModel addObject:model.firstObject];
+                        [[LocalArchiverManager shareManager] saveDataArchiver:arrModel fileName:@"mutableModel"];
+                    }
+                }
             }
         }
         [weakSelf.weatherView.collectionView reloadData];

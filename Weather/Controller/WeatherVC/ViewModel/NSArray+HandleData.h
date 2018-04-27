@@ -16,4 +16,5 @@
 - (NSArray *)getCityCollection:(NSArray<ProvinceModel *> *)modelArr province: (NSString *)provinceName;
 /// 根据城市获取区县的集合
 - (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr city: (NSString *)cityName;
+- (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr;
 @end

@@ -12,8 +12,9 @@
 @end
 
 @interface SearchTableView : UIView
-@property (nonatomic, strong) NSArray *cityNameArr;
+@property (nonatomic, strong)NSArray *cityNameArr;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, weak)id<ZZCityNameDelegate> delegate;
+@property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, assign) BOOL isHidden;
 @end

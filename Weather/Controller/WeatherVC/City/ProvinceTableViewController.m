@@ -11,6 +11,7 @@
 #import "NSArray+HandleData.h"
 #import "ProvinceModel.h"
 #import "CityTableViewController.h"
+#import "ZZLocalFile.h"
 
 @interface ProvinceTableViewController ()
 @property (nonatomic, strong)NSArray<NSString *> *dataSource;
@@ -27,12 +28,15 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [self fetchProvinceData];
-    [HUDTools showHUDWithLabel:@"loading..." withView:self.view];
+//    [self fetchProvinceData];
+    self.dataSource = [ZZLocalFile sharedLocalFile].provinceCollection;
+    self.model = [ZZLocalFile sharedLocalFile].provinceModel;
+//    [HUDTools showHUDWithLabel:@"loading..." withView:self.view];
 }
 - (void)fetchProvinceData {
+    
     [[ZZWeatherTools shared] requestQueryCityList:^(NSArray<ProvinceModel *> *model) {
-        self.dataSource = [model getProvinceCollection:model];
+//        self.dataSource = [model getProvinceCollection:model];
         self.model = model;
         [HUDTools removeHUD];
         [self.tableView reloadData];

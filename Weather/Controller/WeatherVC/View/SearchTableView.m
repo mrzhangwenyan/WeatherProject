@@ -23,6 +23,8 @@
 }
 
 - (void)createdUI {
+    self.titleLabel = [UILabel labelWithTitle:@"添加您想关注的城市" fontSize:16 textColor:CustomGray];
+    [self.tableView addSubview:self.titleLabel];
     [self addSubview:self.tableView];
 }
 - (UITableView *)tableView {
@@ -40,6 +42,10 @@
     [super layoutSubviews];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_top).mas_offset(200);
+        make.centerX.equalTo(self.tableView);
     }];
 }
 

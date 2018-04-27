@@ -12,8 +12,11 @@
 #import "HotCityTableViewCell.h"
 #import "ProvinceTableViewController.h"
 #import "WeatherViewController.h"
+#import "SearchTableView.h"
+#import <IQKeyboardManager.h>
+#import "ZZLocalFile.h"
 
-@interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ZZCityNameDelegate>
 @property (nonatomic, strong)UIImageView *headerImgView;
 @property (nonatomic, strong)UIView *headerView;
 @property (nonatomic, strong)UIButton *backBtn;
@@ -22,6 +25,9 @@
 @property (nonatomic, strong)MoreCityView *moreView;
 @property (nonatomic, strong)ProvinceTableViewController *pronvinceVC;
 @property (nonatomic, strong)UISearchBar *searchBar;
+@property (nonatomic, strong)SearchTableView *searchTableView;
+@property (nonatomic, strong)NSArray *districtArr;
+@property (nonatomic, strong)NSMutableArray *searchResultArray;
 @end
 
 @implementation HotCityTableViewController
@@ -34,6 +40,8 @@
     [self createHeaderImgView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.searchBar];
+    [self.view addSubview:self.searchTableView];
+    self.districtArr = [ZZLocalFile sharedLocalFile].districtCollection;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +64,7 @@
         searchTF.font = [UIFont systemFontOfSize:16];
         //        UIButton *clearBtn = [searchTF valueForKey:@"_clearButton"];
         //        [clearBtn addTarget:self action:@selector(clearBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        searchTF.clearButtonMode = UITextFieldViewModeAlways;
+//        searchTF.clearButtonMode = UITextFieldViewModeAlways;
         _searchBar.placeholder = @"搜索城市";
         searchTF.layer.cornerRadius = 17;
         searchTF.layer.masksToBounds = YES;
@@ -83,6 +91,23 @@
     }
     return _tableView;
 }
+- (SearchTableView *)searchTableView {
+    if (!_searchTableView) {
+        _searchTableView = [[SearchTableView alloc] initWithFrame:CGRectMake(0, 230, SCREENWIDTH, SCREENHEIGHT-230)];
+        _searchTableView.hidden = YES;
+        _searchTableView.userInteractionEnabled = NO;
+        _searchTableView.backgroundColor = [UIColor orangeColor];
+        if (@available(iOS 11.0,*)) {
+            _searchTableView.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            _searchTableView.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
+        }else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        _searchTableView.delegate = self;
+        _searchTableView.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    }
+    return _searchTableView;
+}
 - (HotCityHeaderView *)hotHeaderView {
     if (!_hotHeaderView) {
         _hotHeaderView = [[HotCityHeaderView alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
@@ -99,14 +124,22 @@
     }
     return _moreView;
 }
+- (NSMutableArray *)searchResultArray {
+    if (!_searchResultArray) {
+        _searchResultArray = [NSMutableArray array];
+    }
+    return _searchResultArray;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view endEditing:YES];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+//    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+//    manager.enable = true;
+//    manager.shouldResignOnTouchOutside = true;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 - (void)createHeaderImgView {
@@ -129,11 +162,22 @@
         
         self.tableView.height = SCREENHEIGHT-130;
         self.tableView.top = 130;
+        self.searchTableView.height = SCREENHEIGHT-130;
+        self.searchTableView.top = 130;
         self.searchBar.top = 60;
     }];
 }
 - (void)headerImgViewMoveDown {
-    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.headerView.height = 250;
+        self.headerImgView.height = 250;
+        
+        self.tableView.height = SCREENHEIGHT-230;
+        self.tableView.top = 230;
+        self.searchTableView.height = SCREENHEIGHT-230;
+        self.searchTableView.top = 230;
+        self.searchBar.top = 120;
+    }];
 }
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
@@ -177,26 +221,67 @@
 //}
 
 #pragma mark UISearchBarDelegate
-
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    [self.searchBar becomeFirstResponder];
+    [self headerImgViewMoveUp];
+    self.searchTableView.userInteractionEnabled = YES;
+    self.searchTableView.hidden = NO;
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [self.searchBar setShowsCancelButton:NO animated:YES];
+}
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     ZZLog(@"cancelBtn");
+    [self.searchResultArray removeAllObjects];
+    [self.searchTableView.tableView reloadData];
+    [self headerImgViewMoveDown];
+    self.searchTableView.hidden = YES;
+    self.searchTableView.userInteractionEnabled = NO;
     self.searchBar.text = @"";
-    [self.searchBar setShowsCancelButton:YES animated:NO];
+    [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];
     /// 处理结束搜索的事情
 }
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    [self.searchBar setShowsCancelButton:YES animated:YES];
-}
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    if ([self.searchBar.text isEqualToString:@""]) {
-        [self.searchBar setShowsCancelButton:YES animated:NO];
-    }else {
-        [self.searchBar setShowsCancelButton:YES animated:YES];
-    }
-}
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     /// 处理搜索事情
+    NSLog(@"%@",searchText);
+    [self.searchResultArray removeAllObjects];
+    if ([searchText isEqualToString:@""]) {
+        self.searchTableView.titleLabel.text = @"添加您想关注的城市";
+        self.searchTableView.titleLabel.hidden = NO;
+        [self.searchTableView.tableView reloadData];
+    }else {
+        /// 加个多线程 否则数据量很大 有卡顿现象
+        dispatch_queue_t global = dispatch_get_global_queue(0, 0);
+        dispatch_async(global, ^{
+            if (searchText !=nil && searchText.length > 0) {
+                for (NSString *str in self.districtArr) {
+                    NSString *pingyin = [NSString transformToPinyin:str];
+                    if ([pingyin rangeOfString:searchText options:NSCaseInsensitiveSearch].length > 0) {
+                        [self.searchResultArray addObject:str];
+                    }
+                }
+            }
+            /// 回到主线程
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.searchTableView.cityNameArr = self.searchResultArray;
+                if (self.searchResultArray.count > 0) {
+                    self.searchTableView.titleLabel.hidden = YES;
+                }else {
+                    self.searchTableView.titleLabel.text = @"未能找到该城市";
+                    self.searchTableView.titleLabel.hidden = NO;
+                }
+                [self.searchTableView.tableView reloadData];
+            });
+        });
+    }
+}
+- (void)searchTableViewDidSelectedWithName:(NSString *)cityName {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"districtName" object:nil userInfo:@{@"name":cityName}];
+    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 @end
 

@@ -39,6 +39,7 @@
     /// 暂时
     [self registerShareSDK];
 //    [[ZZLocalFile sharedLocalFile] netRequestWithCityName:@"上海"];
+    [[ZZLocalFile sharedLocalFile] netRequest];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 //    ZZTabBarController *tabBarVC = [[ZZTabBarController alloc] init];

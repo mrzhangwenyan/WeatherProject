@@ -16,6 +16,28 @@
     }];
     return mutableArr;
 }
+- (NSArray *)getCityCollection:(NSArray<ProvinceModel *> *)modelArr {
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    [modelArr enumerateObjectsUsingBlock:^(ProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (CityModel *model in obj.city) {
+            [mutableArr addObject:model.city];
+        }
+    }];
+    return mutableArr;
+}
+- (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr {
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    [modelArr enumerateObjectsUsingBlock:^(ProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (CityModel *model in obj.city) {
+            for (DistrictModel *d in model.district) {
+                [mutableArr addObject:d.district];
+            }
+        }
+    }];
+    return mutableArr;
+}
+
+
 - (NSArray *)getCityCollection:(NSArray<ProvinceModel *> *)modelArr province:(NSString *)provinceName {
     NSMutableArray *mutableArr = [NSMutableArray array];
     [modelArr enumerateObjectsUsingBlock:^(ProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -27,6 +49,7 @@
     }];
     return mutableArr;
 }
+
 - (NSArray *)getDistrictCollection:(NSArray<ProvinceModel *> *)modelArr city:(NSString *)cityName {
     NSMutableArray *mutableArr = [NSMutableArray array];
     [modelArr enumerateObjectsUsingBlock:^(ProvinceModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

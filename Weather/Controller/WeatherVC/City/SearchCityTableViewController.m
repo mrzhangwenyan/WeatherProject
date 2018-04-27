@@ -200,7 +200,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == self.dataSource.count) {
-        if (self.dataSource.count == 6) {
+        if (self.dataSource.count >= 6) {
             [HUDTools showText:@"最多只能添加6个城市" withView:self.view withDelay:2.0];
             return;
         }else {
