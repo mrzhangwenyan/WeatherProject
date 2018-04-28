@@ -153,7 +153,7 @@
 ///懒加载
 - (WeatherView *)weatherView {
     if(_weatherView == nil) {
-        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 667)];
+        _weatherView = [[WeatherView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, 760)];
     }
     return _weatherView;
 }

@@ -11,4 +11,5 @@
 
 @interface NSDate (ZZExtra)
 + (NSString *)weekdayFromDate:(NSDate *)date;
+//- (NSData *)dateFromString:(NSString *)str;
 @end

@@ -14,6 +14,13 @@
 {
     return @{@"future": [FutureModel class]};
 }
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    NSString *dateStr = dic[@"date"];
+    dateStr = [dateStr stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+    dateStr = [dateStr substringFromIndex:5];
+    self.date = dateStr;
+    return YES;
+}
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     Class currentClass = self.class;
@@ -95,6 +102,28 @@
         free(plist);
     }
     return self;
+}
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    NSString *dateStr = dic[@"date"];
+    NSString *week = dic[@"week"];
+    week = [NSString transformToWeek:week];
+    self.week = week;
+    NSString *month;
+    NSString *day;
+    NSInteger monthfir = [[dateStr substringWithRange:NSMakeRange(5, 1)] integerValue];
+    NSInteger dayfir = [[dateStr substringWithRange:NSMakeRange(8, 1)] integerValue];
+    if (monthfir == 0) {
+        month = [dateStr substringWithRange:NSMakeRange(6, 1)];
+    }else {
+        month = [dateStr substringWithRange:NSMakeRange(5, 2)];
+    }
+    if (dayfir == 0) {
+        day = [dateStr substringWithRange:NSMakeRange(9, 1)];
+    }else {
+        day = [dateStr substringWithRange:NSMakeRange(8, 2)];
+    }
+    self.date = [NSString stringWithFormat:@"%@.%@",month,day];
+    return YES;
 }
 //+ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper
 //{

@@ -295,6 +295,30 @@
     }
     return [UIImage imageNamed:@""];
 }
++ (NSString *)transformToWeek:(NSString *)string {
+    if ([string isEqualToString:@"星期一"]) {
+        return @"周一";
+    }
+    else if([string isEqualToString:@"星期二"]) {
+        return @"周二";
+    }
+    else if([string isEqualToString:@"星期三"]) {
+        return @"周三";
+    }
+    else if([string isEqualToString:@"星期四"]) {
+        return @"周四";
+    }
+    else if([string isEqualToString:@"星期五"]) {
+        return @"周五";
+    }
+    else if([string isEqualToString:@"星期六"]) {
+        return @"周六";
+    }
+    else if([string isEqualToString:@"星期日"]) {
+        return @"周日";
+    }
+    return string;
+}
 
 /// 截取字符串
 + (NSString *)subStringFromString:(NSString *)string ByLoc:(NSInteger)loc length:(NSInteger)length {

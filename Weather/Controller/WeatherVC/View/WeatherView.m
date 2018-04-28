@@ -10,22 +10,22 @@
 #import "UILabel+ZZExtra.h"
 #import "UIImageView+ZZExtra.h"
 #import "WeatherCollectionCell.h"
+#import "TodayWeatherView.h"
 
 @interface WeatherView()<UICollectionViewDataSource>
-@property(nonatomic, strong)UIImageView *weatherImgView;
+
 @property(nonatomic, strong)UIImageView *windImgView;
 @property(nonatomic, strong)UIImageView *airQualityImgView;
 @property(nonatomic, strong)UIImageView *humidityImgView;
 @property(nonatomic, strong)UILabel *cityNameLabel;
-@property(nonatomic, strong)UILabel *weatherLabel;
-@property(nonatomic, strong)UIButton *temperatureBtn;
-@property(nonatomic, strong)UILabel *degreesLabel;
-@property(nonatomic, strong)UILabel *dateLabel;
 @property(nonatomic, strong)UILabel *windLabel;
 @property(nonatomic, strong)UILabel *airConditionLabel;
 @property(nonatomic, strong)UILabel *humidityLabel;
 @property(nonatomic, strong)UIView  *lineView;
 @property(nonatomic, strong)UIView  *lineBottomView;
+@property(nonatomic, strong)TodayWeatherView *todayView;
+@property(nonatomic, strong)TodayWeatherView *tomorrowView;
+@property(nonatomic, assign)BOOL isHideDashedLine;
 @end
 
 @implementation WeatherView
@@ -36,54 +36,50 @@
     if (self) {
         [self setUserInteractionEnabled:YES];
         [self creatUI];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 - (void)creatUI {
     /// 默认
-    _weatherImgView = [UIImageView imageViewWithName:@""];
+    _isHideDashedLine = YES;
     _windImgView = [UIImageView imageViewWithName:@"windSpeed"];
     _airQualityImgView = [UIImageView imageViewWithName:@"airQuality"];
     _humidityImgView = [UIImageView imageViewWithName:@"humidity"];
     
-    _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:CustomBlack];
-    _weatherLabel = [UILabel labelWithTitle:@"" fontSize:20 textColor:CustomBlack];
+    _cityNameLabel = [UILabel labelWithTitle:@"" fontSize:30 textColor:nil];
+    _cityNameLabel.textColor = RGBCOLOR(0x773f07);
     
-    _temperatureBtn = [[UIButton alloc] init];
-    _temperatureBtn.userInteractionEnabled = NO;
-    [_temperatureBtn setTitle:@"" forState:UIControlStateNormal];
-    [_temperatureBtn setTitleColor:[CustomBlack colorWithAlphaComponent:0.8] forState:UIControlStateNormal];
-    _temperatureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    _temperatureBtn.titleLabel.font = [UIFont fontWithName:@"Heiti SC" size:180];
-//    _temperatureBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -10, 0);
-    _degreesLabel = [UILabel labelWithTitle:@"℃" fontSize:30 textColor:CustomBlack];
-    
-    _dateLabel = [UILabel labelWithTitle:@"" fontSize:16 textColor:CustomBlack];
     _windLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
     _airConditionLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
     _humidityLabel = [UILabel labelWithTitle:@"" fontSize:18 textColor:CustomBlack];
     _lineView = [[UIView alloc] init];
-    _lineView.backgroundColor = CustomBlack;
+    _lineView.backgroundColor = CustomGray;
     _lineBottomView = [[UIView alloc] init];
-    _lineBottomView.backgroundColor = CustomBlack;
+    _lineBottomView.backgroundColor = CustomGray;
+    
+    /// UI布局第二版
+    _todayView = [[TodayWeatherView alloc] initWithFrame:CGRectZero];
+    _tomorrowView = [[TodayWeatherView alloc] initWithFrame:CGRectZero];
+    
+    [self addSubview:_todayView];
+    [self addSubview:_tomorrowView];
+    
     
     /// 添加到view上
-    [self addSubview:_weatherImgView];
     [self addSubview:_windImgView];
     [self addSubview:_airQualityImgView];
     [self addSubview:_humidityImgView];
     
     [self addSubview:_cityNameLabel];
-    [self addSubview:_weatherLabel];
-    [self addSubview:_temperatureBtn];
-    [self addSubview:_degreesLabel];
-    [self addSubview:_dateLabel];
     [self addSubview:_windLabel];
     [self addSubview:_airConditionLabel];
     [self addSubview:_humidityLabel];
     [self addSubview:_lineView];
     [self addSubview:_lineBottomView];
     [self addSubview:self.collectionView];
+    [self makeConstraints];
+    
 }
 - (UICollectionView *)collectionView {
     if(!_collectionView) {
@@ -102,38 +98,27 @@
     }
     return _collectionView;
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [_weatherImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@20);
-        make.left.equalTo(@35);
-        make.size.mas_equalTo(CGSizeMake(50, 50));
-    }];
-    [_cityNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@20);
-        make.centerX.equalTo(self);
-    }];
-    [_weatherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.cityNameLabel.mas_bottom).mas_offset(@15);
-        make.centerX.equalTo(self);
-    }];
-    [_temperatureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(self.weatherLabel.mas_bottom).mas_offset(@50);
-        make.size.mas_equalTo(CGSizeMake(220, 220));
-    }];
-    [_degreesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.temperatureBtn.mas_top).mas_offset(@25);
-        make.right.equalTo(self.temperatureBtn.mas_right).mas_offset(@10);
-    }];
-    [_dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.temperatureBtn.mas_bottom).mas_offset(@-25);
-        make.centerX.equalTo(self);
-    }];
+- (void)makeConstraints {
     
+    [_cityNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@10);
+        make.centerX.equalTo(self);
+    }];
+    [_todayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self);
+        make.right.equalTo(self);
+        make.top.equalTo(self.cityNameLabel.mas_bottom).offset(20);
+        make.height.equalTo(@230);
+    }];
+    [_tomorrowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.todayView.mas_bottom);
+        make.left.equalTo(self);
+        make.right.equalTo(self);
+        make.height.equalTo(@230);
+    }];
     
     [_airQualityImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.dateLabel.mas_bottom).mas_offset(@80);
+        make.top.equalTo(self.tomorrowView.mas_bottom);
         make.centerX.equalTo(self).mas_offset(@-15);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -173,14 +158,39 @@
         make.height.equalTo(@170);
     }];
 }
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    if (_isHideDashedLine) return;
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    /// 设置虚线颜色
+    CGContextSetStrokeColorWithColor(currentContext, CustomGray.CGColor);
+    /// 设置虚线宽度
+    CGContextSetLineWidth(currentContext, 1);
+    /// 设置虚线绘制起点
+    CGContextMoveToPoint(currentContext, 0, CGRectGetMaxY(self.todayView.frame));
+    /// 设置虚线绘制的终点
+    CGContextAddLineToPoint(currentContext, SCREENWIDTH, CGRectGetMaxY(self.todayView.frame));
+    //设置虚线排列的宽度间隔:下面的arr中的数字表示先绘制3个点再绘制1个点
+    CGFloat arr[] = {3,1};
+    //下面最后一个参数“2”代表排列的个数。
+    CGContextSetLineDash(currentContext, 0, arr, 2);
+    CGContextDrawPath(currentContext, kCGPathStroke);
+}
 - (void)setModel:(WeatherModel *)model {
     _model = model;
+    _isHideDashedLine = NO;
+    [self setNeedsDisplay];
     _cityNameLabel.text = model.city;
-    _weatherLabel.text = model.weather;
-    _weatherImgView.image = [NSString imageWithWeatherStr:model.weather];
-    [_temperatureBtn setTitle:[NSString subStringFromString:model.temperature ByLoc:0 length:2] forState:UIControlStateNormal];
-    NSString *publishStr = [NSString stringWithFormat:@"%@ %@发布",model.date,model.time];
-    _dateLabel.text = publishStr;
+    _todayView.model = model.future.firstObject;
+    _todayView.title = [NSString stringWithFormat:@"%@ %@",model.pollutionIndex,model.airCondition];
+    _todayView.currenDayLabel.text = @"今天";
+    _todayView.currenDayLabel.hidden = NO;
+    
+    _tomorrowView.model = model.future[1];
+    _tomorrowView.pollutionLabel.hidden = YES;
+    _tomorrowView.currenDayLabel.text = @"明天";
+    _tomorrowView.currenDayLabel.hidden = NO;
+    
     _windLabel.text = [model.wind substringFromIndex:model.wind.length -2];
     _airConditionLabel.text = model.airCondition;
     _humidityLabel.text = [model.humidity substringFromIndex:model.humidity.length - 3];
