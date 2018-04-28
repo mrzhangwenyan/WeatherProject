@@ -16,6 +16,7 @@
 #import <IQKeyboardManager.h>
 #import "ZZLocalFile.h"
 #import "ZZFMDBManager.h"
+#import "WeatherModel.h"
 
 @interface HotCityTableViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ZZCityNameDelegate>
 @property (nonatomic, strong)UIImageView *headerImgView;
@@ -29,6 +30,8 @@
 @property (nonatomic, strong)SearchTableView *searchTableView;
 @property (nonatomic, strong)NSArray *districtArr;
 @property (nonatomic, strong)NSArray *searchResultArray;
+@property (nonatomic, strong)NSMutableArray *cityNameArr;
+
 @end
 
 @implementation HotCityTableViewController
@@ -42,6 +45,9 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.searchTableView];
+    for (WeatherModel *model in self.hotCityArr) {
+        [self.cityNameArr addObject:model.city];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +136,12 @@
     }
     return _searchResultArray;
 }
+- (NSMutableArray *)cityNameArr {
+    if (!_cityNameArr) {
+        _cityNameArr = [NSMutableArray array];
+    }
+    return _cityNameArr;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -193,6 +205,7 @@
         [self.navigationController setNavigationBarHidden:NO];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }];
+    cell.hotCityArr = self.cityNameArr;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.layoutMargins = UIEdgeInsetsZero;
     cell.separatorInset = UIEdgeInsetsZero;

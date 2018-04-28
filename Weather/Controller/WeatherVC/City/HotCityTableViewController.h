@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class WeatherModel;
 
 @interface HotCityTableViewController : UIViewController
-
+@property (nonatomic, strong)NSArray<WeatherModel *> *hotCityArr;
 @end

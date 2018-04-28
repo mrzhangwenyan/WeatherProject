@@ -10,4 +10,5 @@
 
 @interface HotCollectionViewCell : UICollectionViewCell
 @property (nonatomic, copy)NSString *title;
+@property (nonatomic, strong)UILabel *textLabel;
 @end

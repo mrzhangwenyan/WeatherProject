@@ -10,4 +10,5 @@
 typedef void (^CallBack)(NSString *cityName);
 @interface HotCityTableViewCell : UITableViewCell
 @property (nonatomic, copy)CallBack block;
+@property (nonatomic, strong)NSArray *hotCityArr;
 @end

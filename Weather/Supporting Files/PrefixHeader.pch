@@ -25,6 +25,7 @@
 #import "API.h"
 #import "HUDTools.h"
 #import "UINavigationBar+Awesome.h"
+#import "LocalArchiverManager.h"
 
 #ifdef DEBUG
 #define ZZLog(fmt, ...) NSLog((@"[函数名：%s]\n" "[行号：%d]\n" fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);

@@ -10,7 +10,7 @@
 #import "HotCityTableViewController.h"
 #import "WeatherModel.h"
 #import "HUDTools.h"
-#import "LocalArchiverManager.h"
+
 
 @interface SearchCityTableViewController ()
 @property (nonatomic, assign)BOOL isSelectedItem;
@@ -205,6 +205,7 @@
             return;
         }else {
             HotCityTableViewController *hotvc = [[HotCityTableViewController alloc] init];
+            hotvc.hotCityArr = self.dataSource;
             [self.navigationController pushViewController:hotvc animated:YES];
         }
     }else {
@@ -256,6 +257,9 @@
     
     return @[deleteAction];
 }
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.editIndexPath = indexPath;
+}
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath{
     self.editIndexPath = nil;
 }
@@ -276,6 +280,7 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
     /// 交换数据
     [self.dataSource exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+    [[LocalArchiverManager shareManager] saveDataArchiver:self.dataSource fileName:@"mutableModel"];
     ZZLog(@"%lu------%lu",sourceIndexPath.row,destinationIndexPath.row);
 }
 @end

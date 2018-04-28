@@ -8,7 +8,7 @@
 
 #import "HotCollectionViewCell.h"
 @interface HotCollectionViewCell()
-@property (nonatomic, strong)UILabel *textLabel;
+
 @end
 
 @implementation HotCollectionViewCell

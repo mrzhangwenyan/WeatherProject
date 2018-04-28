@@ -65,7 +65,13 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     HotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"identifier" forIndexPath:indexPath];
-    cell.title = self.mutableArr[indexPath.row];
+    NSString *title = self.mutableArr[indexPath.row];
+    cell.title = title;
+    if ([self.hotCityArr containsObject:title]) {
+        cell.textLabel.textColor = CustomGray;
+    }else {
+        cell.textLabel.textColor = CustomBlack;
+    }
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
